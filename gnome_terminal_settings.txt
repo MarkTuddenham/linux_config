@@ -1,0 +1,47 @@
+[legacy]
+new-terminal-mode='tab'
+schema-version=uint32 3
+theme-variant='system'
+
+[legacy/keybindings]
+move-tab-left='<Primary>Left'
+move-tab-right='<Primary>Right'
+next-tab='<Shift>Right'
+prev-tab='<Shift>Left'
+
+[legacy/profiles:]
+list=['b1dcc9dd-5262-4d8d-a863-c897e6d979b9', '0b3a2cbd-308f-400c-a309-e26fbb198ea5']
+
+[legacy/profiles:/:0b3a2cbd-308f-400c-a309-e26fbb198ea5]
+audible-bell=false
+background-color='rgb(46,52,54)'
+bold-is-bright=true
+cursor-blink-mode='on'
+cursor-shape='underline'
+default-size-columns=130
+default-size-rows=40
+font='Fira Code 12'
+foreground-color='rgb(211,215,207)'
+palette=['rgb(0,0,0)', 'rgb(205,0,0)', 'rgb(0,205,0)', 'rgb(0,214,249)', 'rgb(0,214,249)', 'rgb(205,0,205)', 'rgb(205,0,205)', 'rgb(229,229,229)', 'rgb(0,205,0)', 'rgb(255,0,0)', 'rgb(0,255,0)', 'rgb(185,55,226)', 'rgb(39,209,224)', 'rgb(255,0,255)', 'rgb(0,214,249)', 'rgb(255,255,255)']
+scroll-on-output=true
+use-system-font=false
+use-theme-colors=true
+use-theme-transparency=true
+visible-name='marks_bk'
+
+[legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9]
+audible-bell=false
+background-color='rgb(46,52,54)'
+bold-is-bright=true
+cursor-blink-mode='on'
+cursor-shape='underline'
+default-size-columns=130
+default-size-rows=40
+font='Fira Code 12'
+foreground-color='rgb(211,215,207)'
+palette=['rgb(0,0,0)', 'rgb(255,0,0)', 'rgb(0,205,0)', 'rgb(0,214,249)', 'rgb(0,214,249)', 'rgb(255,0,255)', 'rgb(205,0,205)', 'rgb(229,229,229)', 'rgb(0,205,0)', 'rgb(102,13,13)', 'rgb(0,205,0)', 'rgb(185,55,226)', 'rgb(0,214,249)', 'rgb(18,127,183)', 'rgb(0,214,249)', 'rgb(229,229,229)']
+scroll-on-output=true
+use-system-font=false
+use-theme-colors=true
+use-theme-transparency=true
+visible-name='marks'

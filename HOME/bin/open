@@ -1,0 +1,8 @@
+#!/bin/bash
+FILE=$(rg --no-messages --files $HOME \ #~/Music ~/Documents ~/phd ~/SynologyShare ~/dev ~/Pictures ~/Downloads /media/mark/backup \
+    -g "!{*.srt,*.rar,*.txt,*.zip,*.nfo,*venv/*,*Qt/*,/media/mark/backup/socrates/*}" | rofi -threads 0 -config $HOME/.config/i3/rofi.config \
+    -dmenu -sort -sorting-method fzf -i -p "files")
+
+if [ ! -z "$FILE" ]; then
+    gio open "$FILE"
+fi

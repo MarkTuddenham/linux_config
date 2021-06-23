@@ -1,0 +1,14 @@
+#!/bin/bash
+
+subdir_files () {
+  echo -e "$(find "$1" -type f | wc -l)" \\t \| $1
+}
+export -f subdir_files
+
+if [ -z "$1" ]; then
+  DIR=$(pwd)
+else
+  DIR=$1
+fi
+
+find "$DIR" -maxdepth 1 -mindepth 1 -type d -exec bash -c "subdir_files \"{}\"" \;

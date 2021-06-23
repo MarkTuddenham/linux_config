@@ -1,0 +1,5 @@
+.DS_store
+.directory
+
+__pycache__/
+.mypy_cache/

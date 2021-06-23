@@ -1,0 +1,18 @@
+[mypy]
+python_version = 3.8
+warn_return_any = True
+warn_unused_configs = True
+
+
+[torch]
+ignore_missing_imports = True
+[torchvision]
+ignore_missing_imports = True
+[numpy]
+ignore_missing_imports = True
+[matplotlib]
+ignore_missing_imports = True
+[tqdm]
+ignore_missing_imports = True
+[torchsummary]
+ignore_missing_imports = True
