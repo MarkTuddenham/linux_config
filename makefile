@@ -1,12 +1,16 @@
-
-
 # TODO: neovim, qutebrowser, i3 (+i3-gnome), $HOME/.bash*, tmux, firacode,
 # TODO: ipsec/VPN
 # TODO: other dotfiles - only move the ones for specific commands?
 
 COMMON_PACKAGES=ssh git preload
-DESKTOP_PACKAGES=bat ripgrep libjs-pdf fd-find rofi sparse zsh
+DESKTOP_PACKAGES=bat ripgrep libjs-pdf fd-find rofi sparse zsh clangd-12
 SERVER_PACKAGES=
+
+# Dirs
+BUILD_DIR=${HOME}/build
+
+# Commands
+MKDIR=mkdir -p
 
 
 .PHONY: all
@@ -23,12 +27,12 @@ desktop: desktop_apt c_scripts nvim nvim-setup kitty
 .PHONY: common_apt
 common_apt: requires_sudo
 	@echo [apt install] $(COMMON_PACKAGES)
-	@sudo apt install $(COMMON_PACKAGES)
+	@sudo apt install -y $(COMMON_PACKAGES)
 	
 .PHONY: server_apt
 server_apt: common_apt requires_sudo
 	@echo [apt install] $(SERVER_PACKAGES)
-	@sudo apt install $(SERVER_PACKAGES)
+	@sudo apt install -y $(SERVER_PACKAGES)
 
 .PHONY: desktop_apt
 desktop_apt: common_apt requires_sudo
@@ -42,8 +46,8 @@ common_setup: common_apt
 
 .PHONY: requires_sudo
 requires_sudo:
-	# Run the sudo command first so the user knows its needed for  the install
-	# TODO: Can we quit if sudo fails?
+	@# Run the sudo command first so the user knows its needed for  the install
+	@# TODO: Can we quit if sudo fails?
 	@echo "This install requires sudo, quit now if you do not want this."
 	@sudo printf "sudo permission granted"
 
@@ -54,9 +58,9 @@ c_scripts: requires_sudo
 	@echo [install] installing to /usr/bin/c
 	@sudo install -m 755 c /usr/bin/c
 	@echo [.bashrc] export CC=clang
-	@printf "\nexport CC=clang" >> $HOME/.bashrc
+	@printf "\nexport CC=clang" >> ${HOME}/.bashrc
 	@echo [.bashrc] export CXX=clang
-	@printf "export CXX=clang\n" >> $HOME/.bashrc
+	@printf "export CXX=clang\n" >> ${HOME}/.bashrc
 
 .PHONY: nvim
 NVIM_BRANCH ?=master # or "stable" &c.
@@ -74,12 +78,12 @@ nvim: cmake requires_sudo
 
 .PHONY: nvim-setup
 nvim-setup:
-	@echo [git] clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-	@git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+	@echo [git] clone https://github.com/VundleVim/Vundle.vim.git ${HOME}/.vim/bundle/Vundle.vim
+	@git clone https://github.com/VundleVim/Vundle.vim.git ${HOME}/.vim/bundle/Vundle.vim
 	@echo [cp] .vimrc
-	@cp ./dotfiles/vimrc ~/.vimrc
+	@cp ./HOME/.vimrc ${HOME}/.vimrc
 	@echo [vim] install plugins
-	@vim +PluginInstall +qall
+	@nvim +PluginInstall +qall
 
 
 .PHONY: cmake
@@ -90,17 +94,32 @@ cmake:
 .PHONY: kitty
 kitty:
 	@if ! command -v kitty &> /dev/null ; then\
-		ln -s ~/.local/kitty.app/bin/kitty ~/.local/bin/;\
-		cp ~/.local/kitty.app/share/applications/kitty.desktop ~/.local/share/applications/;\
-		sed -i "s|Icon=kitty|Icon=/home/${USER}/.local/kitty.app/share/icons/hicolor/256x256/apps/kitty.png|g" ~/.local/share/applications/kitty.desktop;\
  		curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin;\
+		ln -s ${HOME}/.local/kitty.app/bin/kitty ${HOME}/bin/;\
+		cp ${HOME}/.local/kitty.app/share/applications/kitty.desktop ${HOME}/.local/share/applications/;\
+		sed -i "s|Icon=kitty|Icon=/home/${USER}/.local/kitty.app/share/icons/hicolor/256x256/apps/kitty.png|g" ${HOME}/.local/share/applications/kitty.desktop;\
 	fi
 
+.PHONY: picom
+picom: requires_sudo folders
+	@sudo apt install -y cmake meson git pkg-config asciidoc libxext-dev libxcb1-dev libxcb-damage0-dev libxcb-xfixes0-dev libxcb-shape0-dev libxcb-render-util0-dev libxcb-render0-dev libxcb-randr0-dev libxcb-composite0-dev libxcb-image0-dev libxcb-present-dev libxcb-xinerama0-dev libxcb-glx0-dev libpixman-1-dev libdbus-1-dev libconfig-dev libgl1-mesa-dev  libpcre2-dev  libevdev-dev uthash-dev libev-dev libx11-xcb-dev
+	@if [ ! -d '${BUILD_DIR}/picom' ]; then git clone https://github.com/jonaburg/picom ${BUILD_DIR}/picom; fi
+	@cd ${BUILD_DIR}/picom
+	@git submodule update --init --recursive
+	@meson --buildtype=release ${BUILD_DIR}/picom build
+	@ninja -C build
+	@sudo ninja -C build install
+	@cd -
+
+.PHONY: folders
+folders:
+	@${MKDIR} ${BUILD_DIR}
+		
 .PHONY: zsh
 zsh: 
-	@mkdir -p ${HOME}/.config/antigen
-	@curl -L git.io/antigen > ${HOME}/.config/antigen/antigen.zsh
-	# Will be done when we link across!!
-	@mkdir -p ~/.config/zsh
-	@mkdir -p ~/.config/zsh/custom
-	@mkdir -p ~/.config/zsh/include
+	@${MKDIR} ${HOME}/.config/zsh/antigen
+	@curl -L git.io/antigen > ${HOME}/.config/zsh/antigen/antigen.zsh
+	@# Will be done when we link across!!
+	@${MKDIR} ${HOME}/.config/zsh
+	@${MKDIR} ${HOME}/.config/zsh/custom
+	@${MKDIR} ${HOME}/.config/zsh/include

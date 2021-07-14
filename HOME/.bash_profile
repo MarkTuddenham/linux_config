@@ -5,7 +5,7 @@ export PATH=$HOME/.node_modules/bin:$PATH
 # Custom bin 
 export PATH=$HOME/bin:$PATH
 # Garmin SDKs 
-export PATH=`cat $HOME/.Garmin/ConnectIQ/current-sdk.cfg`/bin:$PATH
+# export PATH=`cat $HOME/.Garmin/ConnectIQ/current-sdk.cfg`/bin:$PATH
 
 # Cuda
 export PATH=/usr/local/cuda/bin:$PATH
