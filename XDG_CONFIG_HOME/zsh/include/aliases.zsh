@@ -18,3 +18,12 @@ alias sshx='ssh -X'
 alias op='gio open'
 alias bat='batcat'
 alias f='find . -name '
+
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+
+alias agi='sudo apt-get install '
+alias agu='sudo apt-get update && sudo apt-get upgrade'
+
+alias icat="kitty +kitten icat"
