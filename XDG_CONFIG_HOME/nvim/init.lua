@@ -1,11 +1,8 @@
-require('tudders.plugins')
-require('tudders.config')
--- require('tudders.statusline')
-
 if require('tudders.first_load')() then
   return
 end
 
+require('tudders.plugins')
 
 -- Leader key -> ","
 --
@@ -13,6 +10,10 @@ end
 -- if you have any mappings you set BEFORE doing this, they will be set to the OLD
 -- leader.
 vim.g.mapleader = ","
+
+require('tudders.config')
+-- require('tudders.statusline')
+
 
 vim.g.vim_markdown_math = 1
 

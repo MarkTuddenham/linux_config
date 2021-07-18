@@ -41,18 +41,17 @@ return require("packer").startup {
       use(opts)
     end
 
-    use "wbthomason/packer.nvim"
+    use 'wbthomason/packer.nvim'
 
-    -- use 'vim-airline/vim-airline'
     use 'ap/vim-css-color'
-	use 'airblade/vim-gitgutter'
-	use 'octol/vim-cpp-enhanced-highlight'
-	-- use 'tpope/vim-markdown' -- TODO use LSP markdown
+    use 'airblade/vim-gitgutter'
+    use 'octol/vim-cpp-enhanced-highlight'
+    -- use 'tpope/vim-markdown' -- TODO use LSP markdown
     use 'tpope/vim-fugitive'
-	use 'roxma/vim-paste-easy'
-	use 'tpope/vim-eunuch'
-	use 'tpope/vim-obsession'
-	use 'wikitopian/hardmode'
+    use 'roxma/vim-paste-easy'
+    use 'tpope/vim-eunuch'
+    use 'tpope/vim-obsession'
+    use 'wikitopian/hardmode'
 
 
     use {
@@ -127,8 +126,8 @@ return require("packer").startup {
     local_use("nvim-telescope", "telescope.nvim")
     local_use("nvim-telescope", "telescope-fzf-writer.nvim")
     local_use("nvim-telescope", "telescope-packer.nvim")
-   --  local_use("nvim-telescope", "telescope-fzy-native.nvim")
     use { "nvim-telescope/telescope-fzf-native.nvim", run = "make" }
+    -- local_use("nvim-telescope", "telescope-fzy-native.nvim")
     -- local_use("nvim-telescope", "telescope-async-sorter-test.nvim")
 
     local_use("nvim-telescope", "telescope-github.nvim")

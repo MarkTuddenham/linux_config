@@ -10,6 +10,8 @@ opt.autoread = true
 opt.spelllang = 'en_gb'
 opt.spell = false
 
+-- opt.fileformat = 'unix'
+
 -- Cool floating window popup menu for completion on command line
 opt.pumblend = 17
 
@@ -27,7 +29,7 @@ opt.cursorline = false -- Highlight the current line
 opt.equalalways = false -- I don't like my windows changing all the time
 opt.splitright = true -- Prefer windows splitting to the right
 opt.splitbelow = true -- Prefer windows splitting to the bottom
-opt.updatetime = 1000 -- Make updates happen faster
+opt.updatetime = 500 -- Make updates happen faster
 opt.hlsearch = false -- I wouldn't use this without my DoNoHL function
 opt.scrolloff = 10 -- Make it so there are always ten lines below my cursor
 
@@ -37,9 +39,9 @@ opt.autoindent = true
 opt.cindent = true
 opt.wrap = true
 
-opt.tabstop = 4
-opt.shiftwidth = 4
-opt.softtabstop = 4
+opt.tabstop = 2
+opt.shiftwidth = 2
+opt.softtabstop = 2
 opt.expandtab = true
 
 opt.breakindent = true
@@ -58,7 +60,7 @@ opt.inccommand = "split"
 opt.swapfile = false -- Living on the edge
 opt.shada = { "!", "'1000", "<50", "s10", "h" }
 
-opt.mouse = "n"
+-- opt.mouse = "n" -- Turn mouse on in normal mode
 
 -- Helpful related items:
 --   1. :center, :left, :right
