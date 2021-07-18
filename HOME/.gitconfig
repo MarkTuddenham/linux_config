@@ -6,6 +6,7 @@
 [core]
 	editor = nvim
 	excludesFile = ~/.gitignore
+	autocrlf = input
 [diff]
     tool = default-difftool
 [difftool "default-difftool"]
