@@ -10,13 +10,11 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-fugitive'
-" Plugin 'scrooloose/nerdtree'
-" Plugin 'xuyuanp/nerdtree-git-plugin'
-" Plugin 'ryanoasis/vim-devicons'
-" Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
-" Plugin 'scrooloose/syntastic'
-" Plugin 'raimondi/delimitmate'
-" Plugin 'junegunn/fzf'
+Plugin 'scrooloose/nerdtree'
+Plugin 'xuyuanp/nerdtree-git-plugin'
+Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plugin 'scrooloose/syntastic'
+Plugin 'raimondi/delimitmate'
 Plugin 'ap/vim-css-color'
 Plugin 'groenewege/vim-less'
 Plugin 'ervandew/supertab'
@@ -28,23 +26,18 @@ Plugin 'rhysd/vim-clang-format'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-markdown'
 Plugin 'liuchengxu/vista.vim'
-" Plugin 'neoclide/coc.nvim'
+Plugin 'neoclide/coc.nvim'
 " Plugin 'neoclide/coc-tabnine'
 Plugin 'roxma/vim-paste-easy'
 Plugin 'tpope/vim-eunuch'
 Plugin 'tyru/open-browser.vim'
-" Plugin 'fatih/vim-go'
-" Plugin 'pangloss/vim-javascript'
+Plugin 'fatih/vim-go'
+Plugin 'pangloss/vim-javascript'
 Plugin 'majutsushi/tagbar'
-" Plugin 'sheerun/vim-polyglot'
+Plugin 'sheerun/vim-polyglot'
 Plugin 'neovim/nvim-lspconfig'
 Plugin 'myusuf3/numbers.vim'
 Plugin 'tpope/vim-obsession'
-
-Plugin 'kyazdani42/nvim-web-devicons'
-Plugin 'nvim-lua/popup.nvim'
-Plugin 'nvim-lua/plenary.nvim'
-Plugin 'nvim-telescope/telescope.nvim'
 
 Plugin 'wikitopian/hardmode'
 
@@ -109,8 +102,6 @@ let g:cpp_class_decl_highlight = 1
 let g:cpp_member_variable_highlight = 1
 let g:cpp_experimental_simple_template_highlight = 1
 
-
-
 function! NearestMethodOrFunction() abort
   return get(b:, 'vista_nearest_method_or_function', '')
 endfunction
@@ -118,7 +109,7 @@ endfunction
 set statusline+=%{NearestMethodOrFunction()}
 autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
 
-set updatetime=300
+set updatetime=750
 set undodir=~/.vim/.undo//
 set backupdir=~/.vim/.backup//
 set directory=~/.vim/.swp//
@@ -138,24 +129,17 @@ let g:HardMode_level = 'wannabe'
 let g:HardMode_hardmodeMsg = 'Don''t use this!'
 autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
 
-" " Highlight the symbol and its references when holding the cursor.
-" autocmd CursorHold * silent call CocActionAsync('highlight')
+" Highlight the symbol and its references when holding the cursor.
+autocmd CursorHold * silent call CocActionAsync('highlight')
 
-" " Symbol renaming.
-" nmap <leader>rn <Plug>(coc-rename)
+" Symbol renaming.
+nmap <leader>rn <Plug>(coc-rename)
 
-" " Formatting selected code.
-" xmap <leader>f  <Plug>(coc-format-selected)
-" nmap <leader>f  <Plug>(coc-format-selected)
+" Formatting selected code.
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
 
 noremap <leader>h <cmd>noh<cr>
-
-
-" Find files using leadeleaderrTelescope command-line sugar.
-nnoremap <leader>ff <cmd>Telescope find_files<cr>
-nnoremap <leader>fg <cmd>Telescope live_grep<cr>
-nnoremap <leader>fb <cmd>Telescope buffers<cr>
-nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
 " " Copy to clipboard
 vnoremap  <leader>y  "+y<cr>
