@@ -22,7 +22,7 @@ local opts = {noremap = true, silent = true}
 vim.api.nvim_set_keymap('n', '<leader>ff', '<cmd>Telescope find_files<cr>', opts)
 vim.api.nvim_set_keymap('n', '<leader>fo', '<cmd>Telescope file_browser<cr>', opts)
 vim.api.nvim_set_keymap('n', '<leader>fg', '<cmd>Telescope live_grep<cr>', opts)
-vim.api.nvim_set_keymap('n', '<leader>fb', '<cmd>Telescope builtin<cr>', opts)
+vim.api.nvim_set_keymap('n', '<leader>fb', '<cmd>Telescope buffers<cr>', opts)
 vim.api.nvim_set_keymap('n', '<leader>fh', '<cmd>Telescope help_tags<cr>', opts)
 vim.api.nvim_set_keymap('n', '<leader>fwl', '<cmd>lua require("telescope").extensions.git_worktree.git_worktrees()<cr>', opts)
 vim.api.nvim_set_keymap('n', '<leader>fwc', '<cmd>lua require("telescope").extensions.git_worktree.create_git_worktree()<cr>', opts)
