@@ -65,6 +65,17 @@ return require('packer').startup {
       requires = {'kyazdani42/nvim-web-devicons', opt = true}
     }
 
+    -- Git worktree utility6
+    use {
+      'ThePrimeagen/git-worktree.nvim',
+      config = function()
+        require('git-worktree').setup {}
+      end,
+    }
+    
+    -- Harpoon
+    use 'ThePrimeagen/harpoon'
+
 
     -- My Plugins
     -- local_use 'nlua.nvim'
