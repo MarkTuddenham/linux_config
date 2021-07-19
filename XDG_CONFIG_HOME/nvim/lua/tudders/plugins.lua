@@ -243,7 +243,7 @@ return require("packer").startup {
   --  }
 
     -- TODO: Eventually statusline should consume this.
-   use "mkitt/tabline.vim"
+    use "mkitt/tabline.vim"
 
     use "kyazdani42/nvim-web-devicons"
     if not is_wsl then
