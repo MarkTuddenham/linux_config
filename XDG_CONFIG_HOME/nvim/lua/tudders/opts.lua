@@ -37,7 +37,11 @@ opt.scrolloff = 10 -- Make it so there are always ten lines below my cursor
 opt.smarttab = true
 opt.autoindent = true
 opt.cindent = true
-opt.wrap = true
+opt.wrap = false
+
+-- But turn wrap and spell on for latex and plain text files
+vim.cmd('au BufEnter * if &ft == "tex" | set wrap | set spell | endif')
+vim.cmd('au BufEnter * if &ft == "plaintext" | set wrap | set spell | endif')
 
 opt.tabstop = 2
 opt.shiftwidth = 2
