@@ -44,7 +44,13 @@ return require("packer").startup {
     use 'wbthomason/packer.nvim'
 
     use 'ap/vim-css-color'
-    use 'airblade/vim-gitgutter'
+    -- use 'airblade/vim-gitgutter'
+    use {
+      'lewis6991/gitsigns.nvim',
+      requires = {
+        'nvim-lua/plenary.nvim'
+      }
+    }
     use 'octol/vim-cpp-enhanced-highlight'
     -- use 'tpope/vim-markdown' -- TODO use LSP markdown
     use 'tpope/vim-fugitive'
