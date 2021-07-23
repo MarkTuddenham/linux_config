@@ -65,7 +65,6 @@ return require('packer').startup {
       requires = {'kyazdani42/nvim-web-devicons', opt = true}
     }
 
-    -- Git worktree utility6
     use {
       'ThePrimeagen/git-worktree.nvim',
       config = function()
@@ -469,17 +468,6 @@ return require('packer').startup {
     --   'rhysd/git-messenger.vim',
     --  keys = '<Plug>(git-messenger)',
     --  }
-
-    -- Async signs!
-    use 'lewis6991/gitsigns.nvim'
-
-    -- Git worktree utility6
-    use {
-      'ThePrimeagen/git-worktree.nvim',
-      config = function()
-        require('git-worktree').setup {}
-      end,
-    }
 
     -- use 'untitled-ai/jupyter_ascending.vim'
 
