@@ -87,3 +87,6 @@ opt.joinspaces = false -- Two spaces and grade school, we're done
 
 -- set fillchars=eob:~
 opt.fillchars = { eob = "~" }
+
+vim.g.HardMode_level = 'wannabe'
+vim.cmd('au VimEnter,BufNewFile,BufReadPost * silent! call HardMode()')
