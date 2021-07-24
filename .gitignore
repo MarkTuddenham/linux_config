@@ -1,2 +1,2 @@
-
-HOME/bin/*
+binaries/bin/*
+nvim/.config/nvim/plugin/packer_compiled.lua
