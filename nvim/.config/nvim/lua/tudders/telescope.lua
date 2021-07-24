@@ -2,6 +2,11 @@
 require('telescope').setup {
   defaults = {
     color_devicons = true,
+    layout_config = {
+      horizontal = {
+        prompt_position = 'top',
+      },
+    },
   },
   extensions = {
     fzf = {
