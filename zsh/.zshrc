@@ -36,12 +36,12 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=6'
 # autoload -Uz promptinit; promptinit
 # prompt spaceship
 
-setopt histignorealldups sharehistory
+# setopt histignorealldups sharehistory
+setopt histignorealldups
 
 # Use emacs keybindings even if our EDITOR is set to vi
 # bindkey -e
 
-# Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
 HISTSIZE=10000
 SAVEHIST=10000
 HISTFILE=~/.local/.zsh_history
@@ -90,5 +90,4 @@ done
 # Make zsh know about hosts already accessed by SSH
 zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,~/.ssh/known_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'
 
-
-
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

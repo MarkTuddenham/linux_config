@@ -3,7 +3,7 @@
 # TODO: other dotfiles - only move the ones for specific commands?
 
 COMMON_PACKAGES=ssh git preload
-DESKTOP_PACKAGES=bat ripgrep libjs-pdf fd-find rofi sparse zsh clangd-12
+DESKTOP_PACKAGES=bat ripgrep libjs-pdf fd-find rofi sparse zsh clangd-12 neomutt stow
 SERVER_PACKAGES=
 
 # Dirs
@@ -84,6 +84,8 @@ nvim-setup:
 	@cp ./HOME/.vimrc ${HOME}/.vimrc
 	@echo [vim] install plugins
 	@nvim +PluginInstall +qall
+	# things for lsp
+	@pip install 'python-lsp-server[all]' pyls-flake8 pyls-isort python-lsp-black
 
 
 .PHONY: cmake

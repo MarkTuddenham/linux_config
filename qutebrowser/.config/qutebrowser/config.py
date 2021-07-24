@@ -10,8 +10,8 @@
 #   qute://help/configuring.html
 #   qute://help/settings.html
 
-# Change the argument to True to still load settings configured via autoconfig.yml
-config.load_autoconfig(False)
+# Still load settings configured via autoconfig.yml
+config.load_autoconfig()
 
 # Always restore open sites when qutebrowser is reopened. Without this
 # option set, `:wq` (`:quit --save`) needs to be used to save open tabs
@@ -287,7 +287,18 @@ c.tabs.background = True
 # the search engine name to the search term, e.g. `:open google
 # qutebrowser`.
 # Type: Dict
-c.url.searchengines = {'DEFAULT': 'https://duckduckgo.com/?q={}', 'am': 'https://www.amazon.co.uk/s?k={}', 'google': 'https://www.google.com/search?q={}', 'wiki': 'https://en.wikipedia.org/wiki/{}', 'yt': 'https://www.youtube.co.uk/results?search_query={}', 'arxiv': 'https://arxiv.org/search?query={}&searchtype=all&source=header', 'cppref': 'https://en.cppreference.com/mwiki/index.php?title=Special:Search&search={}', 'github': 'https://github.com/search?q={}&ref=opensearch', 'translate': 'https://translate.google.com/?source=osdd&sl=auto&tl=auto&text={}&op=translate', 'latinw': 'https://en.wiktionary.org/wiki/{}#Latin', 'torchdoc': 'https://pytorch.org/docs/stable/search.html?q={}'}
+c.url.searchengines = {
+    'DEFAULT': 'https://duckduckgo.com/?q={}',
+    'am': 'https://www.amazon.co.uk/s?k={}',
+    'google': 'https://www.google.com/search?q={}',
+    'wiki': 'https://en.wikipedia.org/wiki/{}',
+    'yt': 'https://www.youtube.co.uk/results?search_query={}',
+    'arxiv': 'https://arxiv.org/search?query={}&searchtype=all&source=header',
+    'cppref': 'https://en.cppreference.com/mwiki/index.php?title=Special:Search&search={}',
+    'github': 'https://github.com/search?q={}&ref=opensearch',
+    'translate': 'https://translate.google.com/?source=osdd&sl=auto&tl=auto&text={}&op=translate',
+    'latinw': 'https://en.wiktionary.org/wiki/{}#Latin',
+    'torchdoc': 'https://pytorch.org/docs/stable/search.html?q={}'}
 
 # config.set('colors.webpage.darkmode.enabled', True)
 config.set('qt.workarounds.remove_service_workers', True)

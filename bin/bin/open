@@ -4,5 +4,5 @@ FILE=$(rg --no-messages --files $HOME \ #~/Music ~/Documents ~/phd ~/SynologySha
     -dmenu -sort -sorting-method fzf -i -p "files")
 
 if [ ! -z "$FILE" ]; then
-    gio open "$FILE"
+    gio open "$FILE" 2>&1
 fi

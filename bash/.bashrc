@@ -87,10 +87,10 @@ fi
 # colored GCC warnings and errors
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
-# some more ls aliases
-alias ll='ls -ahlF'
-alias la='ls -A'
-alias l='ls -CF'
+# # some more ls aliases
+# alias ll='ls -ahlF'
+# alias la='ls -A'
+# alias l='ls -CF'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -154,3 +154,5 @@ export NVM_DIR="$HOME/.nvm"
 
 export CC=clang
 export CXX=clang++
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
