@@ -143,9 +143,9 @@ unset __conda_setup
 # <<< conda initialize <<<
 
 # Add git status to bash prompt
-if [ -f "$HOME/.bash-git-prompt/gitprompt.sh" ]; then
+if [ -f "$HOME/bash-git-prompt/gitprompt.sh" ]; then
     GIT_PROMPT_ONLY_IN_REPO=1
-    source $HOME/.bash-git-prompt/gitprompt.sh
+    source $HOME/bash-git-prompt/gitprompt.sh
 fi
 
 export NVM_DIR="$HOME/.nvm"
