@@ -1,0 +1,60 @@
+# Folder with emails
+set folder = "~/.mail/soton"
+# Type of mailbox
+set mbox_type = Maildir
+# Directory to poll for new mail
+set spoolfile = +Inbox
+# Directory to save sent messages into
+set record = +Sent
+# Sets the drafts folder
+set postponed = +Drafts
+# File that headers will be cached
+set header_cache = ~/.cache/mutt
+
+mailboxes =Inbox =Drafts 
+
+# Sort by threads
+set sort = threads
+# Sort threads by last date recieved - newest first
+set sort_aux = reverse-last-date-received
+# Show date in year/month/day hour:minute format
+set date_format="%y/%m/%d %I:%M%p"
+
+# Mailcap file is used to tell mutt how to open different types of file
+set mailcap_path = "~/.config/mutt/mailcap"
+
+# Tells Mutt to automatically view files with these mime types
+auto_view text/html
+# Order to try and show multipart emails
+alternative_order text/plain text/enriched text/html
+
+# Use an external command to get the password
+# set my_smtp_pass = `pass show email/soton`
+# Set the smtp url
+# set smtp_url="smtp://'mt9g15@soton.ac.uk':$my_smtp_pass@127.0.0.1:2525"
+# set ssl_starttls = yes
+
+set from = 'mark.tuddenham@southampton.ac.uk'
+set realname = 'Mark Tuddenham'
+
+# Use nvim but don't force text width (looks terible if read on a phone)
+set editor = "nvim +':set textwidth=0'"
+
+# Use my msmtp / markdown wrapper script to send emails using the work account
+set sendmail = "send-from-mutt soton"
+# Puts email headers in Vim
+set edit_headers=yes
+# Adds a header that is used to determine whether my send script should convert the markdown to html
+my_hdr Markdown: false
+
+set mail_check_stats 
+set sidebar_visible
+set sidebar_format = "%B%?F? [%F]?%* %?N?%N/?%S"
+
+
+# Ctrl-Shift-P – Previous Mailbox
+bind index,pager \Cp sidebar-prev
+# Ctrl-Shift-N – Next Mailbox
+bind index,pager \Cn sidebar-next
+# Ctrl-Shift-O – Open Highlighted Mailbox
+bind index,pager \Co sidebar-open

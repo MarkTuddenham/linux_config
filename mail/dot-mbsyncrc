@@ -1,0 +1,28 @@
+IMAPAccount soton
+# Address to connect to
+Host 127.0.0.1
+Port 1143
+User mt9g15@soton.ac.uk
+PassCmd "pass email/soton"
+SSLType None
+AuthMechs LOGIN
+
+IMAPStore soton-remote
+Account soton
+
+MaildirStore soton-local
+# Copy folder hierarchy
+Subfolders Verbatim
+# The trailing "/" is important
+Path ~/.mail/soton/
+Inbox ~/.mail/soton/Inbox
+
+Channel soton
+Master :soton-remote:
+Slave :soton-local:
+# Include everything
+Patterns *
+# Automatically create missing mailboxes, both locally and on the server
+Create Both
+# Save the synchronization state files in the relevant directory
+SyncState *

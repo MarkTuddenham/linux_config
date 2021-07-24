@@ -1,0 +1,21 @@
+# Check AppArmour is disabled: https://deaddabe.fr/blog/2020/12/22/msmtp-and-apparmor-investigating-a-curious-access-issue/
+# Set default values for all following accounts.
+defaults
+auth           on
+tls            on
+tls_trust_file /etc/ssl/certs/ca-certificates.crt
+logfile        ~/.msmtp.log
+
+# Soton
+account        soton
+host           localhost
+port           2525
+tls            off
+tls_starttls   off
+auth           login
+user           mt9g15@soton.ac.uk
+passwordeval   "pass show email/soton"
+from           mark.tuddenham@southampton.ac.uk
+
+
+account default : soton

@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# config="$HOME/.config/msmtp/config"
+
+# Put the message, send to stdin, in a variable
+message="$(cat -)"
+# Look at the first argument,
+# Use it to determine the account to use
+# If not set, assume work
+# All remaining arguments should be recipient addresses which should be passed to msmtp
+case "$(echo "$1" | tr '[A-Z]' '[a-z]')" in
+    "soton") account="soton"; shift ;;
+    "home") account="home"; shift ;;
+    *) account="soton"; ;;
+esac
+
+cleanHeaders(){
+    # In the headers, delete any lines starting with markdown
+    cat - | sed '0,/^$/{/^markdown/Id;}'
+}
+
+
+echo "$message" | sed '/^$/q' | grep -q -i 'markdown: true' \
+    && echo "$message" | cleanHeaders | convertToHtmlMultipart | msmtp  --account="$account" "$@" \
+    || echo "$message" | cleanHeaders | msmtp --account="$account" "$@"
+
+# echo "$message" | sed '/^$/q' | grep -q -i 'markdown: true' \
+#     && echo "$message" | cleanHeaders | convertToHtmlMultipart | msmtp --file="$config" --account="$account" "$@" \
+#     || echo "$message" | cleanHeaders | msmtp -v --file="$config" --account="$account" "$@"
