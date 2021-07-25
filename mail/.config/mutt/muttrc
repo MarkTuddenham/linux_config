@@ -11,7 +11,7 @@ set postponed = +Drafts
 # File that headers will be cached
 set header_cache = ~/.cache/mutt
 
-mailboxes =Inbox =Drafts 
+mailboxes =Inbox =Inbox/0\ Supervision  =Inbox/1\ Demonstrating =Inbox/PhD =Inbox/PhD/Admin =Inbox/PhD/Slurm =Drafts =Sent
 
 # Sort by threads
 set sort = threads
