@@ -28,6 +28,5 @@ vim.g.cpp_experimental_simple_template_highlight = 1
 
 vim.g.HardMode_level = 'wannabe'
 vim.g.HardMode_hardmodeMsg = 'Don\'t use this!'
--- autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
 
 vim.cmd('source $HOME/.config/nvim/keybindings.vim')
