@@ -2,6 +2,9 @@ require 'tudders.opts'
 require 'tudders.telescope'
 
 require('lualine').setup()
+require('github-theme').setup{
+  transparent = true
+}
 
 require("harpoon").setup({
     global_settings = {

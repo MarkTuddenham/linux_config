@@ -12,6 +12,8 @@ end)()
 
 return require('packer').startup {
   function(use)
+    -- use plugins from this machine
+    -- specifying first and second will download as normal if no local copy
     local local_use = function(first, second, opts)
       opts = opts or {}
 
@@ -42,8 +44,11 @@ return require('packer').startup {
     end
 
     use 'wbthomason/packer.nvim'
+    use 'nvim-lua/popup.nvim'
+    use 'nvim-lua/plenary.nvim'
 
-    use 'ap/vim-css-color'
+    use 'projekt0n/github-nvim-theme'
+
     -- use 'airblade/vim-gitgutter'
     use {
       'lewis6991/gitsigns.nvim',
@@ -54,15 +59,17 @@ return require('packer').startup {
     use 'octol/vim-cpp-enhanced-highlight'
     -- use 'tpope/vim-markdown' -- TODO use LSP markdown
     use 'tpope/vim-fugitive'
-    use 'roxma/vim-paste-easy'
     use 'tpope/vim-eunuch'
+    use 'roxma/vim-paste-easy'
     use 'tpope/vim-obsession'
+    use 'ap/vim-css-color'
     use 'wikitopian/hardmode'
-
 
     use {
       'hoob3rt/lualine.nvim',
-      requires = {'kyazdani42/nvim-web-devicons', opt = true}
+      requires = {
+        'kyazdani42/nvim-web-devicons', opt = true
+      }
     }
 
     use {
@@ -71,12 +78,11 @@ return require('packer').startup {
         require('git-worktree').setup {}
       end,
     }
-    
-    -- Harpoon
     use 'ThePrimeagen/harpoon'
+    use 'ThePrimeagen/refactoring.nvim'
 
 
-    -- My Plugins
+    -- TJ's Plugins
     -- local_use 'nlua.nvim'
     -- local_use 'vim9jit'
     -- local_use 'colorbuddy.nvim'
@@ -109,45 +115,46 @@ return require('packer').startup {
     use 'neovim/nvim-lspconfig'
     use 'wbthomason/lsp-status.nvim'
 
+    use {
+      'folke/lsp-trouble.nvim',
+      cmd = 'LspTrouble',
+      config = function()
+        require('trouble').setup {
+          auto_preview = false,
+          auto_fold = true,
+        }
+      end,
+    }
+
     -- local_use 'lsp_extensions.nvim'
     -- use 'glepnir/lspsaga.nvim'
     -- use 'onsails/lspkind-nvim'
     -- https://github.com/rmagatti/goto-preview
 
-    -- use {
-    --   'akinsho/flutter-tools.nvim',
-    --   ft = { 'flutter', 'dart' },
-    -- }
-
-    -- https://github.com/jose-elias-alvarez/nvim-lsp-ts-utils
-
-    -- use {
-    --   'folke/lsp-trouble.nvim',
-    --   cmd = 'LspTrouble',
-    --   config = function()
-    --     Can use P to toggle auto movement
-    --     require('trouble').setup {
-    --       auto_preview = false,
-    --       auto_fold = true,
-    --     }
-    --   end,
-    -- }
-
     -- TODO: Investigate
     -- use 'jose-elias-alvarez/nvim-lsp-ts-utils'
 
-    local_use('nvim-lua', 'popup.nvim')
-    local_use('nvim-lua', 'plenary.nvim')
-
-    local_use('nvim-telescope', 'telescope.nvim')
-    local_use('nvim-telescope', 'telescope-fzf-writer.nvim')
-    local_use('nvim-telescope', 'telescope-packer.nvim')
+    -- Telescope stuff
+    use 'nvim-telescope/telescope.nvim'
+    use 'nvim-telescope/telescope-fzf-writer.nvim'
+    use 'nvim-telescope/telescope-packer.nvim'
     use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
-    -- local_use('nvim-telescope', 'telescope-fzy-native.nvim')
-    -- local_use('nvim-telescope', 'telescope-async-sorter-test.nvim')
-
-    local_use('nvim-telescope', 'telescope-github.nvim')
-    local_use('nvim-telescope', 'telescope-symbols.nvim')
+    -- use 'nvim-telescope/telescope-fzy-native.nvim'
+    -- use 'nvim-telescope/telescope-async-sorter-test.nvim'
+    
+    -- Frecency is a different finder based on frequency + recency
+    -- use  {
+    --   'nvim-telescope/telescope-frecency.nvim',
+    --   requires = {
+    --     'tami5/sql.nvim',
+    --     'nvim-telescope/telescope.nvim',
+    --   },
+    --   config = function()
+    --    require('telescope').load_extension('frecency')
+    --   end
+    -- }
+    -- use 'nvim-telescope/telescope-github.nvim'
+    use 'nvim-telescope/telescope-symbols.nvim'
 
     -- TODO: When i'm back w/ some npm stuff, get this working.
     -- elianiva/telescope-npm.nvim
@@ -156,8 +163,6 @@ return require('packer').startup {
     -- local_use 'telescope-sourcegraph.nvim'
     -- local_use 'green_light.nvim'
 
-    -- use 'tami5/sql.nvim'
-    -- use 'nvim-telescope/telescope-frecency.nvim'
     -- use 'nvim-telescope/telescope-cheat.nvim'
     -- use { 'nvim-telescope/telescope-arecibo.nvim', rocks = { 'openssl', 'lua-http-parser' } }
 

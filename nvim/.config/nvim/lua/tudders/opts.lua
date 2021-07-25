@@ -66,6 +66,8 @@ opt.inccommand = "split"
 opt.swapfile = false -- Living on the edge
 opt.shada = { "!", "'1000", "<50", "s10", "h" }
 
+opt.termguicolors = true
+
 -- opt.mouse = "n" -- Turn mouse on in normal mode
 
 -- Helpful related items:
