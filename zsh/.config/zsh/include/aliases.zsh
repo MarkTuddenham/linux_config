@@ -10,8 +10,6 @@ alias py='python'
 alias py_pdb='python -m pdb -c continue'
 alias pip='pip3'
 
-alias vim='nvim'
-alias vi='nvim'
 alias v='nvim'
 
 alias sshx='ssh -X'
