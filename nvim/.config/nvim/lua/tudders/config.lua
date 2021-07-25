@@ -12,6 +12,13 @@ require("harpoon").setup({
         save_on_change = true,
     },
 })
+local opts = {noremap = true, silent = true}
+vim.api.nvim_set_keymap('n', '<leader>tt', '<cmd>lua require("harpoon.mark").add_file()<cr>', opts)
+vim.api.nvim_set_keymap('n', '<leader>tl', '<cmd>lua require("harpoon.ui").toggle_quick_menu()<cr>', opts)
+vim.api.nvim_set_keymap('n', '<leader>t1', '<cmd>lua require("harpoon.ui").nav_file(1)<cr>', opts)
+vim.api.nvim_set_keymap('n', '<leader>t2', '<cmd>lua require("harpoon.ui").nav_file(2)<cr>', opts)
+vim.api.nvim_set_keymap('n', '<leader>t3', '<cmd>lua require("harpoon.ui").nav_file(3)<cr>', opts)
+vim.api.nvim_set_keymap('n', '<leader>t5', '<cmd>lua require("harpoon.ui").nav_file(4)<cr>', opts)
 
 require('nvim-treesitter.configs').setup {
   ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
