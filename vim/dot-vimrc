@@ -26,7 +26,7 @@ Plugin 'rhysd/vim-clang-format'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-markdown'
 Plugin 'liuchengxu/vista.vim'
-Plugin 'neoclide/coc.nvim'
+" Plugin 'neoclide/coc.nvim'
 " Plugin 'neoclide/coc-tabnine'
 Plugin 'roxma/vim-paste-easy'
 Plugin 'tpope/vim-eunuch'
@@ -35,7 +35,6 @@ Plugin 'fatih/vim-go'
 Plugin 'pangloss/vim-javascript'
 Plugin 'majutsushi/tagbar'
 Plugin 'sheerun/vim-polyglot'
-Plugin 'neovim/nvim-lspconfig'
 Plugin 'myusuf3/numbers.vim'
 Plugin 'tpope/vim-obsession'
 
@@ -114,30 +113,30 @@ set undodir=~/.vim/.undo//
 set backupdir=~/.vim/.backup//
 set directory=~/.vim/.swp//
 
-" Use K to show documentation in preview window.
-nnoremap <silent> K :call <SID>show_documentation()<CR>
+" " Use K to show documentation in preview window.
+" nnoremap <silent> K :call <SID>show_documentation()<CR>
 
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocActionAsync('doHover')
-  endif
-endfunction
+" function! s:show_documentation()
+"   if (index(['vim','help'], &filetype) >= 0)
+"     execute 'h '.expand('<cword>')
+"   else
+"     call CocActionAsync('doHover')
+"   endif
+" endfunction
 
 let g:HardMode_level = 'wannabe'
 let g:HardMode_hardmodeMsg = 'Don''t use this!'
 autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
 
-" Highlight the symbol and its references when holding the cursor.
-autocmd CursorHold * silent call CocActionAsync('highlight')
+" " Highlight the symbol and its references when holding the cursor.
+" autocmd CursorHold * silent call CocActionAsync('highlight')
 
-" Symbol renaming.
-nmap <leader>rn <Plug>(coc-rename)
+" " Symbol renaming.
+" nmap <leader>rn <Plug>(coc-rename)
 
-" Formatting selected code.
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
+" " Formatting selected code.
+" xmap <leader>f  <Plug>(coc-format-selected)
+" nmap <leader>f  <Plug>(coc-format-selected)
 
 noremap <leader>h <cmd>noh<cr>
 
