@@ -26,7 +26,5 @@ vim.g.cpp_class_decl_highlight = 1
 vim.g.cpp_member_variable_highlight = 1
 vim.g.cpp_experimental_simple_template_highlight = 1
 
-vim.g.HardMode_level = 'wannabe'
-vim.g.HardMode_hardmodeMsg = 'Don\'t use this!'
 
 vim.cmd('source $HOME/.config/nvim/keybindings.vim')

@@ -45,6 +45,10 @@ vim.cmd('au BufEnter * if &ft == "plaintex" | set wrap | set spell | endif')
 vim.cmd('au BufEnter * if &ft == "plaintext" | set wrap | set spell | endif')
 vim.cmd('au BufEnter * if &ft == "gitcommit" | set wrap | set spell | endif')
 
+opt.breakindent = true
+opt.showbreak = string.rep(" ", 3) -- Make it so that long lines wrap smartly
+opt.linebreak = true
+
 opt.tabstop = 2
 opt.shiftwidth = 2
 opt.softtabstop = 2
@@ -93,4 +97,5 @@ opt.joinspaces = false -- Two spaces and grade school, we're done
 opt.fillchars = { eob = "~" }
 
 vim.g.HardMode_level = 'wannabe'
+vim.g.HardMode_hardmodeMsg = 'Don\'t use this!'
 vim.cmd('au VimEnter,BufNewFile,BufReadPost * silent! call HardMode()')
