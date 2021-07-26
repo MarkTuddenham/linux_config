@@ -64,6 +64,7 @@ return require('packer').startup {
     use 'tpope/vim-obsession'
     use 'ap/vim-css-color'
     use 'wikitopian/hardmode'
+    use 'folke/which-key.nvim'
 
     use {
       'hoob3rt/lualine.nvim',
@@ -81,6 +82,13 @@ return require('packer').startup {
     use 'ThePrimeagen/harpoon'
     use 'ThePrimeagen/refactoring.nvim'
 
+
+    use {
+      'folke/zen-mode.nvim',
+      config = function()
+        require('zen-mode').setup()
+      end,
+    }
 
     -- TJ's Plugins
     -- local_use 'nlua.nvim'

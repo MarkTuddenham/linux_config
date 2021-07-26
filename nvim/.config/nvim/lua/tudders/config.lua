@@ -1,31 +1,54 @@
 require 'tudders.opts'
 require 'tudders.telescope'
 
-require('lualine').setup()
-require('github-theme').setup{
-  transparent = true
+require('which-key').setup()
+
+require('lualine').setup{
+  options = {
+    theme = 'horizon',
+  },
+  sections = {
+    lualine_a = {'mode', 'paste'},
+    lualine_b = {'branch', 'diff'},
+    lualine_c = {
+      {'filename', file_status = true, full_path = true},
+      {'diagnostics', sources = {'nvim_lsp'}}
+    },
+    lualine_x = {'filetype'},
+    lualine_y = {'progress'},
+    lualine_z = {{'location', icon = ''}
+    }
+  }
 }
 
-require("harpoon").setup({
+require('github-theme').setup{
+  transparent = true,
+  themeStyle = 'dimmed',
+  colors = {
+    border_highlight = 'bg',
+  }
+}
+
+require('harpoon').setup({
     global_settings = {
         save_on_toggle = false,
         save_on_change = true,
     },
 })
-local opts = {noremap = true, silent = true}
-vim.api.nvim_set_keymap('n', '<leader>tt', '<cmd>lua require("harpoon.mark").add_file()<cr>', opts)
-vim.api.nvim_set_keymap('n', '<leader>tl', '<cmd>lua require("harpoon.ui").toggle_quick_menu()<cr>', opts)
-vim.api.nvim_set_keymap('n', '<leader>t1', '<cmd>lua require("harpoon.ui").nav_file(1)<cr>', opts)
-vim.api.nvim_set_keymap('n', '<leader>t2', '<cmd>lua require("harpoon.ui").nav_file(2)<cr>', opts)
-vim.api.nvim_set_keymap('n', '<leader>t3', '<cmd>lua require("harpoon.ui").nav_file(3)<cr>', opts)
-vim.api.nvim_set_keymap('n', '<leader>t5', '<cmd>lua require("harpoon.ui").nav_file(4)<cr>', opts)
+local harpoon_opts = {noremap = true, silent = true}
+vim.api.nvim_set_keymap('n', '<leader>tt', '<cmd>lua require("harpoon.mark").add_file()<cr>', harpoon_opts)
+vim.api.nvim_set_keymap('n', '<leader>tl', '<cmd>lua require("harpoon.ui").toggle_quick_menu()<cr>', harpoon_opts)
+vim.api.nvim_set_keymap('n', '<leader>1', '<cmd>lua require("harpoon.ui").nav_file(1)<cr>', harpoon_opts)
+vim.api.nvim_set_keymap('n', '<leader>2', '<cmd>lua require("harpoon.ui").nav_file(2)<cr>', harpoon_opts)
+vim.api.nvim_set_keymap('n', '<leader>3', '<cmd>lua require("harpoon.ui").nav_file(3)<cr>', harpoon_opts)
+vim.api.nvim_set_keymap('n', '<leader>5', '<cmd>lua require("harpoon.ui").nav_file(4)<cr>', harpoon_opts)
 
 require('nvim-treesitter.configs').setup {
-  ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
-  ignore_install = { "javascript" }, -- List of parsers to ignore installing
+  ensure_installed = 'maintained', -- one of 'all', 'maintained' (parsers with maintainers), or a list of languages
+  ignore_install = { 'javascript' }, -- List of parsers to ignore installing
   highlight = {
     enable = true,              -- false will disable the whole extension
-    disable = { "c", "rust" },  -- list of language that will be disabled
+    disable = { 'c', 'rust' },  -- list of language that will be disabled
     -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
     -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
     -- Using this option may slow down your editor, and you may see some duplicate highlights.
@@ -54,21 +77,21 @@ require('gitsigns').setup {
     noremap = true,
     buffer = true,
 
-    ['n ]c'] = { expr = true, "&diff ? ']c' : '<cmd>lua require\"gitsigns.actions\".next_hunk()<CR>'"},
-    ['n [c'] = { expr = true, "&diff ? '[c' : '<cmd>lua require\"gitsigns.actions\".prev_hunk()<CR>'"},
+    ['n ]c'] = { expr = true, "&diff ? ']c' : '<cmd>lua require\"gitsigns.actions\".next_hunk()<cr>'"},
+    ['n [c'] = { expr = true, "&diff ? '[c' : '<cmd>lua require\"gitsigns.actions\".prev_hunk()<cr>'"},
 
-    ['n <leader>hs'] = '<cmd>lua require"gitsigns".stage_hunk()<CR>',
-    ['v <leader>hs'] = '<cmd>lua require"gitsigns".stage_hunk({vim.fn.line("."), vim.fn.line("v")})<CR>',
-    ['n <leader>hu'] = '<cmd>lua require"gitsigns".undo_stage_hunk()<CR>',
-    ['n <leader>hr'] = '<cmd>lua require"gitsigns".reset_hunk()<CR>',
-    ['v <leader>hr'] = '<cmd>lua require"gitsigns".reset_hunk({vim.fn.line("."), vim.fn.line("v")})<CR>',
-    ['n <leader>hR'] = '<cmd>lua require"gitsigns".reset_buffer()<CR>',
-    ['n <leader>hp'] = '<cmd>lua require"gitsigns".preview_hunk()<CR>',
-    ['n <leader>hb'] = '<cmd>lua require"gitsigns".blame_line(true)<CR>',
+    ['n <leader>hs'] = '<cmd>lua require"gitsigns".stage_hunk()<cr>',
+    ['v <leader>hs'] = '<cmd>lua require"gitsigns".stage_hunk({vim.fn.line("."), vim.fn.line("v")})<cr>',
+    ['n <leader>hu'] = '<cmd>lua require"gitsigns".undo_stage_hunk()<cr>',
+    ['n <leader>hr'] = '<cmd>lua require"gitsigns".reset_hunk()<cr>',
+    ['v <leader>hr'] = '<cmd>lua require"gitsigns".reset_hunk({vim.fn.line("."), vim.fn.line("v")})<cr>',
+    ['n <leader>hR'] = '<cmd>lua require"gitsigns".reset_buffer()<cr>',
+    ['n <leader>hp'] = '<cmd>lua require"gitsigns".preview_hunk()<cr>',
+    ['n <leader>hb'] = '<cmd>lua require"gitsigns".blame_line(true)<cr>',
 
     -- Text objects
-    ['o ih'] = ':<C-U>lua require"gitsigns.actions".select_hunk()<CR>',
-    ['x ih'] = ':<C-U>lua require"gitsigns.actions".select_hunk()<CR>'
+    ['o ih'] = ':<C-U>lua require"gitsigns.actions".select_hunk()<cr>',
+    ['x ih'] = ':<C-U>lua require"gitsigns.actions".select_hunk()<cr>'
   },
   watch_index = {
     interval = 1000,
@@ -158,32 +181,32 @@ local on_attach = function(client, bufnr)
   buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
   -- Mappings.
-  local opts = { noremap=true, silent=true }
+  local lsp_opts = { noremap=true, silent=true }
 
   -- See `:help vim.lsp.*` for documentation on any of the below functions
-  buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-  buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
-  buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
-  buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-  buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-  buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
-  buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
-  buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
-  buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-  buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-  buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-  buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-  buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
-  buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
-  buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
-  buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
-  buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+  buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', lsp_opts)
+  buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', lsp_opts)
+  buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', lsp_opts)
+  buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>', lsp_opts)
+  buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<cr>', lsp_opts)
+  buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<cr>', lsp_opts)
+  buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<cr>', lsp_opts)
+  buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<cr>', lsp_opts)
+  buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<cr>', lsp_opts)
+  buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<cr>', lsp_opts)
+  buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<cr>', lsp_opts)
+  buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', lsp_opts)
+  buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<cr>', lsp_opts)
+  buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>', lsp_opts)
+  buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<cr>', lsp_opts)
+  buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<cr>', lsp_opts)
+  buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<cr>', lsp_opts)
 
 end
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { 'clangd', 'pylsp', 'texlab' }
+local servers = { 'clangd', 'pylsp', 'texlab'}
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
     on_attach = on_attach,
@@ -192,3 +215,30 @@ for _, lsp in ipairs(servers) do
     }
   }
 end
+
+USER = vim.fn.expand('$USER')
+
+local sumneko_binary = '/home/' .. USER .. '/build/lua-language-server/bin/Linux/lua-language-server'
+local sumneko_root_path = '/home/' .. USER .. '/build/lua-language-server'
+
+require('lspconfig').sumneko_lua.setup {
+  on_attach = on_attach,
+  flags = {
+    debounce_text_changes = 150,
+  },
+  cmd = {sumneko_binary, '-E', sumneko_root_path .. '/main.lua'},
+  settings = {
+    Lua = {
+      runtime = {
+        version = 'LuaJIT',
+        path = vim.split(package.path, ';')
+      },
+      diagnostics = {
+        globals = {'vim'}
+      },
+      workspace = {
+        library = {[vim.fn.expand('$VIMRUNTIME/lua')] = true, [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true}
+      }
+    }
+  }
+}

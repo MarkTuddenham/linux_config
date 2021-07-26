@@ -1,10 +1,8 @@
-
 local opt = vim.opt
 
 opt.wildmenu = true
 opt.wildmode = { "longest", "full" }
-opt.wildignore = "__pycache__"
-opt.wildignore = opt.wildignore + { "*.o", "*~", "*.pyc", "*pycache*" }
+opt.wildignore = { "*.o", "*~", "*.pyc", "*pycache*" }
 opt.autoread = true
 
 opt.spelllang = 'en_gb'
@@ -53,10 +51,6 @@ opt.tabstop = 2
 opt.shiftwidth = 2
 opt.softtabstop = 2
 opt.expandtab = true
-
-opt.breakindent = true
-opt.showbreak = string.rep(" ", 3) -- Make it so that long lines wrap smartly
-opt.linebreak = true
 
 opt.foldmethod = "marker"
 opt.foldlevel = 0
