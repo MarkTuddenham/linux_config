@@ -1,6 +1,6 @@
 require('tudders.opts')
 require('tudders.telescope')
-require('tudders.statusline')
+require('tudders.lsp')
 
 require('which-key').setup()
 
