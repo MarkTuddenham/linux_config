@@ -1,7 +1,7 @@
 #!/bin/bash
 
 subdir_files () {
-  echo -e "$(find "$1" -type f | wc -l)" \\t \| $1
+  echo -e $1 \\t \| "$(find "$1" -type f | wc -l)"
 }
 export -f subdir_files
 
@@ -11,4 +11,10 @@ else
   DIR=$1
 fi
 
-find "$DIR" -maxdepth 1 -mindepth 1 -type d -exec bash -c "subdir_files \"{}\"" \;
+if [ -z "$2" ]; then
+  MAX_DEPTH=1
+else
+  MAX_DEPTH=$2
+fi
+
+find "$DIR" -maxdepth "$MAX_DEPTH" -mindepth 1 -type d -exec bash -c "subdir_files \"{}\"" \;
