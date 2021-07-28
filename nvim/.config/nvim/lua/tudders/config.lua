@@ -68,7 +68,7 @@ require('nvim-treesitter.configs').setup {
   },
 }
 
-require('gitsigns').setup {
+require('gitsigns').setup{
   signs = {
     add          = {hl = 'GitSignsAdd'   , text = '│', numhl='GitSignsAddNr'   , linehl='GitSignsAddLn'},
     change       = {hl = 'GitSignsChange', text = '│', numhl='GitSignsChangeNr', linehl='GitSignsChangeLn'},
@@ -94,6 +94,7 @@ require('gitsigns').setup {
     ['n <leader>hR'] = '<cmd>lua require"gitsigns".reset_buffer()<cr>',
     ['n <leader>hp'] = '<cmd>lua require"gitsigns".preview_hunk()<cr>',
     ['n <leader>hb'] = '<cmd>lua require"gitsigns".blame_line(true)<cr>',
+    ['n <leader>ht'] = '<cmd>lua require"gitsigns".toggle_word_diff()<cr>',
 
     -- Text objects
     ['o ih'] = ':<C-U>lua require"gitsigns.actions".select_hunk()<cr>',
