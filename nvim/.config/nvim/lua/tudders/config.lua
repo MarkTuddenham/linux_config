@@ -209,11 +209,12 @@ local on_attach = function(client, bufnr)
 
 end
 
+-- LSP: Others
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { 'clangd', 'pylsp', 'texlab'}
+local servers = { 'clangd', 'texlab'}
 for _, lsp in ipairs(servers) do
-  nvim_lsp[lsp].setup {
+  nvim_lsp[lsp].setup{
     on_attach = on_attach,
     flags = {
       debounce_text_changes = 150,
@@ -221,6 +222,18 @@ for _, lsp in ipairs(servers) do
   }
 end
 
+-- LSP: Python
+nvim_lsp.pylsp.setup{
+  on_attach = on_attach,
+  flags = {
+    debounce_text_changes = 150,
+  },
+  plugins = {
+    pydocstyle = {enabled = true},
+    mypy = {enabled = true, config_file='/home/mark/.config/mypy/config'},
+  },
+}
+-- LSP: Lua
 USER = vim.fn.expand('$USER')
 
 local sumneko_binary = '/home/' .. USER .. '/build/lua-language-server/bin/Linux/lua-language-server'
