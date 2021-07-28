@@ -7,7 +7,6 @@ opt.autoread = true
 
 opt.spelllang = 'en_gb'
 opt.spell = false
-
 -- opt.fileformat = 'unix'
 
 -- Cool floating window popup menu for completion on command line
@@ -35,22 +34,22 @@ opt.scrolloff = 10 -- Make it so there are always ten lines below my cursor
 opt.smarttab = true
 opt.autoindent = true
 opt.cindent = true
+opt.tabstop = 2
+opt.shiftwidth = 2
+opt.softtabstop = 2
+opt.expandtab = false
+
 opt.wrap = false
+opt.breakindent = true
+opt.showbreak = string.rep(" ", 3) -- Make it so that long lines wrap smartly
+opt.linebreak = true
 
 -- But turn wrap and spell on for latex and plain text files
 vim.cmd('au BufEnter * if &ft == "tex" | set wrap | set spell | endif')
 vim.cmd('au BufEnter * if &ft == "plaintex" | set wrap | set spell | endif')
 vim.cmd('au BufEnter * if &ft == "plaintext" | set wrap | set spell | endif')
 vim.cmd('au BufEnter * if &ft == "gitcommit" | set wrap | set spell | endif')
-
-opt.breakindent = true
-opt.showbreak = string.rep(" ", 3) -- Make it so that long lines wrap smartly
-opt.linebreak = true
-
-opt.tabstop = 2
-opt.shiftwidth = 2
-opt.softtabstop = 2
-opt.expandtab = true
+vim.cmd('au BufEnter * if &ft == "markdown" | set wrap | set spell | endif')
 
 opt.foldmethod = "marker"
 opt.foldlevel = 0
