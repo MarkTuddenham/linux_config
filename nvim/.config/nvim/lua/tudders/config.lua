@@ -4,21 +4,25 @@ require 'tudders.telescope'
 require('which-key').setup()
 
 require('lualine').setup{
-  options = {
-    theme = 'horizon',
-  },
-  sections = {
-    lualine_a = {'mode', 'paste'},
-    lualine_b = {'branch', 'diff'},
-    lualine_c = {
-      {'filename', file_status = true, full_path = true},
-      {'diagnostics', sources = {'nvim_lsp'}}
-    },
-    lualine_x = {'filetype'},
-    lualine_y = {'progress'},
-    lualine_z = {{'location', icon = ''}
-    }
-  }
+	options = {
+		theme = 'horizon',
+	},
+	sections = {
+		lualine_a = {'mode', 'paste'},
+		lualine_b = {'branch', 'diff'},
+		lualine_c = {
+			{'filename', file_status = true, full_path = true},
+			{
+				'diagnostics',
+				sources = {'nvim_lsp'},
+				symbols = {error = 'E', warn = 'W', info = 'I', hint = 'H'}
+			}
+		},
+		lualine_x = {'filetype'},
+		lualine_y = {'progress'},
+		lualine_z = {{'location', icon = ''}}
+	},
+	extensions = {'fugitive'},
 }
 
 require('github-theme').setup{
