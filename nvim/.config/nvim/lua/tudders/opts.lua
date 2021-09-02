@@ -92,3 +92,5 @@ opt.fillchars = { eob = "~" }
 vim.g.HardMode_level = 'wannabe'
 vim.g.HardMode_hardmodeMsg = 'Don\'t use this!'
 vim.cmd('au VimEnter,BufNewFile,BufReadPost * silent! call HardMode()')
+
+vim.g.camelcasemotion_key = '<leader>'

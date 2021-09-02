@@ -11,3 +11,34 @@ nnoremap <leader>P "+P<cr>
 vnoremap <leader>p "+p<cr>
 vnoremap <leader>P "+P<cr>
 
+" Keep flags when reusing substitution
+nnoremap & :&&<cr>
+xnoremap & :&&<cr>
+
+"Y to be more like other vim capitals
+nnoremap Y y$
+
+" Better navigation with next (keeps cursor on one line)
+nnoremap n nzzzv
+nnoremap N Nzzzv
+nnoremap J mzJ`z
+
+" More undo break points
+inoremap , ,<c-g>u
+inoremap . .<c-g>u
+inoremap ! !<c-g>u
+inoremap ? ?<c-g>u
+inoremap ( (<c-g>u
+inoremap ) )<c-g>u
+
+" Jump list mutations
+nnoremap <expr> k (v:count > 5 ? "m'" . v:count : "") . 'k'
+nnoremap <expr> j (v:count > 5 ? "m'" . v:count : "") . 'j'
+
+" Better text moving
+vnoremap J :m '>+1<cr>gv=gv
+vnoremap K :m '<-2<cr>gv=gv
+inoremap <c-j> <esc>:m .+1<cr>==
+inoremap <c-k> <esc>:m .-2<cr>==
+nnoremap <leader>j :m .+1<cr>==
+nnoremap <leader>k :m .-2<cr>==

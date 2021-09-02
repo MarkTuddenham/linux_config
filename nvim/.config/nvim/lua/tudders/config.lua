@@ -2,7 +2,7 @@ require('tudders.opts')
 require('tudders.telescope')
 require('tudders.lsp')
 
-require('which-key').setup()
+-- require('which-key').setup()
 
 require('lualine').setup{
 	options = {
