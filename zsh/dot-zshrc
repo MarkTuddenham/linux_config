@@ -13,6 +13,10 @@ export ZSH_ENV_HOME=$HOME/
 export ZSH_CUSTOM=$CONFIG_HOME/zsh/custom/
 export NVIM_HOME=$CONFIG_HOME/nvim
 
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
 setopt functionargzero
 setopt hist_ignore_space
 
