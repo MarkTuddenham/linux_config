@@ -64,6 +64,7 @@ return require('packer').startup {
     use 'tpope/vim-obsession'
     use 'ap/vim-css-color'
     use 'wikitopian/hardmode'
+		use 'mbbill/undotree'
     -- use 'folke/which-key.nvim'
 
     use {
@@ -83,7 +84,7 @@ return require('packer').startup {
     use 'ThePrimeagen/refactoring.nvim'
 
 		use 'bkad/CamelCaseMotion'
-		
+
     use {
       'folke/zen-mode.nvim',
       config = function()
