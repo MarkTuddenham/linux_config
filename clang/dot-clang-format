@@ -37,6 +37,10 @@ IncludeIsMainRegex: '(_test)?$'
 IndentPPDirectives: BeforeHash
 IndentWidth:     2
 JavaScriptQuotes: Single
-PointerAlignment: Left
+PointerAlignment: Middle
 SpaceAfterTemplateKeyword: false
 SpaceBeforeRangeBasedForLoopColon: false
+SpaceAroundPointerQualifiers: Both
+SpaceBeforeAssignmentOperators: true
+ReflowComments: false
+SortIncludes: CaseInsensitive
