@@ -75,6 +75,10 @@ if [[ -d "$XDG_CONFIG_HOME/bin" ]]; then
   export PATH="$XDG_CONFIG_HOME/bin:$PATH"
 fi
 
+if [[ -d "$HOME/bin" ]]; then
+  export PATH="$HOME/bin:$PATH"
+fi
+
 sources=(
   'aliases'
   'git'
