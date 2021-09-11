@@ -125,3 +125,7 @@ zsh:
 	@${MKDIR} ${HOME}/.config/zsh
 	@${MKDIR} ${HOME}/.config/zsh/custom
 	@${MKDIR} ${HOME}/.config/zsh/include
+
+.PHONY:
+npm-global-installs:
+	npm-i -g bash-language-server
