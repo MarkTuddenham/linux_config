@@ -25,3 +25,5 @@ alias agi='sudo apt-get install '
 alias agu='sudo apt-get update && sudo apt-get upgrade'
 
 alias icat="kitty +kitten icat"
+
+alias luamake=/home/mark/build/lua-language-server/3rd/luamake/luamake
