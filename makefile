@@ -3,7 +3,7 @@
 # TODO: other dotfiles - only move the ones for specific commands?
 
 COMMON_PACKAGES=ssh git preload
-DESKTOP_PACKAGES=bat ripgrep libjs-pdf fd-find rofi sparse zsh clangd-12 neomutt isync msmtp pandoc stow pass
+DESKTOP_PACKAGES=bat ripgrep libjs-pdf fd-find rofi sparse zsh clangd-12 neomutt isync msmtp pandoc stow pass pass-git-helper
 SERVER_PACKAGES=
 
 # Dirs
