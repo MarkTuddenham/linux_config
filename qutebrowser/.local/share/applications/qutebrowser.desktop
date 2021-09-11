@@ -1,0 +1,12 @@
+[Desktop Entry]
+Name=qutebrowser
+Comment=Keyboard-driven, vim-like browser based on PyQt5
+Exec=/home/mark/build/qutebrowser/.venv/bin/python3 -m qutebrowser
+Path=/home/mark/
+Icon=/home/mark/build/qutebrowser/icons/qutebrowser.svg
+StartupNotify=true
+Terminal=false
+Type=Application
+Categories=Network;WebBrowser;
+
+MimeType=x-scheme-handler/unknown;x-scheme-handler/about;x-scheme-handler/https;x-scheme-handler/http;text/html;
