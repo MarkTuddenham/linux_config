@@ -3,7 +3,9 @@
 TMUX_HISTORY_LENGTH=10
 TMUX_HISTORY_FILE=$HOME/.tmux-sessionizer
 
-SESSION_DIRS=( ~/phd ~/phd_standalone ~/dev ~/build )
+TOP_LEVEL_DIRS=( ~/phd ~/phd_standalone ~/dev ~/build ~/Documents )
+STAND_ALONE_DIRS=( ~/linux_config )
+
 
 add_new_line() {
     tail -n1 $1 | read -r _ || echo >> $1
@@ -45,12 +47,17 @@ elif [[ $# -eq 2 && "$1" = "restore" ]]; then
     selected=`cat $TMUX_HISTORY_FILE | sed -n "$2,${2}p"`
 else
 		items=''
-		for dir in ${SESSION_DIRS[@]}; do
+		for dir in ${TOP_LEVEL_DIRS[@]}; do
 			items+=`find $dir -maxdepth 1 -mindepth 1 -type d`
 			items+='\n'
 		done
 
-    selected=`echo -e "$items" | fzf`
+		for dir in ${STAND_ALONE_DIRS[@]}; do
+			items+=$dir
+			items+='\n'
+		done
+
+    selected=`echo -e "$items" | fzf --height=50`
 fi
 
 if [[ -z $selected ]]; then
