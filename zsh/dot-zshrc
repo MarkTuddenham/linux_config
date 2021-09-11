@@ -51,7 +51,7 @@ HISTFILE=~/.local/.zsh_history
 # Use modern completion system
 autoload -Uz compinit
 compinit
-kitty + complete setup zsh | source /dev/stdin
+# kitty + complete setup zsh | source /dev/stdin
 
 zstyle ':completion:*' auto-description 'specify: %d'
 zstyle ':completion:*' completer _expand _complete _correct _approximate
