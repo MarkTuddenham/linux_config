@@ -16,6 +16,8 @@ export NVIM_HOME=$CONFIG_HOME/nvim
 setopt functionargzero
 setopt hist_ignore_space
 
+setopt globdots
+
 export ZSH_PLUGIN_MANAGER='antigen'
 source $CONFIG_HOME/antigen/antigen.zsh
 
