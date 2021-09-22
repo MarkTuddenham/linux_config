@@ -4,6 +4,7 @@ alias gpull='git pull'
 alias gpush='git push'
 alias gd='git diff'
 alias gpr='git pull --rebase'
+alias gcm='git commit'
 
 # Adding helpers
 alias gadd='git add .'
