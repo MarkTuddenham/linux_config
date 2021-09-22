@@ -1,0 +1,26 @@
+#!/bin/bash
+
+if [[ $(id -u) -ne 0 ]]; then
+    echo "This script must be run as root"
+    exit 1
+fi
+
+KEY=/etc/ipsec.d/private/${1}Key.der
+KEY_PEM=/etc/ipsec.d/private/${1}Key.pem
+CERT=/etc/ipsec.d/certs/${1}Cert.der
+CERT_PEM=/etc/ipsec.d/certs/${1}Cert.pem
+P12=/etc/ipsec.d/p12/${1}.p12
+
+CA_CERT=/etc/ipsec.d/cacerts/strongswanCert.der
+CA_CERT_PEM=/etc/ipsec.d/cacerts/strongswanCert.pem
+CA_KEY=/etc/ipsec.d/private/strongswanKey.der
+
+ipsec pki --gen --type rsa --size 2048 --outform der > ${KEY}
+chmod 600 ${KEY}
+ipsec pki --pub --in ${KEY} --type rsa | ipsec pki --issue --lifetime 730 --cacert ${CA_CERT} --cakey ${CA_KEY} --dn "C=GB, O=Mark Tuddenham, CN="${1}"@net.tudders.dev" --san ${1}"@net.tudders.dev" --outform der > ${CERT}
+openssl rsa -inform DER -in ${KEY} -out ${KEY_PEM} -outform PEM
+openssl x509 -inform DER -in ${CERT} -out ${CERT_PEM} -outform PEM
+openssl pkcs12 -export -inkey ${KEY_PEM} -in ${CERT_PEM} -name ${1}" Certificate" -certfile ${CA_CERT_PEM} -caname "Mark Tuddenham Root CA" -out ${P12}
+
+cp $P12 $PWD
+chown $SUDO_USER:$SUDO_USER $PWD/${1}.p12
