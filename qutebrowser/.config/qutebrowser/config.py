@@ -295,7 +295,7 @@ c.url.searchengines = {
     'yt': 'https://www.youtube.co.uk/results?search_query={}',
     'arxiv': 'https://arxiv.org/search?query={}&searchtype=all&source=header',
     'cppref': 'https://en.cppreference.com/mwiki/index.php?title=Special:Search&search={}',
-    'github': 'https://github.com/search?q={}&ref=opensearch',
+    'gh': 'https://github.com/search?q={}&ref=opensearch',
     'translate': 'https://translate.google.com/?source=osdd&sl=auto&tl=auto&text={}&op=translate',
     'latinw': 'https://en.wiktionary.org/wiki/{}#Latin',
     'torchdoc': 'https://pytorch.org/docs/stable/search.html?q={}'}
