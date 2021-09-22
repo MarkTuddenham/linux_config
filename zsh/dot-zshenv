@@ -17,3 +17,8 @@
 #         sshd|*/sshd) IS_SSH=true
 #     esac
 # fi
+
+if [ -f "$HOME/.cargo/env" ]; then
+	. "$HOME/.cargo/env"
+fi
+
