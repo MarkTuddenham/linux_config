@@ -1,3 +1,5 @@
+# zmodload zsh/zprof
+
 export SHELL=/bin/zsh
 
 # Something for me to see where aliases get defined
@@ -52,9 +54,15 @@ HISTSIZE=10000
 SAVEHIST=10000
 HISTFILE=~/.local/.zsh_history
 
-# Use modern completion system
-autoload -Uz compinit
-compinit
+# On slow systems, checking the cached .zcompdump file to see if it must be 
+# regenerated adds a noticable delay to zsh startup.
+# This little hack restricts it to once a day.
+autoload -Uz compinit 
+for dump in ~/.zcompdump(N.mh+24); do
+  compinit
+done
+compinit -C
+
 # kitty + complete setup zsh | source /dev/stdin
 
 zstyle ':completion:*' auto-description 'specify: %d'
@@ -72,24 +80,25 @@ zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p
 zstyle ':completion:*' use-compctl false
 zstyle ':completion:*' verbose true
 
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path "$XDG_CACHE_HOME/zsh/.zcompcache"
+
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
+
+# Make zsh know about hosts already accessed by SSH
+zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,~/.ssh/known_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'
+
 sources=(
   'aliases'
   'git'
   'spaceship'
 )
 
-# if [[ $ZSH_THEME = 'spaceship' ]]; then
-#   sources+=('spaceship')
-# fi
-
 for s in "${sources[@]}"; do
   source $CONFIG_HOME/zsh/include/${s}.zsh
 done
 
-# Make zsh know about hosts already accessed by SSH
-zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,~/.ssh/known_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# zprof
