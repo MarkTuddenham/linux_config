@@ -7,8 +7,8 @@ alias gpr='git pull --rebase'
 alias gcm='git commit'
 
 # Adding helpers
-alias gadd='git add .'
-alias gca='git add . && git commit -av'
+alias gadd='git add'
+alias gca='git add . && git commit -v'
 
 # Logging helpers
 alias gls='git log --pretty=format:"%C(yellow)%h%Cred%d\ %Creset%s%Cblue\ [%cn]" --decorate'

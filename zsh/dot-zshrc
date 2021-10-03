@@ -30,6 +30,8 @@ antigen apply
 
 # antigen theme robbyrussell
 
+fpath+=$XGD_CONFIG_HOME/zsh/.zsh_functions
+
 #spaceship vi prompt
 eval spaceship_vi_mode_enable
 bindkey "^?" backward-delete-char # backspace workaround
