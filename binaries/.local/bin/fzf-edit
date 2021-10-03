@@ -1,0 +1,7 @@
+#!/bin/bash
+
+FILE=$(find ~ | fzf --algo v1)
+
+if [ ! -z "$FILE" ]; then
+    nvim "$FILE" 2>&1
+fi
