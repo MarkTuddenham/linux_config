@@ -3,7 +3,7 @@
 # TODO: other dotfiles - only move the ones for specific commands?
 
 COMMON_PACKAGES=ssh git preload
-DESKTOP_PACKAGES=bat ripgrep libjs-pdf fd-find rofi sparse zsh clangd-12 neomutt isync msmtp pandoc stow pass pass-git-helper
+DESKTOP_PACKAGES=bat ripgrep libjs-pdf fd-find rofi sparse zsh clangd-12 neomutt isync msmtp pandoc stow pass pass-git-helper zathura
 SERVER_PACKAGES=
 
 # Dirs
@@ -39,9 +39,9 @@ desktop_apt: common_apt requires_sudo
 	@echo [apt install] $(DESKTOP_PACKAGES)
 	@sudo apt install $(DESKTOP_PACKAGES)
 
-.PHONY: common_setup
-common_setup: common_apt
-	@git config --global color.ui true
+# .PHONY: common_setup
+# common_setup: common_apt
+# 	@git config --global color.ui true
 
 
 .PHONY: requires_sudo
