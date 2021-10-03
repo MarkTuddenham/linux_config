@@ -27,7 +27,7 @@ opt.equalalways = false -- I don't like my windows changing all the time
 opt.splitright = true -- Prefer windows splitting to the right
 opt.splitbelow = true -- Prefer windows splitting to the bottom
 opt.updatetime = 500 -- Make updates happen faster
-opt.hlsearch = false -- I wouldn't use this without my DoNoHL function
+opt.hlsearch = true
 opt.scrolloff = 10 -- Make it so there are always ten lines below my cursor
 
 -- Tabs
@@ -39,17 +39,19 @@ opt.shiftwidth = 2
 opt.softtabstop = 2
 opt.expandtab = false
 
+-- vim.g.python_recommended_style = 0 -- python overwrites tab settings because python defines a tab as 8 spaces lol
+
 opt.wrap = false
 opt.breakindent = true
 opt.showbreak = string.rep(" ", 3) -- Make it so that long lines wrap smartly
 opt.linebreak = true
 
 -- But turn wrap and spell on for latex and plain text files
-vim.cmd('au BufEnter * if &ft == "tex" | set wrap | set spell | endif')
-vim.cmd('au BufEnter * if &ft == "plaintex" | set wrap | set spell | endif')
-vim.cmd('au BufEnter * if &ft == "plaintext" | set wrap | set spell | endif')
-vim.cmd('au BufEnter * if &ft == "gitcommit" | set wrap | set spell | endif')
-vim.cmd('au BufEnter * if &ft == "markdown" | set wrap | set spell | endif')
+vim.cmd('au BufEnter * if &ft == "tex" | set wrap | set spell | set conceallevel=2 | endif')
+vim.cmd('au BufEnter * if &ft == "plaintex" | set wrap | set spell | set conceallevel=2 | endif')
+vim.cmd('au BufEnter * if &ft == "plaintext" | set wrap | set spell | set conceallevel=2 | endif')
+vim.cmd('au BufEnter * if &ft == "gitcommit" | set wrap | set spell | set conceallevel=2 | endif')
+vim.cmd('au BufEnter * if &ft == "markdown" | set wrap | set spell | set conceallevel=2 | endif')
 
 opt.foldmethod = "marker"
 opt.foldlevel = 0
@@ -60,7 +62,9 @@ opt.belloff = "all" -- Just turn the dang bell off
 opt.clipboard = "unnamedplus"
 
 opt.inccommand = "split"
-opt.swapfile = false -- Living on the edge
+opt.swapfile = true
+opt.undofile = true
+-- opt.undodir = "$/.cache/nvim/undo"
 opt.shada = { "!", "'1000", "<50", "s10", "h" }
 
 opt.termguicolors = true
@@ -106,5 +110,18 @@ vim.g.cpp_class_decl_highlight = 1
 vim.g.cpp_member_variable_highlight = 1
 vim.g.cpp_experimental_simple_template_highlight = 1
 
-
 vim.cmd('source $HOME/.config/nvim/keybindings.vim')
+
+-- tex
+-- conceallevel set in autocommands above
+-- opt.conceallevel = 2
+vim.g.tex_flavor = 'latex'
+vim.g.vimtex_view_method = 'zathura'
+vim.g.vimtex_quickfix_mode = 0
+vim.g.vimtex_syntax_conceal = {
+	math_super_sub = 0
+}
+-- vim.g.vimtex_syntax_conceal_default = 0 -- if using tex-conceal instead
+-- vim.g.tex_conceal = 'abdmg'
+-- vim.g.tex_superscripts= "[0-9a-zA-W.,:;+-<>/()=]"
+-- vim.g.tex_subscripts= "[0-9aehijkmnoprstuvx,+-/().]"

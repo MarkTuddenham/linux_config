@@ -12,4 +12,6 @@ require('tudders.plugins')
 vim.api.nvim_set_keymap('n', '<space>', '<nop>', {})  -- do we have to unmap space first?
 vim.g.mapleader = ' '
 
+vim.g.snippets = 'luasnip'
+
 require('tudders.config')
