@@ -78,7 +78,7 @@ bindsym $mod+d exec rofi -show drun -config $HOME/.config/i3/rofi.config
 # for quick opening of files
 # would rather use alacritty but dont know how to make it opaque
 for_window [instance="^fzfopenwindow" class="^kitty"] floating enable, move relative position center, width 1200px, height 900px
-bindsym $mod+o exec "kitty --name fzfopenwindow -e fzf-open"
+bindsym $mod+o exec "nohup kitty --name fzfopenwindow -e fzf-open &>\dev\null &"
 
 # # change focus
 # bindsym $mod+j focus left
