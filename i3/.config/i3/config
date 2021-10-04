@@ -75,7 +75,10 @@ bindsym $mod+d exec rofi -show drun -config $HOME/.config/i3/rofi.config
 # .desktop file. It is a wrapper around dmenu, so you need that installed.
 #bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
-bindsym $mod+o exec $HOME/.local/bin/open
+# for quick opening of files
+# would rather use alacritty but dont know how to make it opaque
+for_window [instance="^fzfopenwindow" class="^kitty"] floating enable, move relative position center, width 1200px, height 900px
+bindsym $mod+o exec "kitty --name fzfopenwindow -e fzf-open"
 
 # # change focus
 # bindsym $mod+j focus left

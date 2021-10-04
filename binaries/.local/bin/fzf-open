@@ -3,5 +3,5 @@
 FILE=$(find ~ | fzf --algo v1)
 
 if [ ! -z "$FILE" ]; then
-    gio open "$FILE" 2>&1
+    gio open "$FILE" &>/dev/null & disown
 fi
