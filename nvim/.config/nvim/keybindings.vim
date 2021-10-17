@@ -16,6 +16,7 @@ nnoremap & :&&<cr>
 xnoremap & :&&<cr>
 
 "Y to be more like other vim capitals
+"TODO: remove: This has been included by default in a new version of nvim
 nnoremap Y y$
 
 " Better navigation with next (keeps cursor on one line)
@@ -45,3 +46,4 @@ nnoremap <leader>k :m .-2<cr>==
 
 " delete
 nnoremap dl d0D
+

@@ -96,6 +96,7 @@ local autosnippets = {
 	),
 
 	-- non Maths mode specific
+  s({trig= "-", desc="em-dash", wordTrig=true} , t{"---"}, {condition=u.neg(tex_maths)}),
   s(
 		{trig= "dm", desc="Display Maths env"},
 		{t{"\\[",""}, i(0, "maths"), t{"","\\]"}},
@@ -137,27 +138,27 @@ local autosnippets = {
 
   s(
 		{trig= "lr(", desc="left right braces"},
-		{t{"\\left( "}, i(1, "maths"),  t{" \\right)"}},
+		{t{"\\left("}, i(1, "maths"),  t{"\\right)"}},
 		{condition=tex_maths}
 	),
   s(
 		{trig= "lr[", desc="left right sq braces"},
-		{t{"\\left[ "}, i(1, "maths"),  t{" \\right]"}},
+		{t{"\\left["}, i(1, "maths"),  t{"\\right]"}},
 		{condition=tex_maths}
 	),
   s(
 		{trig= "lr{", desc="left right brackets"},
-		{t{"\\left{ "}, i(1, "maths"),  t{" \\right}"}},
+		{t{"\\left\\{"}, i(1, "maths"),  t{"\\right\\}"}},
 		{condition=tex_maths}
 	),
   s(
 		{trig= "lr|", desc="left right bars"},
-		{t{"\\left| "}, i(1, "maths"),  t{" \\right|"}},
+		{t{"\\left|"}, i(1, "maths"),  t{"\\right|"}},
 		{condition=tex_maths}
 	),
   s(
-		{trig= "lr<", desc="left right bars"},
-		{t{"\\left< "}, i(1, "maths"),  t{" \\right>"}},
+		{trig= "lr<", desc="left right angle brackets"},
+		{t{"\\left\rangle "}, i(1, "maths"),  t{" \\right\rangle"}},
 		{condition=tex_maths}
 	),
 

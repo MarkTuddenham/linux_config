@@ -2,8 +2,6 @@ if require('tudders.first_load')() then
   return
 end
 
-require('tudders.plugins')
-
 -- Leader key -> " "
 --
 -- In general, it's a good idea to set this early in your config, because otherwise
@@ -11,6 +9,8 @@ require('tudders.plugins')
 -- leader.
 vim.api.nvim_set_keymap('n', '<space>', '<nop>', {})  -- do we have to unmap space first?
 vim.g.mapleader = ' '
+
+require('tudders.plugins')
 
 vim.g.snippets = 'luasnip'
 

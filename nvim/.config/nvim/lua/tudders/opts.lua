@@ -46,12 +46,15 @@ opt.breakindent = true
 opt.showbreak = string.rep(" ", 3) -- Make it so that long lines wrap smartly
 opt.linebreak = true
 
+opt.list = true
+opt.listchars = "tab:>\\ ,trail:¬"
+
 -- But turn wrap and spell on for latex and plain text files
 vim.cmd('au BufEnter * if &ft == "tex" | set wrap | set spell | set conceallevel=2 | endif')
 vim.cmd('au BufEnter * if &ft == "plaintex" | set wrap | set spell | set conceallevel=2 | endif')
 vim.cmd('au BufEnter * if &ft == "plaintext" | set wrap | set spell | set conceallevel=2 | endif')
 vim.cmd('au BufEnter * if &ft == "gitcommit" | set wrap | set spell | set conceallevel=2 | endif')
-vim.cmd('au BufEnter * if &ft == "markdown" | set wrap | set spell | set conceallevel=2 | endif')
+vim.cmd('au BufEnter * if &ft == "markdown" | set wrap | set spell | set conceallevel=2 | set expandtab | endif')
 
 opt.foldmethod = "marker"
 opt.foldlevel = 0

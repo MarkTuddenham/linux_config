@@ -49,7 +49,11 @@ return require('packer').startup {
     use 'nvim-lua/plenary.nvim'
 
 		-- themes
-    use 'projekt0n/github-nvim-theme'
+    use {
+			'projekt0n/github-nvim-theme',
+			commit = '771ac5b'
+		}
+
 		-- use 'gruvbox-community/gruvbox'
 		-- use 'dracula/vim'
 
@@ -62,6 +66,7 @@ return require('packer').startup {
         'nvim-lua/plenary.nvim'
       }
     }
+
     use 'octol/vim-cpp-enhanced-highlight'
     -- use 'tpope/vim-markdown' -- TODO use LSP markdown
     use 'tpope/vim-fugitive'
@@ -87,16 +92,18 @@ return require('packer').startup {
       requires = {
         'kyazdani42/nvim-web-devicons', opt = true
       }
-    }
+		}
 
-    use {
-      'ThePrimeagen/git-worktree.nvim',
-      config = function()
-        require('git-worktree').setup {}
-      end,
-    }
+		-- use 'ThePrimeagen/vim-apm'
+    use 'ThePrimeagen/git-worktree.nvim'
     use 'ThePrimeagen/harpoon'
-    use 'ThePrimeagen/refactoring.nvim'
+		use {
+			"ThePrimeagen/refactoring.nvim",
+			requires = {
+					{"nvim-lua/plenary.nvim"},
+					{"nvim-treesitter/nvim-treesitter"}
+			}
+		}
 
 		use 'bkad/CamelCaseMotion'
 
@@ -107,13 +114,14 @@ return require('packer').startup {
       end,
     }
 
+		use 'rhysd/vim-grammarous'
 		-- latex
 		use 'lervag/vimtex'
 		-- use 'KeitaNakamura/tex-conceal.vim'
 
 		-- Snippets
 		use 'L3MON4D3/LuaSnip'
-		-- use "rafamadriz/friendly-snippets" -- a little to many & too basic
+		-- use "rafamadriz/friendly-snippets" -- a little too many & too basic
 
     -- LSP Plugins
     use 'neovim/nvim-lspconfig'

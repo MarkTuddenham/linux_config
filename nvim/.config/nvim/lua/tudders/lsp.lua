@@ -42,7 +42,7 @@ updated_capabilities = require("cmp_nvim_lsp").update_capabilities(updated_capab
 -- LSP: Others
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { 'clangd', 'texlab', 'bashls'}
+local servers = {'clangd', 'texlab', 'bashls'}
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup{
     on_attach = on_attach,
@@ -52,6 +52,16 @@ for _, lsp in ipairs(servers) do
     }
   }
 end
+
+-- -- LSP: C/C++
+-- nvim_lsp.clangd.setup{
+--   on_attach = on_attach,
+-- 	capabilities = updated_capabilities,
+--   cmd = {'clangd', '--clang-tidy'},
+--     flags = {
+--       debounce_text_changes = 150,
+--     }
+-- }
 
 -- LSP: Python
 nvim_lsp.pylsp.setup{

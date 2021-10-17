@@ -29,9 +29,10 @@ require('lualine').setup{
 require('github-theme').setup{
   transparent = true,
   theme_style = 'dimmed',
+	sidebars = {"qf", "vista_kind", "terminal", "packer"},
   colors = {
     border_highlight = 'bg',
-		fg = 'white',
+		-- fg = 'white',
 		syntax = {
 			comment = '#990099',
 		},
@@ -54,7 +55,17 @@ augroup END
 ]])
 
 
+require("git-worktree").setup()
+require("telescope").load_extension("git_worktree")
+local git_worktree_opts = {noremap = true, silent = true}
+vim.api.nvim_set_keymap('n', '<leader>gw', '<cmd>lua require("telescope").extensions.git_worktree.git_worktrees()<cr>', git_worktree_opts)
+vim.api.nvim_set_keymap('n', '<leader>gm', '<cmd>lua require("telescope").extensions.git_worktree.create_git_worktree()<cr>', git_worktree_opts)
 
+
+require("refactoring").setup()
+local refactoring_opts = {noremap = true, silent = true}
+vim.api.nvim_set_keymap('n', '<leader>rr', '<cmd>lua require("tudders.telescope").refactors()<cr>', refactoring_opts)
+vim.api.nvim_set_keymap('v', '<leader>rr', '<cmd>lua require("tudders.telescope").refactors()<cr>', refactoring_opts)
 
 require('harpoon').setup({
     global_settings = {
@@ -71,17 +82,18 @@ vim.api.nvim_set_keymap('n', '<leader>3', '<cmd>lua require("harpoon.ui").nav_fi
 vim.api.nvim_set_keymap('n', '<leader>4', '<cmd>lua require("harpoon.ui").nav_file(4)<cr>', harpoon_opts)
 vim.api.nvim_set_keymap('n', '<leader>5', '<cmd>lua require("harpoon.ui").nav_file(5)<cr>', harpoon_opts)
 
+
 require('nvim-treesitter.configs').setup {
   ensure_installed = 'maintained', -- one of 'all', 'maintained' (parsers with maintainers), or a list of languages
   ignore_install = { 'javascript' }, -- List of parsers to ignore installing
   highlight = {
     enable = true,              -- false will disable the whole extension
-    disable = { 'c', 'cpp', 'rust', 'latex', 'tex', 'vim'},  -- list of language that will be disabled
+    disable = { 'rust', 'latex', 'tex', 'vim'},  -- list of language that will be disabled
     -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
     -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
     -- Using this option may slow down your editor, and you may see some duplicate highlights.
     -- Instead of true it can also be a list of languages
-    additional_vim_regex_highlighting = false,
+    additional_vim_regex_highlighting = true,
   },
   query_linter = {
     enable = true,
@@ -89,6 +101,7 @@ require('nvim-treesitter.configs').setup {
     lint_events = {"BufWrite", "CursorHold"},
   },
 }
+
 
 require('gitsigns').setup{
   signs = {
