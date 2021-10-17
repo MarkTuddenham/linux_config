@@ -11,7 +11,7 @@ AllowShortLambdasOnASingleLine: Inline
 AlwaysBreakTemplateDeclarations: Yes
 BinPackArguments: false
 BinPackParameters: false
-BraceWrapping:   
+BraceWrapping:
   AfterCaseLabel:  true
   AfterClass:      true
   AfterControlStatement: true
@@ -35,7 +35,7 @@ ConstructorInitializerAllOnOneLineOrOnePerLine: true
 IncludeBlocks:  Regroup
 IncludeIsMainRegex: '(_test)?$'
 IndentPPDirectives: BeforeHash
-IndentWidth:     2
+IndentWidth: 2
 JavaScriptQuotes: Single
 PointerAlignment: Middle
 SpaceAfterTemplateKeyword: false
@@ -43,4 +43,7 @@ SpaceBeforeRangeBasedForLoopColon: false
 SpaceAroundPointerQualifiers: Both
 SpaceBeforeAssignmentOperators: true
 ReflowComments: false
-SortIncludes: CaseInsensitive
+SortIncludes: true
+SortUsingDeclarations: true
+TabWidth: 2
+UseTab: AlignWithSpaces
