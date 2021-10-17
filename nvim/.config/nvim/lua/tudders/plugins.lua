@@ -26,8 +26,8 @@ return require('packer').startup {
 				home = first
 			end
 
-			if vim.fn.isdirectory(vim.fn.expand('~/plugins/' .. plug_path)) == 1 then
-				opts[1] = '~/plugins/' .. plug_path
+			if vim.fn.isdirectory(vim.fn.expand('~/dev/' .. plug_path)) == 1 then
+				opts[1] = '~/dev/' .. plug_path
 			else
 				opts[1] = string.format('%s/%s', home, plug_path)
 			end
@@ -79,12 +79,12 @@ return require('packer').startup {
 		-- use 'folke/which-key.nvim'
 
 				-- Completion
-		use "hrsh7th/nvim-cmp"
-		use "hrsh7th/cmp-buffer"
-		use "hrsh7th/cmp-path"
-		use "hrsh7th/cmp-nvim-lua"
-		use "hrsh7th/cmp-nvim-lsp"
-		use "saadparwaiz1/cmp_luasnip"
+		use 'hrsh7th/nvim-cmp'
+		use 'hrsh7th/cmp-buffer'
+		use 'hrsh7th/cmp-path'
+		use 'hrsh7th/cmp-nvim-lua'
+		use 'hrsh7th/cmp-nvim-lsp'
+		use 'saadparwaiz1/cmp_luasnip'
 
 		-- status line
 		use {
@@ -97,11 +97,12 @@ return require('packer').startup {
 		-- use 'ThePrimeagen/vim-apm'
 		use 'ThePrimeagen/git-worktree.nvim'
 		use 'ThePrimeagen/harpoon'
+		-- local_use 'refactoring.nvim.git'
 		use {
-			"ThePrimeagen/refactoring.nvim",
+			'ThePrimeagen/refactoring.nvim',
 			requires = {
-					{"nvim-lua/plenary.nvim"},
-					{"nvim-treesitter/nvim-treesitter"}
+					{'nvim-lua/plenary.nvim'},
+					{'nvim-treesitter/nvim-treesitter'}
 			}
 		}
 
