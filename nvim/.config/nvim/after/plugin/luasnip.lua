@@ -1,5 +1,5 @@
 if vim.g.snippets ~= "luasnip" then
-  return
+	return
 end
 
 local ls = require("luasnip")
@@ -14,8 +14,8 @@ local i = ls.insert_node
 
 
 ls.config.set_config {
-  history = true,
-  updateevents = "TextChanged,TextChangedI",
+	history = true,
+	updateevents = "TextChanged,TextChangedI",
 	ext_opts = {
 		[types.choiceNode] = {
 			active = {
@@ -45,10 +45,10 @@ ls.config.set_config {
 
 -- This a choice snippet. You can move through with <c-e> (in my config)
 -- tbl_snip {
---   trig = "c",
---   t { "-- this has a choice: " },
---   c(1, { t {"hello"}, t {"world"}, }),
---   i(0),
+--	 trig = "c",
+--	 t { "-- this has a choice: " },
+--	 c(1, { t {"hello"}, t {"world"}, }),
+--	 i(0),
 -- }
 
 local utils = require('tudders.snippets.utils')
@@ -64,55 +64,55 @@ autosnippets.tex = require('tudders.snippets.tex').autosnippets
 
 --stylua: ignore
 snippets.lua = make {
-  ignore = "--stylua: ignore",
+	ignore = "--stylua: ignore",
 
-  lf = {
-    desc = "table function" ,
-    t{"local "}, i(1), t{" = function("}, i(2), t{")", "  "}, i(0), t{"", "end"},
-  },
+	lf = {
+		desc = "table function" ,
+		t{"local "}, i(1), t{" = function("}, i(2), t{")", "	"}, i(0), t{"", "end"},
+	},
 
 }
 snippets.rust = make {
-  modtest = {
-    t {
-      "#[cfg(test)]",
-      "mod test {",
-      "    use super::*;",
-      "    ",
-    },
-    i(0),
-    t {
-      "",
-      "}",
-    },
-  },
+	modtest = {
+		t {
+			"#[cfg(test)]",
+			"mod test {",
+			"		 use super::*;",
+			"		 ",
+		},
+		i(0),
+		t {
+			"",
+			"}",
+		},
+	},
 
-  test = {
-    t {
-      "#[test]",
-      "fn ",
-    },
-    i(1, "testname"),
-    t { "() {", "    " },
-    i(0),
-    t { "", "}" },
-  },
+	test = {
+		t {
+			"#[test]",
+			"fn ",
+		},
+		i(1, "testname"),
+		t { "() {", "		 " },
+		i(0),
+		t { "", "}" },
+	},
 
-  enum = {
-    t { "#[derive(Debug, PartialEq)]", "enum " },
-    i(1, "Name"),
-    t { " {", "  " },
-    i(0),
-    t { "", "}" },
-  },
+	enum = {
+		t { "#[derive(Debug, PartialEq)]", "enum " },
+		i(1, "Name"),
+		t { " {", "  " },
+		i(0),
+		t { "", "}" },
+	},
 
-  struct = {
-    t { "#[derive(Debug, PartialEq)]", "struct " },
-    i(1, "Name"),
-    t { " {", "    " },
-    i(0),
-    t { "", "}" },
-  },
+	struct = {
+		t { "#[derive(Debug, PartialEq)]", "struct " },
+		i(1, "Name"),
+		t { " {", "		 " },
+		i(0),
+		t { "", "}" },
+	},
 }
 
 ls.snippets = snippets
@@ -122,9 +122,9 @@ ls.autosnippets = autosnippets
 require("luasnip/loaders/from_vscode").lazy_load()
 
 vim.cmd [[
-  imap <silent><expr> <c-k> luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<c-k>'
-  inoremap <silent> <c-j> <cmd>lua require('luasnip').jump(-1)<CR>
-  imap <silent><expr> <C-E> luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-E>'
-  snoremap <silent> <c-k> <cmd>lua require('luasnip').jump(1)<CR>
-  snoremap <silent> <c-j> <cmd>lua require('luasnip').jump(-1)<CR>
+	imap <silent><expr> <c-k> luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<c-k>'
+	inoremap <silent> <c-j> <cmd>lua require('luasnip').jump(-1)<CR>
+	imap <silent><expr> <C-E> luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-E>'
+	snoremap <silent> <c-k> <cmd>lua require('luasnip').jump(1)<CR>
+	snoremap <silent> <c-j> <cmd>lua require('luasnip').jump(-1)<CR>
 ]]

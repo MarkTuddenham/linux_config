@@ -27,20 +27,20 @@ require('lualine').setup{
 }
 
 require('github-theme').setup{
-  transparent = true,
-  theme_style = 'dimmed',
+	transparent = true,
+	theme_style = 'dimmed',
 	sidebars = {"qf", "vista_kind", "terminal", "packer"},
-  colors = {
-    border_highlight = 'bg',
+	colors = {
+		border_highlight = 'bg',
 		-- fg = 'white',
 		syntax = {
 			comment = '#990099',
 		},
-  },
+	},
 	-- comment_style = "italic",
-  -- keyword_style = "NONE",
-  -- function_style = "NONE",
-  -- variable_style = "NONE"
+	-- keyword_style = "NONE",
+	-- function_style = "NONE",
+	-- variable_style = "NONE"
 }
 -- override theme colours
 vim.cmd([[
@@ -49,8 +49,8 @@ function! MyHighlights() abort
 endfunction
 
 augroup MyColors
-    autocmd!
-    autocmd ColorScheme * call MyHighlights()
+		autocmd!
+		autocmd ColorScheme * call MyHighlights()
 augroup END
 ]])
 
@@ -68,10 +68,10 @@ vim.api.nvim_set_keymap('n', '<leader>rr', '<cmd>lua require("tudders.telescope"
 vim.api.nvim_set_keymap('v', '<leader>rr', '<cmd>lua require("tudders.telescope").refactors()<cr>', refactoring_opts)
 
 require('harpoon').setup({
-    global_settings = {
-        save_on_toggle = false,
-        save_on_change = true,
-    },
+		global_settings = {
+				save_on_toggle = false,
+				save_on_change = true,
+		},
 })
 local harpoon_opts = {noremap = true, silent = true}
 vim.api.nvim_set_keymap('n', '<leader>tt', '<cmd>lua require("harpoon.mark").add_file()<cr>', harpoon_opts)
@@ -84,70 +84,70 @@ vim.api.nvim_set_keymap('n', '<leader>5', '<cmd>lua require("harpoon.ui").nav_fi
 
 
 require('nvim-treesitter.configs').setup {
-  ensure_installed = 'maintained', -- one of 'all', 'maintained' (parsers with maintainers), or a list of languages
-  ignore_install = { 'javascript' }, -- List of parsers to ignore installing
-  highlight = {
-    enable = true,              -- false will disable the whole extension
-    disable = { 'rust', 'latex', 'tex', 'vim'},  -- list of language that will be disabled
-    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-    -- Using this option may slow down your editor, and you may see some duplicate highlights.
-    -- Instead of true it can also be a list of languages
-    additional_vim_regex_highlighting = true,
-  },
-  query_linter = {
-    enable = true,
-    use_virtual_text = true,
-    lint_events = {"BufWrite", "CursorHold"},
-  },
+	ensure_installed = 'maintained', -- one of 'all', 'maintained' (parsers with maintainers), or a list of languages
+	ignore_install = { 'javascript' }, -- List of parsers to ignore installing
+	highlight = {
+		enable = true,							-- false will disable the whole extension
+		disable = { 'rust', 'latex', 'tex', 'vim'},  -- list of language that will be disabled
+		-- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+		-- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+		-- Using this option may slow down your editor, and you may see some duplicate highlights.
+		-- Instead of true it can also be a list of languages
+		additional_vim_regex_highlighting = true,
+	},
+	query_linter = {
+		enable = true,
+		use_virtual_text = true,
+		lint_events = {"BufWrite", "CursorHold"},
+	},
 }
 
 
 require('gitsigns').setup{
-  signs = {
-    add          = {hl = 'GitSignsAdd'   , text = '│', numhl='GitSignsAddNr'   , linehl='GitSignsAddLn'},
-    change       = {hl = 'GitSignsChange', text = '│', numhl='GitSignsChangeNr', linehl='GitSignsChangeLn'},
-    delete       = {hl = 'GitSignsDelete', text = '_', numhl='GitSignsDeleteNr', linehl='GitSignsDeleteLn'},
-    topdelete    = {hl = 'GitSignsDelete', text = '‾', numhl='GitSignsDeleteNr', linehl='GitSignsDeleteLn'},
-    changedelete = {hl = 'GitSignsChange', text = '~', numhl='GitSignsChangeNr', linehl='GitSignsChangeLn'},
-  },
-  numhl = false,
-  linehl = false,
-  keymaps = {
-    -- Default keymap options
-    noremap = true,
-    buffer = true,
+	signs = {
+		add					 = {hl = 'GitSignsAdd'	 , text = '│', numhl='GitSignsAddNr'	 , linehl='GitSignsAddLn'},
+		change			 = {hl = 'GitSignsChange', text = '│', numhl='GitSignsChangeNr', linehl='GitSignsChangeLn'},
+		delete			 = {hl = 'GitSignsDelete', text = '_', numhl='GitSignsDeleteNr', linehl='GitSignsDeleteLn'},
+		topdelete		 = {hl = 'GitSignsDelete', text = '‾', numhl='GitSignsDeleteNr', linehl='GitSignsDeleteLn'},
+		changedelete = {hl = 'GitSignsChange', text = '~', numhl='GitSignsChangeNr', linehl='GitSignsChangeLn'},
+	},
+	numhl = false,
+	linehl = false,
+	keymaps = {
+		-- Default keymap options
+		noremap = true,
+		buffer = true,
 
-    ['n ]c'] = { expr = true, "&diff ? ']c' : '<cmd>lua require\"gitsigns.actions\".next_hunk()<cr>'"},
-    ['n [c'] = { expr = true, "&diff ? '[c' : '<cmd>lua require\"gitsigns.actions\".prev_hunk()<cr>'"},
+		['n ]c'] = { expr = true, "&diff ? ']c' : '<cmd>lua require\"gitsigns.actions\".next_hunk()<cr>'"},
+		['n [c'] = { expr = true, "&diff ? '[c' : '<cmd>lua require\"gitsigns.actions\".prev_hunk()<cr>'"},
 
-    ['n <leader>hs'] = '<cmd>lua require"gitsigns".stage_hunk()<cr>',
-    ['v <leader>hs'] = '<cmd>lua require"gitsigns".stage_hunk({vim.fn.line("."), vim.fn.line("v")})<cr>',
-    ['n <leader>hu'] = '<cmd>lua require"gitsigns".undo_stage_hunk()<cr>',
-    ['n <leader>hr'] = '<cmd>lua require"gitsigns".reset_hunk()<cr>',
-    ['v <leader>hr'] = '<cmd>lua require"gitsigns".reset_hunk({vim.fn.line("."), vim.fn.line("v")})<cr>',
-    ['n <leader>hR'] = '<cmd>lua require"gitsigns".reset_buffer()<cr>',
-    ['n <leader>hp'] = '<cmd>lua require"gitsigns".preview_hunk()<cr>',
-    ['n <leader>hb'] = '<cmd>lua require"gitsigns".blame_line(true)<cr>',
-    ['n <leader>ht'] = '<cmd>lua require"gitsigns".toggle_word_diff()<cr>',
+		['n <leader>hs'] = '<cmd>lua require"gitsigns".stage_hunk()<cr>',
+		['v <leader>hs'] = '<cmd>lua require"gitsigns".stage_hunk({vim.fn.line("."), vim.fn.line("v")})<cr>',
+		['n <leader>hu'] = '<cmd>lua require"gitsigns".undo_stage_hunk()<cr>',
+		['n <leader>hr'] = '<cmd>lua require"gitsigns".reset_hunk()<cr>',
+		['v <leader>hr'] = '<cmd>lua require"gitsigns".reset_hunk({vim.fn.line("."), vim.fn.line("v")})<cr>',
+		['n <leader>hR'] = '<cmd>lua require"gitsigns".reset_buffer()<cr>',
+		['n <leader>hp'] = '<cmd>lua require"gitsigns".preview_hunk()<cr>',
+		['n <leader>hb'] = '<cmd>lua require"gitsigns".blame_line(true)<cr>',
+		['n <leader>ht'] = '<cmd>lua require"gitsigns".toggle_word_diff()<cr>',
 
-    -- Text objects
-    ['o ih'] = ':<C-U>lua require"gitsigns.actions".select_hunk()<cr>',
-    ['x ih'] = ':<C-U>lua require"gitsigns.actions".select_hunk()<cr>'
-  },
-  watch_index = {
-    interval = 1000,
-    follow_files = true
-  },
-  current_line_blame = true,
-  current_line_blame_delay = 750,
-  current_line_blame_position = 'eol',
-  sign_priority = 6,
-  update_debounce = 100,
-  status_formatter = nil, -- Use default
-  word_diff = false,
-  use_decoration_api = true,
-  use_internal_diff = true,  -- If luajit is present
+		-- Text objects
+		['o ih'] = ':<C-U>lua require"gitsigns.actions".select_hunk()<cr>',
+		['x ih'] = ':<C-U>lua require"gitsigns.actions".select_hunk()<cr>'
+	},
+	watch_index = {
+		interval = 1000,
+		follow_files = true
+	},
+	current_line_blame = true,
+	current_line_blame_delay = 750,
+	current_line_blame_position = 'eol',
+	sign_priority = 6,
+	update_debounce = 100,
+	status_formatter = nil, -- Use default
+	word_diff = false,
+	use_decoration_api = true,
+	use_internal_diff = true,  -- If luajit is present
 }
 
 vim.api.nvim_set_keymap('n', '<F5>', '<cmd>:UndotreeToggle<cr>',{})
