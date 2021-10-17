@@ -47,3 +47,4 @@ nnoremap <leader>k :m .-2<cr>==
 " delete
 nnoremap dl d0D
 
+nnoremap <silent> <C-f> :silent !tmux neww tmux-sessioniser<cr>
