@@ -128,3 +128,7 @@ vim.g.vimtex_syntax_conceal = {
 -- vim.g.tex_conceal = 'abdmg'
 -- vim.g.tex_superscripts= "[0-9a-zA-W.,:;+-<>/()=]"
 -- vim.g.tex_subscripts= "[0-9aehijkmnoprstuvx,+-/().]"
+
+vim.cmd[[
+	au TextYankPost * silent! lua vim.highlight.on_yank()
+]]
