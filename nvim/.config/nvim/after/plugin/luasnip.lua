@@ -12,8 +12,7 @@ local i = ls.insert_node
 -- local c = ls.choice_node
 -- local d = ls.dynamic_node
 
-
-ls.config.set_config {
+ls.config.set_config({
 	history = true,
 	updateevents = "TextChanged,TextChangedI",
 	ext_opts = {
@@ -22,13 +21,13 @@ ls.config.set_config {
 				virt_text = { { "choiceNode", "Comment" } },
 			},
 			passive = {
-				virt_text = {{""}}
-			}
+				virt_text = { { "" } },
+			},
 		},
 		[types.insertNode] = {
 			passive = {
-				hl_group = "Comment"
-			}
+				hl_group = "Comment",
+			},
 		},
 	},
 	-- treesitter-hl has 100, use something higher (default is 200).
@@ -36,7 +35,7 @@ ls.config.set_config {
 	-- minimal increase in priority.
 	ext_prio_increase = 1,
 	enable_autosnippets = true,
-}
+})
 
 -- create snippet
 -- s(context, nodes, condition, ...)
@@ -51,18 +50,19 @@ ls.config.set_config {
 --	 i(0),
 -- }
 
-local utils = require('tudders.snippets.utils')
+local utils = require("tudders.snippets.utils")
 local make = utils.make
 -- local same = utils.same
 
 local snippets = {}
 local autosnippets = {}
 
+snippets.tex = require("tudders.snippets.tex").snippets
+autosnippets.tex = require("tudders.snippets.tex").autosnippets
 
-snippets.tex = require('tudders.snippets.tex').snippets
-autosnippets.tex = require('tudders.snippets.tex').autosnippets
+snippets.python = require("tudders.snippets.python").snippets
+autosnippets.python = require("tudders.snippets.python").autosnippets
 
---stylua: ignore
 snippets.lua = make {
 	ignore = "--stylua: ignore",
 
@@ -72,48 +72,48 @@ snippets.lua = make {
 	},
 
 }
-snippets.rust = make {
+snippets.rust = make({
 	modtest = {
-		t {
+		t({
 			"#[cfg(test)]",
 			"mod test {",
 			"		 use super::*;",
 			"		 ",
-		},
+		}),
 		i(0),
-		t {
+		t({
 			"",
 			"}",
-		},
+		}),
 	},
 
 	test = {
-		t {
+		t({
 			"#[test]",
 			"fn ",
-		},
+		}),
 		i(1, "testname"),
-		t { "() {", "		 " },
+		t({ "() {", "		 " }),
 		i(0),
-		t { "", "}" },
+		t({ "", "}" }),
 	},
 
 	enum = {
-		t { "#[derive(Debug, PartialEq)]", "enum " },
+		t({ "#[derive(Debug, PartialEq)]", "enum " }),
 		i(1, "Name"),
-		t { " {", "  " },
+		t({ " {", "  " }),
 		i(0),
-		t { "", "}" },
+		t({ "", "}" }),
 	},
 
 	struct = {
-		t { "#[derive(Debug, PartialEq)]", "struct " },
+		t({ "#[derive(Debug, PartialEq)]", "struct " }),
 		i(1, "Name"),
-		t { " {", "		 " },
+		t({ " {", "		 " }),
 		i(0),
-		t { "", "}" },
+		t({ "", "}" }),
 	},
-}
+})
 
 ls.snippets = snippets
 ls.autosnippets = autosnippets
@@ -121,10 +121,10 @@ ls.autosnippets = autosnippets
 -- e.g. loads friendly-snippets
 require("luasnip/loaders/from_vscode").lazy_load()
 
-vim.cmd [[
+vim.cmd([[
 	imap <silent><expr> <c-k> luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<c-k>'
 	inoremap <silent> <c-j> <cmd>lua require('luasnip').jump(-1)<CR>
 	imap <silent><expr> <C-E> luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-E>'
 	snoremap <silent> <c-k> <cmd>lua require('luasnip').jump(1)<CR>
 	snoremap <silent> <c-j> <cmd>lua require('luasnip').jump(-1)<CR>
-]]
+]])

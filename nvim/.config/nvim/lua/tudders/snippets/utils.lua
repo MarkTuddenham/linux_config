@@ -9,7 +9,7 @@ local t = ls.t -- text node
 local utils = {}
 
 local str = function(text)
-	return t { text }
+	return t({ text })
 end
 utils.str = str
 
@@ -40,13 +40,13 @@ utils.neg = neg
 
 local shortcut = function(val)
 	if type(val) == "string" then
-		return { t { val }, i(0) }
+		return { t({ val }), i(0) }
 	end
 
 	if type(val) == "table" then
 		for k, v in ipairs(val) do
 			if type(v) == "string" then
-				val[k] = t { v }
+				val[k] = t({ v })
 			end
 		end
 	end
