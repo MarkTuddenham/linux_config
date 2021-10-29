@@ -16,14 +16,14 @@ cmp.setup {
 		["<C-d>"] = cmp.mapping.scroll_docs(-4),
 		["<C-f>"] = cmp.mapping.scroll_docs(4),
 		["<C-e>"] = cmp.mapping.close(),
-		-- ["<c-y>"] = cmp.mapping.confirm {
-		--	 behavior = cmp.ConfirmBehavior.Insert,
-		--	 select = true,
-		-- },
-		["<Tab>"] = cmp.mapping.confirm {
-			behavior = cmp.ConfirmBehavior.Replace,
+		["<c-y>"] = cmp.mapping.confirm {
+			behavior = cmp.ConfirmBehavior.Insert,
 			select = true,
-		},
+		 },
+		-- ["<Tab>"] = cmp.mapping.confirm {
+		-- 	behavior = cmp.ConfirmBehavior.Replace,
+		-- 	select = true,
+		-- },
 
 		-- TODO: Not sure I'm in love with this one.
 		["<C-Space>"] = cmp.mapping.complete(),
