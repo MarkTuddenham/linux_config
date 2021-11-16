@@ -58,7 +58,7 @@ vim.api.nvim_set_keymap(
 )
 vim.api.nvim_set_keymap(
 	"n",
-	"<leader>gm",
+	"<leader>gc",
 	'<cmd>lua require("telescope").extensions.git_worktree.create_git_worktree()<cr>',
 	opts
 )

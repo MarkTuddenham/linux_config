@@ -66,7 +66,7 @@ return require("packer").startup({
 			},
 		})
 
-		use 'numToStr/Comment.nvim'
+		use("numToStr/Comment.nvim")
 
 		use("octol/vim-cpp-enhanced-highlight")
 		-- use 'tpope/vim-markdown' -- TODO use LSP markdown
@@ -367,11 +367,7 @@ return require("packer").startup({
 		use("rhysd/committia.vim")
 		use("sindrets/diffview.nvim")
 
-		-- Floating windows are awesome :)
-		--	use {
-		--	 'rhysd/git-messenger.vim',
-		--	keys = '<Plug>(git-messenger)',
-		--	}
+		use("rhysd/git-messenger.vim")
 
 		-- use 'untitled-ai/jupyter_ascending.vim'
 
