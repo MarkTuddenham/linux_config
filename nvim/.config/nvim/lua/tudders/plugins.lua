@@ -66,6 +66,8 @@ return require("packer").startup({
 			},
 		})
 
+		use 'numToStr/Comment.nvim'
+
 		use("octol/vim-cpp-enhanced-highlight")
 		-- use 'tpope/vim-markdown' -- TODO use LSP markdown
 		use("tpope/vim-fugitive")
@@ -336,14 +338,14 @@ return require("packer").startup({
 		-- end,
 		-- }
 
-		if false and has("python3") then
-			use("puremourning/vimspector")
-		end
-		--
+		--if false and has("python3") then
+		--	use("puremourning/vimspector")
+		--end
+		----
 
 		-- TEXT MANIUPLATION
 		--		use 'godlygeek/tabular' -- Quickly align text by pattern
-		use("tpope/vim-commentary") -- Easily comment out lines or objects
+		-- use("tpope/vim-commentary") -- Easily comment out lines or objects
 		--		use 'tpope/vim-repeat' -- Repeat actions better
 		--	 use 'tpope/vim-abolish' -- Cool things with words!
 		--	 use 'tpope/vim-characterize'

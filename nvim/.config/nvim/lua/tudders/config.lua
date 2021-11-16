@@ -5,6 +5,8 @@ require("tudders.dap")
 
 -- require('which-key').setup()
 
+require('Comment').setup()
+
 require("lualine").setup({
 	options = {
 		theme = "horizon",
