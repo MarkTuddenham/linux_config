@@ -10,19 +10,23 @@ local d = ls.dynamic_node
 
 local u = require("tudders.snippets.utils")
 
-local snippets = u.make {
+local snippets = u.make({
 
 	beg = {
 		desc = "Environments -> \\begin{...}",
-		t{"\\begin{"}, i(1, "env"), t{"}", ""}, i(0), t{"", "\\end{"}, u.same(1), t{"}"},
+		t({ "\\begin{" }),
+		i(1, "env"),
+		t({ "}", "" }),
+		i(0),
+		t({ "", "\\end{" }),
+		u.same(1),
+		t({ "}" }),
 	},
-
-}
+})
 
 local autosnippets = {
 
-	s({trig= "...", desc="dots", wordTrig=false} , t{"\\dots "}),
-
+	s({ trig = "...", desc = "dots", wordTrig = false }, t({ "\\dots " })),
 }
 
 return {

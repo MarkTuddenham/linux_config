@@ -5,7 +5,7 @@ opt.wildmode = { "longest", "full" }
 opt.wildignore = { "*.o", "*~", "*.pyc", "*pycache*" }
 opt.autoread = true
 
-opt.spelllang = 'en_gb'
+opt.spelllang = "en_gb"
 opt.spell = false
 -- opt.fileformat = 'unix'
 
@@ -96,11 +96,11 @@ opt.joinspaces = false -- Two spaces and grade school, we're done
 -- set fillchars=eob:~
 opt.fillchars = { eob = "~" }
 
-vim.g.HardMode_level = 'wannabe'
-vim.g.HardMode_hardmodeMsg = 'Don\'t use this!'
-vim.cmd('au VimEnter,BufNewFile,BufReadPost * silent! call HardMode()')
+vim.g.HardMode_level = "wannabe"
+vim.g.HardMode_hardmodeMsg = "Don't use this!"
+vim.cmd("au VimEnter,BufNewFile,BufReadPost * silent! call HardMode()")
 
-vim.g.camelcasemotion_key = ',' -- '<leader>'
+vim.g.camelcasemotion_key = "," -- '<leader>'
 
 vim.g.vim_markdown_math = 1
 
@@ -113,22 +113,22 @@ vim.g.cpp_class_decl_highlight = 1
 vim.g.cpp_member_variable_highlight = 1
 vim.g.cpp_experimental_simple_template_highlight = 1
 
-vim.cmd('source $HOME/.config/nvim/keybindings.vim')
+vim.cmd("source $HOME/.config/nvim/keybindings.vim")
 
 -- tex
 -- conceallevel set in autocommands above
 -- opt.conceallevel = 2
-vim.g.tex_flavor = 'latex'
-vim.g.vimtex_view_method = 'zathura'
+vim.g.tex_flavor = "latex"
+vim.g.vimtex_view_method = "zathura"
 vim.g.vimtex_quickfix_mode = 0
 vim.g.vimtex_syntax_conceal = {
-	math_super_sub = 0
+	math_super_sub = 0,
 }
 -- vim.g.vimtex_syntax_conceal_default = 0 -- if using tex-conceal instead
 -- vim.g.tex_conceal = 'abdmg'
 -- vim.g.tex_superscripts= "[0-9a-zA-W.,:;+-<>/()=]"
 -- vim.g.tex_subscripts= "[0-9aehijkmnoprstuvx,+-/().]"
 
-vim.cmd[[
+vim.cmd([[
 	au TextYankPost * silent! lua vim.highlight.on_yank()
-]]
+]])

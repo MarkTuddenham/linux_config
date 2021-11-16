@@ -63,15 +63,20 @@ autosnippets.tex = require("tudders.snippets.tex").autosnippets
 snippets.python = require("tudders.snippets.python").snippets
 autosnippets.python = require("tudders.snippets.python").autosnippets
 
-snippets.lua = make {
+snippets.lua = make({
 	ignore = "--stylua: ignore",
 
 	lf = {
-		desc = "table function" ,
-		t{"local "}, i(1), t{" = function("}, i(2), t{")", "	"}, i(0), t{"", "end"},
+		desc = "table function",
+		t({ "local " }),
+		i(1),
+		t({ " = function(" }),
+		i(2),
+		t({ ")", "	" }),
+		i(0),
+		t({ "", "end" }),
 	},
-
-}
+})
 snippets.rust = make({
 	modtest = {
 		t({

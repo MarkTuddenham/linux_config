@@ -136,7 +136,9 @@ local autosnippets = {
 
 	-- Maths mode specific
 	s({ trig = "implies", desc = "\\implies", wordTrig = false }, t({ "\\implies " }), { condition = tex_maths }),
-	s({ trig = "implied by", desc = "\\impliedby", wordTrig = false }, t({ "\\impliedby " }), { condition = tex_maths }),
+	s({ trig = "implied by", desc = "\\impliedby", wordTrig = false }, t({ "\\impliedby " }), {
+		condition = tex_maths,
+	}),
 	s({ trig = "iff", desc = "\\iff", wordTrig = false }, t({ "\\iff " }), { condition = tex_maths }),
 	s({ trig = "!=", desc = "not equals", wordTrig = false }, t({ "\\neq " }), { condition = tex_maths }),
 	s({ trig = "<=", desc = "less than or equals", wordTrig = false }, t({ "\\leq " }), { condition = tex_maths }),

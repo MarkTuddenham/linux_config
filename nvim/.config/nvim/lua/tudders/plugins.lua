@@ -1,16 +1,16 @@
-vim.cmd [[packadd packer.nvim]]
-vim.cmd [[packadd vimball]]
+vim.cmd([[packadd packer.nvim]])
+vim.cmd([[packadd vimball]])
 
 local has = function(x)
 	return vim.fn.has(x) == 1
 end
 
 local is_wsl = (function()
-	local output = vim.fn.systemlist 'uname -r'
-	return not not string.find(output[1] or '', 'WSL')
+	local output = vim.fn.systemlist("uname -r")
+	return not not string.find(output[1] or "", "WSL")
 end)()
 
-return require('packer').startup {
+return require("packer").startup({
 	function(use)
 		-- use plugins from this machine
 		-- specifying first and second will download as normal if no local copy
@@ -20,129 +20,129 @@ return require('packer').startup {
 			local plug_path, home
 			if second == nil then
 				plug_path = first
-				home = 'mark'
+				home = "mark"
 			else
 				plug_path = second
 				home = first
 			end
 
-			if vim.fn.isdirectory(vim.fn.expand('~/dev/' .. plug_path)) == 1 then
-				opts[1] = '~/dev/' .. plug_path
+			if vim.fn.isdirectory(vim.fn.expand("~/dev/" .. plug_path)) == 1 then
+				opts[1] = "~/dev/" .. plug_path
 			else
-				opts[1] = string.format('%s/%s', home, plug_path)
+				opts[1] = string.format("%s/%s", home, plug_path)
 			end
 
 			use(opts)
 		end
 
 		local py_use = function(opts)
-			if not has 'python3' then
+			if not has("python3") then
 				return
 			end
 
 			use(opts)
 		end
 
-		use 'wbthomason/packer.nvim'
+		use("wbthomason/packer.nvim")
 
-		use 'nvim-lua/popup.nvim'
-		use 'nvim-lua/plenary.nvim'
+		use("nvim-lua/popup.nvim")
+		use("nvim-lua/plenary.nvim")
 
 		-- themes
-		use {
-			'projekt0n/github-nvim-theme',
-			commit = '771ac5b'
-		}
+		use({
+			"projekt0n/github-nvim-theme",
+			commit = "771ac5b",
+		})
 
 		-- use 'gruvbox-community/gruvbox'
 		-- use 'dracula/vim'
 
-
 		-- use jiangmiao/auto-pairs'
 
-		use {
-			'lewis6991/gitsigns.nvim',
+		use({
+			"lewis6991/gitsigns.nvim",
 			requires = {
-				'nvim-lua/plenary.nvim'
-			}
-		}
+				"nvim-lua/plenary.nvim",
+			},
+		})
 
-		use 'octol/vim-cpp-enhanced-highlight'
+		use("octol/vim-cpp-enhanced-highlight")
 		-- use 'tpope/vim-markdown' -- TODO use LSP markdown
-		use 'tpope/vim-fugitive'
-		use 'tpope/vim-eunuch'
-		use 'roxma/vim-paste-easy'
-		use 'tpope/vim-obsession'
-		use 'ap/vim-css-color'
-		use 'wikitopian/hardmode'
-		use 'mbbill/undotree'
+		use("tpope/vim-fugitive")
+		use("tpope/vim-eunuch")
+		use("roxma/vim-paste-easy")
+		use("tpope/vim-obsession")
+		use("ap/vim-css-color")
+		use("wikitopian/hardmode")
+		use("mbbill/undotree")
 		-- use 'folke/which-key.nvim'
 
-				-- Completion
-		use 'hrsh7th/nvim-cmp'
-		use 'hrsh7th/cmp-buffer'
-		use 'hrsh7th/cmp-path'
-		use 'hrsh7th/cmp-nvim-lua'
-		use 'hrsh7th/cmp-nvim-lsp'
-		use 'saadparwaiz1/cmp_luasnip'
+		-- Completion
+		use("hrsh7th/nvim-cmp")
+		use("hrsh7th/cmp-buffer")
+		use("hrsh7th/cmp-path")
+		use("hrsh7th/cmp-nvim-lua")
+		use("hrsh7th/cmp-nvim-lsp")
+		use("saadparwaiz1/cmp_luasnip")
 
 		-- status line
-		use {
-			'hoob3rt/lualine.nvim',
+		use({
+			"hoob3rt/lualine.nvim",
 			requires = {
-				'kyazdani42/nvim-web-devicons', opt = true
-			}
-		}
+				"kyazdani42/nvim-web-devicons",
+				opt = true,
+			},
+		})
 
 		-- DAP
-		use 'mfussenegger/nvim-dap'
-		use 'theHamsta/nvim-dap-virtual-text'
-		use 'rcarriga/nvim-dap-ui'
+		use("mfussenegger/nvim-dap")
+		use("theHamsta/nvim-dap-virtual-text")
+		use("rcarriga/nvim-dap-ui")
 
 		-- use 'ThePrimeagen/vim-apm'
-		use 'ThePrimeagen/git-worktree.nvim'
-		use 'ThePrimeagen/harpoon'
+		use("ThePrimeagen/git-worktree.nvim")
+		use("ThePrimeagen/harpoon")
 		-- local_use 'refactoring.nvim.git'
-		use {
-			'ThePrimeagen/refactoring.nvim',
+		use({
+			"ThePrimeagen/refactoring.nvim",
 			requires = {
-					{'nvim-lua/plenary.nvim'},
-					{'nvim-treesitter/nvim-treesitter'}
-			}
-		}
+				{ "nvim-lua/plenary.nvim" },
+				{ "nvim-treesitter/nvim-treesitter" },
+			},
+		})
 
-		use 'bkad/CamelCaseMotion'
+		use("bkad/CamelCaseMotion")
 
-		use {
-			'folke/zen-mode.nvim',
+		use({
+			"folke/zen-mode.nvim",
 			config = function()
-				require('zen-mode').setup()
+				require("zen-mode").setup()
 			end,
-		}
+		})
 
-		use 'rhysd/vim-grammarous'
+		use("rhysd/vim-grammarous")
 		-- latex
-		use 'lervag/vimtex'
+		use("lervag/vimtex")
 		-- use 'KeitaNakamura/tex-conceal.vim'
 
 		-- Snippets
-		use 'L3MON4D3/LuaSnip'
+		use("L3MON4D3/LuaSnip")
 		-- use "rafamadriz/friendly-snippets" -- a little too many & too basic
 
 		-- LSP Plugins
-		use 'neovim/nvim-lspconfig'
-		use 'wbthomason/lsp-status.nvim'
+		use("neovim/nvim-lspconfig")
+		use("wbthomason/lsp-status.nvim")
 
-		use {
-			'folke/lsp-trouble.nvim',
-			cmd = 'LspTrouble',
+		use({
+			"folke/lsp-trouble.nvim",
+			cmd = "LspTrouble",
 			config = function()
-				require('trouble').setup {
+				require("trouble").setup({
 					auto_preview = false,
 					auto_fold = true,
-				}
+				})
 			end,
-		}
+		})
 
 		-- local_use 'lsp_extensions.nvim'
 		-- use 'glepnir/lspsaga.nvim'
@@ -150,11 +150,11 @@ return require('packer').startup {
 		-- https://github.com/rmagatti/goto-preview
 
 		-- Telescope stuff
-		use 'nvim-telescope/telescope.nvim'
-		use 'nvim-telescope/telescope-fzf-writer.nvim'
-		use 'nvim-telescope/telescope-packer.nvim'
-		use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
-		use 'nvim-telescope/telescope-dap.nvim'
+		use("nvim-telescope/telescope.nvim")
+		use("nvim-telescope/telescope-fzf-writer.nvim")
+		use("nvim-telescope/telescope-packer.nvim")
+		use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
+		use("nvim-telescope/telescope-dap.nvim")
 		-- use 'nvim-telescope/telescope-fzy-native.nvim'
 		-- use 'nvim-telescope/telescope-async-sorter-test.nvim'
 
@@ -169,17 +169,17 @@ return require('packer').startup {
 		--		require('telescope').load_extension('frecency')
 		--	 end
 		-- }
-		use 'nvim-telescope/telescope-github.nvim'
-		use 'nvim-telescope/telescope-symbols.nvim'
+		use("nvim-telescope/telescope-github.nvim")
+		use("nvim-telescope/telescope-symbols.nvim")
 
-		use 'nvim-telescope/telescope-cheat.nvim'
+		use("nvim-telescope/telescope-cheat.nvim")
 		-- use { 'nvim-telescope/telescope-arecibo.nvim', rocks = { 'openssl', 'lua-http-parser' } }
 
 		-- TREE SITTER:
-		use 'nvim-treesitter/nvim-treesitter'
-		use 'nvim-treesitter/nvim-treesitter-textobjects'
-		use 'nvim-treesitter/playground'
-		use 'vigoux/architext.nvim'
+		use("nvim-treesitter/nvim-treesitter")
+		use("nvim-treesitter/nvim-treesitter-textobjects")
+		use("nvim-treesitter/playground")
+		use("vigoux/architext.nvim")
 
 		-- use 'JoosepAlviste/nvim-ts-context-commentstring'
 		-- use {
@@ -193,8 +193,6 @@ return require('packer').startup {
 		--		 -- vim.cmd [[highlight TreesitterContext link NormalFloat]]
 		--	 end,
 		-- }
-
-
 
 		-- use {
 		--	 'tpope/vim-projectionist', -- STREAM: Alternate file editting and some helpful stuff,
@@ -226,10 +224,10 @@ return require('packer').startup {
 		-- }
 
 		-- Better profiling output for startup.
-		use {
-			'dstein64/vim-startuptime',
-			cmd = 'StartupTime',
-		}
+		use({
+			"dstein64/vim-startuptime",
+			cmd = "StartupTime",
+		})
 
 		-- -- Pretty colors
 		-- use 'norcalli/nvim-colorizer.lua'
@@ -272,9 +270,9 @@ return require('packer').startup {
 		--	 end,
 		-- }
 
-		use 'kyazdani42/nvim-web-devicons'
+		use("kyazdani42/nvim-web-devicons")
 		if not is_wsl then
-			use 'yamatsum/nvim-web-nonicons'
+			use("yamatsum/nvim-web-nonicons")
 		end
 
 		-- use { 'Shougo/defx.nvim', }
@@ -284,35 +282,34 @@ return require('packer').startup {
 		--use 'sjl/gundo.vim'
 
 		-- Crazy good box drawing
-		use 'gyim/vim-boxdraw'
+		use("gyim/vim-boxdraw")
 
 		-- Better increment/decrement
 		-- use 'monaqa/dial.nvim'
 
 		--	LANGUAGE:
 
-		use 'pearofducks/ansible-vim'
+		use("pearofducks/ansible-vim")
 		-- use { 'iamcco/markdown-preview.nvim', ft = 'markdown', run = 'cd app && yarn install' }
 
 		-- Typescript
 		if false then
-			use 'jelera/vim-javascript-syntax'
-			use 'othree/javascript-libraries-syntax.vim'
-			use 'leafgarland/typescript-vim'
-			use 'peitalin/vim-jsx-typescript'
+			use("jelera/vim-javascript-syntax")
+			use("othree/javascript-libraries-syntax.vim")
+			use("leafgarland/typescript-vim")
+			use("peitalin/vim-jsx-typescript")
 
-			use { 'vim-scripts/JavaScript-Indent', ft = 'javascript' }
-			use { 'pangloss/vim-javascript', ft = { 'javascript', 'html' } }
+			use({ "vim-scripts/JavaScript-Indent", ft = "javascript" })
+			use({ "pangloss/vim-javascript", ft = { "javascript", "html" } })
 
 			-- Godot
-			use 'habamax/vim-godot'
+			use("habamax/vim-godot")
 			--
 		end
 
-
 		-- Cool tags based viewer
 		--	 :Vista  <-- Opens up a really cool sidebar with info about file.
-		use { 'liuchengxu/vista.vim', cmd = 'Vista' }
+		use({ "liuchengxu/vista.vim", cmd = "Vista" })
 
 		-- Debug adapter protocol
 		--	 Have not yet checked this out, but looks awesome.
@@ -339,15 +336,14 @@ return require('packer').startup {
 		-- end,
 		-- }
 
-		if false and has 'python3' then
-			use 'puremourning/vimspector'
+		if false and has("python3") then
+			use("puremourning/vimspector")
 		end
 		--
 
-
 		-- TEXT MANIUPLATION
 		--		use 'godlygeek/tabular' -- Quickly align text by pattern
-		use 'tpope/vim-commentary' -- Easily comment out lines or objects
+		use("tpope/vim-commentary") -- Easily comment out lines or objects
 		--		use 'tpope/vim-repeat' -- Repeat actions better
 		--	 use 'tpope/vim-abolish' -- Cool things with words!
 		--	 use 'tpope/vim-characterize'
@@ -366,8 +362,8 @@ return require('packer').startup {
 		--	 use 'ruifm/gitlinker.nvim'
 
 		-- Sweet message committer
-		use 'rhysd/committia.vim'
-		use 'sindrets/diffview.nvim'
+		use("rhysd/committia.vim")
+		use("sindrets/diffview.nvim")
 
 		-- Floating windows are awesome :)
 		--	use {
@@ -377,24 +373,24 @@ return require('packer').startup {
 
 		-- use 'untitled-ai/jupyter_ascending.vim'
 
-		use { 'junegunn/fzf', run = './install --all' }
-		use { 'junegunn/fzf.vim' }
+		use({ "junegunn/fzf", run = "./install --all" })
+		use({ "junegunn/fzf.vim" })
 
-		if false and vim.fn.executable 'neuron' == 1 then
-			use {
-				'oberblastmeister/neuron.nvim',
-				branch = 'unstable',
+		if false and vim.fn.executable("neuron") == 1 then
+			use({
+				"oberblastmeister/neuron.nvim",
+				branch = "unstable",
 				config = function()
 					-- these are all the default values
-					require('neuron').setup {
+					require("neuron").setup({
 						virtual_titles = true,
 						mappings = true,
 						run = nil,
-						neuron_dir = '~/neuron',
-						leader = 'gz',
-					}
+						neuron_dir = "~/neuron",
+						leader = "gz",
+					})
 				end,
-			}
+			})
 		end
 
 		-- TODO: Figure out why this randomly popups
@@ -414,7 +410,6 @@ return require('packer').startup {
 		-- It would be fun to think about making a wiki again...
 		-- local_use 'wander.nvim'
 		-- local_use 'riki.nvim'
-
 	end,
 
 	config = {
@@ -422,4 +417,4 @@ return require('packer').startup {
 			-- open_fn = require('packer.util').float,
 		},
 	},
-}
+})
