@@ -30,7 +30,6 @@ require('telescope').setup {
 -- To get fzf loaded and working with telescope, you need to call
 -- load_extension, somewhere after setup function:
 require('telescope').load_extension('fzf')
-require('telescope').load_extension('git_worktree')
 
 local opts = {noremap = true, silent = true}
 vim.api.nvim_set_keymap('n', '<leader>ff', '<cmd>lua require("telescope.builtin").find_files({hidden=true})<cr>', opts)
@@ -38,6 +37,19 @@ vim.api.nvim_set_keymap('n', '<leader>fo', '<cmd>lua require("telescope.builtin"
 vim.api.nvim_set_keymap('n', '<leader>fg', '<cmd>Telescope live_grep<cr>', opts)
 vim.api.nvim_set_keymap('n', '<leader>fb', '<cmd>Telescope buffers<cr>', opts)
 vim.api.nvim_set_keymap('n', '<leader>fh', '<cmd>Telescope help_tags<cr>', opts)
+
+require('telescope').load_extension('dap')
+vim.api.nvim_set_keymap('n', '<leader>fdc', '<cmd>Telescope commands<cr>', opts)
+vim.api.nvim_set_keymap('n', '<leader>fdv', '<cmd>Telescope variables<cr>', opts)
+vim.api.nvim_set_keymap('n', '<leader>fdf', '<cmd>Telescope frames<cr>', opts)
+vim.api.nvim_set_keymap('n', '<leader>fdb', '<cmd>Telescope list_breakpoints<cr>', opts)
+
+require('telescope').load_extension('git_worktree')
+vim.api.nvim_set_keymap('n', '<leader>gw', '<cmd>lua require("telescope").extensions.git_worktree.git_worktrees()<cr>', opts)
+vim.api.nvim_set_keymap('n', '<leader>gm', '<cmd>lua require("telescope").extensions.git_worktree.create_git_worktree()<cr>', opts)
+
+vim.api.nvim_set_keymap('n', '<leader>rr', '<cmd>lua require("tudders.telescope").refactors()<cr>', opts)
+vim.api.nvim_set_keymap('v', '<leader>rr', '<cmd>lua require("tudders.telescope").refactors()<cr>', opts)
 
 
 M = {}

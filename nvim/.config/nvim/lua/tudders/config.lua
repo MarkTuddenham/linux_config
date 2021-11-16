@@ -1,6 +1,7 @@
 require('tudders.opts')
 require('tudders.telescope')
 require('tudders.lsp')
+require('tudders.dap')
 
 -- require('which-key').setup()
 
@@ -23,7 +24,7 @@ require('lualine').setup{
 		lualine_y = {'progress'},
 		lualine_z = {{'location', icon = ''}}
 	},
-	extensions = {'fugitive'},
+	extensions = {'fugitive'}
 }
 
 require('github-theme').setup{
@@ -34,8 +35,8 @@ require('github-theme').setup{
 		border_highlight = 'bg',
 		-- fg = 'white',
 		syntax = {
-			comment = '#990099',
-		},
+			comment = '#BB00BB',
+		}
 	},
 	-- comment_style = "italic",
 	-- keyword_style = "NONE",
@@ -54,25 +55,16 @@ augroup MyColors
 augroup END
 ]])
 
-
 require("git-worktree").setup()
-require("telescope").load_extension("git_worktree")
-local git_worktree_opts = {noremap = true, silent = true}
-vim.api.nvim_set_keymap('n', '<leader>gw', '<cmd>lua require("telescope").extensions.git_worktree.git_worktrees()<cr>', git_worktree_opts)
-vim.api.nvim_set_keymap('n', '<leader>gm', '<cmd>lua require("telescope").extensions.git_worktree.create_git_worktree()<cr>', git_worktree_opts)
-
-
 require("refactoring").setup()
-local refactoring_opts = {noremap = true, silent = true}
-vim.api.nvim_set_keymap('n', '<leader>rr', '<cmd>lua require("tudders.telescope").refactors()<cr>', refactoring_opts)
-vim.api.nvim_set_keymap('v', '<leader>rr', '<cmd>lua require("tudders.telescope").refactors()<cr>', refactoring_opts)
 
-require('harpoon').setup({
-		global_settings = {
-				save_on_toggle = false,
-				save_on_change = true,
-		},
-})
+require('harpoon').setup{
+	global_settings = {
+			save_on_toggle = false,
+			save_on_change = true,
+	}
+}
+
 local harpoon_opts = {noremap = true, silent = true}
 vim.api.nvim_set_keymap('n', '<leader>tt', '<cmd>lua require("harpoon.mark").add_file()<cr>', harpoon_opts)
 vim.api.nvim_set_keymap('n', '<leader>tl', '<cmd>lua require("harpoon.ui").toggle_quick_menu()<cr>', harpoon_opts)
@@ -83,7 +75,7 @@ vim.api.nvim_set_keymap('n', '<leader>4', '<cmd>lua require("harpoon.ui").nav_fi
 vim.api.nvim_set_keymap('n', '<leader>5', '<cmd>lua require("harpoon.ui").nav_file(5)<cr>', harpoon_opts)
 
 
-require('nvim-treesitter.configs').setup {
+require('nvim-treesitter.configs').setup{
 	ensure_installed = 'maintained', -- one of 'all', 'maintained' (parsers with maintainers), or a list of languages
 	ignore_install = { 'javascript' }, -- List of parsers to ignore installing
 	highlight = {
@@ -99,7 +91,7 @@ require('nvim-treesitter.configs').setup {
 		enable = true,
 		use_virtual_text = true,
 		lint_events = {"BufWrite", "CursorHold"},
-	},
+	}
 }
 
 
@@ -113,41 +105,52 @@ require('gitsigns').setup{
 	},
 	numhl = false,
 	linehl = false,
+	word_diff = false,
 	keymaps = {
 		-- Default keymap options
 		noremap = true,
 		buffer = true,
 
-		['n ]c'] = { expr = true, "&diff ? ']c' : '<cmd>lua require\"gitsigns.actions\".next_hunk()<cr>'"},
-		['n [c'] = { expr = true, "&diff ? '[c' : '<cmd>lua require\"gitsigns.actions\".prev_hunk()<cr>'"},
+		['n ]c'] = { expr = true, "&diff ? ']c' : '<cmd>lua require(\"gitsigns.actions\").next_hunk()<cr>'"},
+		['n [c'] = { expr = true, "&diff ? '[c' : '<cmd>lua require(\"gitsigns.actions\").prev_hunk()<cr>'"},
 
-		['n <leader>hs'] = '<cmd>lua require"gitsigns".stage_hunk()<cr>',
-		['v <leader>hs'] = '<cmd>lua require"gitsigns".stage_hunk({vim.fn.line("."), vim.fn.line("v")})<cr>',
-		['n <leader>hu'] = '<cmd>lua require"gitsigns".undo_stage_hunk()<cr>',
-		['n <leader>hr'] = '<cmd>lua require"gitsigns".reset_hunk()<cr>',
-		['v <leader>hr'] = '<cmd>lua require"gitsigns".reset_hunk({vim.fn.line("."), vim.fn.line("v")})<cr>',
-		['n <leader>hR'] = '<cmd>lua require"gitsigns".reset_buffer()<cr>',
-		['n <leader>hp'] = '<cmd>lua require"gitsigns".preview_hunk()<cr>',
-		['n <leader>hb'] = '<cmd>lua require"gitsigns".blame_line(true)<cr>',
-		['n <leader>ht'] = '<cmd>lua require"gitsigns".toggle_word_diff()<cr>',
+		['n <leader>hs'] = '<cmd>lua require("gitsigns").stage_hunk()<cr>',
+		['v <leader>hs'] = '<cmd>lua require("gitsigns").stage_hunk({vim.fn.line("."), vim.fn.line("v")})<cr>',
+		['n <leader>hu'] = '<cmd>lua require("gitsigns").undo_stage_hunk()<cr>',
+		['n <leader>hr'] = '<cmd>lua require("gitsigns").reset_hunk()<cr>',
+		['v <leader>hr'] = '<cmd>lua require("gitsigns").reset_hunk({vim.fn.line("."), vim.fn.line("v")})<cr>',
+		['n <leader>hR'] = '<cmd>lua require("gitsigns").reset_buffer()<cr>',
+		['n <leader>hp'] = '<cmd>lua require("gitsigns").preview_hunk()<cr>',
+		['n <leader>hb'] = '<cmd>lua require("gitsigns").blame_line(true)<cr>',
+		['n <leader>hw'] = '<cmd>lua require("gitsigns").toggle_word_diff()<cr>',
 
 		-- Text objects
-		['o ih'] = ':<C-U>lua require"gitsigns.actions".select_hunk()<cr>',
-		['x ih'] = ':<C-U>lua require"gitsigns.actions".select_hunk()<cr>'
+		['o ih'] = ':<C-U>lua require("gitsigns.actions").select_hunk()<cr>',
+		['x ih'] = ':<C-U>lua require("gitsigns.actions").select_hunk()<cr>'
 	},
-	watch_index = {
+	attach_to_untracked = true,
+	sign_priority = 6,
+	update_debounce = 100,
+	status_formatter = nil, -- Use default
+	max_file_length = 40000,
+	use_decoration_api = true,
+	use_internal_diff = true,  -- If luajit is present
+	watch_gitdir = {
 		interval = 1000,
 		follow_files = true
 	},
 	current_line_blame = true,
-	current_line_blame_delay = 750,
-	current_line_blame_position = 'eol',
-	sign_priority = 6,
-	update_debounce = 100,
-	status_formatter = nil, -- Use default
-	word_diff = false,
-	use_decoration_api = true,
-	use_internal_diff = true,  -- If luajit is present
+	current_line_blame_opts = {
+		virt_text = true,
+		virt_text_pos = 'eol', -- 'eol' | 'overlay' | 'right_align'
+		delay = 750,
+	},
+	current_line_blame_formatter_opts = {
+		relative_time = true
+	},
+	yadm = {
+		enable = false
+	}
 }
 
-vim.api.nvim_set_keymap('n', '<F5>', '<cmd>:UndotreeToggle<cr>',{})
+vim.api.nvim_set_keymap('n', '<F5>', '<cmd>:UndotreeToggle<cr>', {})

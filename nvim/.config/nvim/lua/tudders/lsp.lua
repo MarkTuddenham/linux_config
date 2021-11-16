@@ -53,6 +53,17 @@ for _, lsp in ipairs(servers) do
 	}
 end
 
+-- -- -- LSP: Language Tool latex
+--  nvim_lsp.ltex.setup{
+-- 	on_attach = on_attach,
+-- 	capabilities = updated_capabilities,
+-- 	cmd = {'ltex_ls'},
+-- 		 flags = {
+-- 			 debounce_text_changes = 150,
+-- 		 }
+--  }
+
+
 -- -- LSP: C/C++
 -- nvim_lsp.clangd.setup{
 --	 on_attach = on_attach,

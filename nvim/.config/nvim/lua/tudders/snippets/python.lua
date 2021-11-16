@@ -1,12 +1,12 @@
 local ls = require("luasnip")
 
-local s = ls.snippet
-local sn = ls.snippet_node
+-- local s = ls.snippet
+-- local sn = ls.snippet_node
 local t = ls.text_node
 local i = ls.insert_node
 -- local f = ls.function_node
-local c = ls.choice_node
-local d = ls.dynamic_node
+-- local c = ls.choice_node
+-- local d = ls.dynamic_node
 
 local u = require("tudders.snippets.utils")
 
@@ -18,7 +18,7 @@ local snippets = u.make({
 		t({ "for " }),
 		i(1, "i"),
 		t({ " in range(" }),
-		i(0),
+		i(0, "n"),
 		t({ "):" }),
 		t({ "", "\tpass" }),
 	},
@@ -35,7 +35,7 @@ local snippets = u.make({
 		}),
 	},
 
-	mpl_slope_lines = {
+	mpl_slope_lines = {--{{{
 		desc = "slope lines plot",
 		t({
 			"# Data from p158 of Visual Display of Quantitative Information.",
@@ -115,9 +115,9 @@ local snippets = u.make({
 			"ax.text(1.1, 60, '1979', size=11)",
 			"",
 		}),
-	},
+	},--}}}
 
-	mpl_fig = {
+	mpl_fig = {--{{{
 		desc = "matplot lib plot",
 		t({
 			"fig = plt.figure(figsize=(7, 7 * 1.618))",
@@ -148,9 +148,9 @@ local snippets = u.make({
 			"fig.savefig('fig.png', bbox_inches='tight')",
 			"plt.close(fig)",
 		}),
-	},
+	},--}}}
 
-	mpl_bar = {
+	mpl_bar = {--{{{
 		desc = "bar graph",
 		t({
 			"ax.bar(x, y, color='#7a7a7a', width=0.6)",
@@ -177,7 +177,7 @@ local snippets = u.make({
 			"# Add bar lines as a horizontal grid.",
 			"ax.yaxis.grid(color='white')",
 		}),
-	},
+	},--}}}
 
 	mpl_percent_ticker = {
 		desc = "matplotlib percent axis ticks",

@@ -94,6 +94,11 @@ return require('packer').startup {
 			}
 		}
 
+		-- DAP
+		use 'mfussenegger/nvim-dap'
+		use 'theHamsta/nvim-dap-virtual-text'
+		use 'rcarriga/nvim-dap-ui'
+
 		-- use 'ThePrimeagen/vim-apm'
 		use 'ThePrimeagen/git-worktree.nvim'
 		use 'ThePrimeagen/harpoon'
@@ -149,6 +154,7 @@ return require('packer').startup {
 		use 'nvim-telescope/telescope-fzf-writer.nvim'
 		use 'nvim-telescope/telescope-packer.nvim'
 		use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+		use 'nvim-telescope/telescope-dap.nvim'
 		-- use 'nvim-telescope/telescope-fzy-native.nvim'
 		-- use 'nvim-telescope/telescope-async-sorter-test.nvim'
 
