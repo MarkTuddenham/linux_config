@@ -145,7 +145,7 @@ end
 
 dap.adapters.lldb = {
 	type = "executable",
-	command = "/usr/bin/lldb-vscode", -- adjust as needed
+	command = "~/.local/bin/lldb-vscode", -- adjust as needed
 	name = "lldb",
 }
 
@@ -175,13 +175,13 @@ dap.configurations.cpp = {
 		runInTerminal = false,
 	},
 	{
-		-- If you get an "Operation not permitted" error using this, try disabling YAMA:
-		--	echo 0 | sudo tee /proc/sys/kernel/yama/ptrace_scope
 		name = "Attach to process",
 		type = "lldb",
 		request = "attach",
 		pid = require("dap.utils").pick_process,
 		args = {},
+		-- If you get an "Operation not permitted" error using this, try disabling YAMA:
+		--	echo 0 | sudo tee /proc/sys/kernel/yama/ptrace_scope
 	},
 }
 
