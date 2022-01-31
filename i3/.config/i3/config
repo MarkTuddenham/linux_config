@@ -22,7 +22,7 @@ exec --no-startup-id picom -b
 
 # Enable Zoom support -> all windows will be floating
 for_window [class="zoom"] floating enable
-for_window [class="zoom"] resize set 1920 1080 
+for_window [class="zoom" title="Zoom Meeting"] resize set 1920 1080
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -182,7 +182,7 @@ workspace $ws6 output DP-4
 workspace $ws7 output DP-4
 workspace $ws8 output DP-4
 workspace $ws9 output DP-2
-workspace $ws0 output DP-2
+workspace $ws10 output DP-2
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
