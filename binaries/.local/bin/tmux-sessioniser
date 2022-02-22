@@ -3,8 +3,8 @@
 TMUX_HISTORY_LENGTH=10
 TMUX_HISTORY_FILE=$HOME/.tmux-sessionizer
 
-TOP_LEVEL_DIRS=( ~/phd ~/phd_standalone ~/dev ~/build ~/Documents )
-STAND_ALONE_DIRS=( ~/linux_config )
+TOP_LEVEL_DIRS=( ~/phd ~/phd_standalone ~/dev ~/build ~/Documents ~/lt )
+STAND_ALONE_DIRS=( ~/linux_config ~/lt )
 
 
 add_new_line() {
