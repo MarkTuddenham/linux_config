@@ -1,11 +1,22 @@
 [mypy]
 python_version = 3.8
-warn_return_any = True
-warn_unused_configs = True
+warn_unreachable = True
+strict = True
+show_error_codes = True
+show_column_numbers = True
+show_absolute_path = True
+local_partial_types = True
+
+disallow_any_explicit = True
+
+# a bit too intrusive when using untyped modules
+disallow_any_unimported = False
+disallow_any_expr = False
 
 
 [mypy-torch]
 ignore_missing_imports = True
+implicit_reexport = True
 [mypy-torchvision]
 ignore_missing_imports = True
 [mypy-numpy]
