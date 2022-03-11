@@ -35,7 +35,7 @@ for_window [class="zoom" title="Zoom Meeting"] resize set 1920 1080
 # screen before suspend. Use loginctl lock-session to lock your screen.
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 # bindsym $mod+l exec loginctl lock-session
-bindsym $mod+l exec i3lock -e -t -i ~/.config/i3/background.png && sleep 1 && xset dpms force off #systemctl suspend
+bindsym $mod+Escape exec i3lock -e -t -i ~/.config/i3/background.png && sleep 1 && xset dpms force off #systemctl suspend
 
 # exec --no-startup-id caffeine-indicator
 # exec --no-startup-id xautolock -time 30 -locker "i3lock -e -t -i ~/.config/i3/background.png" -detectsleep -notify 10 -notifier 'xset dpms force off' -killtime 60 -killer "systemctl suspend" -corners 00+-
@@ -81,36 +81,32 @@ bindsym $mod+d exec rofi -show drun -config $HOME/.config/i3/rofi.config
 for_window [instance="^fzfopenwindow" class="^kitty"] floating enable, move relative position center, width 1200px, height 900px
 bindsym $mod+o exec "nohup kitty --name fzfopenwindow -e fzf-open &>\dev\null &"
 
-# # change focus
-# bindsym $mod+j focus left
-# bindsym $mod+k focus down
-# bindsym $mod+l focus up
-# bindsym $mod+semicolon focus right
+# change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+bindsym $mod+Mod1+l move workspace to output right
+bindsym $mod+Mod1+h move workspace to output left
 
-# alternatively, you can use the cursor keys:
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
-
-# move focused window
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+l move up
-bindsym $mod+Shift+semicolon move right
-
-# alternatively, you can use the cursor keys:
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
-
-#move workspaces between monitors
-bindsym $mod+Mod1+Right move workspace to output right
-bindsym $mod+Mod1+Left move workspace to output left
+# # alternatively, you can use the cursor keys:
+# bindsym $mod+Shift+Left move left
+# bindsym $mod+Shift+Down move down
+# bindsym $mod+Shift+Up move up
+# bindsym $mod+Shift+Right move right
+# bindsym $mod+Left focus left
+# bindsym $mod+Down focus down
+# bindsym $mod+Up focus up
+# bindsym $mod+Right focus right
+# bindsym $mod+Mod1+Right move workspace to output right
+# bindsym $mod+Mod1+Left move workspace to output left
 
 # split in horizontal orientation
-bindsym $mod+h split h
+bindsym $mod+x split h
 
 # split in vertical orientation
 bindsym $mod+v split v
