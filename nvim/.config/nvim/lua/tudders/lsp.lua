@@ -40,12 +40,13 @@ end
 local updated_capabilities = vim.lsp.protocol.make_client_capabilities()
 updated_capabilities = vim.tbl_deep_extend("keep", updated_capabilities, nvim_status.capabilities)
 updated_capabilities.textDocument.codeLens = { dynamicRegistration = false }
+updated_capabilities.textDocument.completion.completionItem.snippetSupport = true
 updated_capabilities = require("cmp_nvim_lsp").update_capabilities(updated_capabilities)
 
 -- LSP: Others
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { "clangd", "texlab", "bashls" }
+local servers = { "clangd", "texlab", "bashls", "tailwindcss", "html", "tsserver" }
 for _, lsp in ipairs(servers) do
 	nvim_lsp[lsp].setup({
 		on_attach = on_attach,
@@ -66,15 +67,30 @@ end
 -- 		 }
 --  }
 
--- -- LSP: C/C++
--- nvim_lsp.clangd.setup{
---	 on_attach = on_attach,
---	capabilities = updated_capabilities,
---	 cmd = {'clangd', '--clang-tidy'},
---		 flags = {
---			 debounce_text_changes = 150,
---		 }
--- }
+-- LSP: Go
+nvim_lsp.gopls.setup({
+	on_attach = on_attach,
+	capabilities = updated_capabilities,
+	cmd = { "gopls", "serve" },
+	settings = {
+		gopls = {
+			analyses = {
+				unusedparams = true,
+			},
+			staticcheck = true,
+		},
+	},
+})
+
+-- LSP: C/C++
+nvim_lsp.clangd.setup({
+	on_attach = on_attach,
+	capabilities = updated_capabilities,
+	cmd = { "clangd", "--clang-tidy" },
+	flags = {
+		debounce_text_changes = 150,
+	},
+})
 
 -- LSP: Python
 nvim_lsp.pylsp.setup({

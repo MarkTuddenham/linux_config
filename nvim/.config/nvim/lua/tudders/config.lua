@@ -1,34 +1,14 @@
 require("tudders.opts")
 require("tudders.telescope")
 require("tudders.lsp")
+require("tudders.git-worktree")
 require("tudders.dap")
 
 -- require('which-key').setup()
 
 require('Comment').setup()
 
-require("lualine").setup({
-	options = {
-		theme = "horizon",
-	},
-	sections = {
-		lualine_a = { "mode", "paste" },
-		lualine_b = { "branch", "diff" },
-		lualine_c = {
-			{ "filename", file_status = true, full_path = true },
-			{
-				"diagnostics",
-				sources = { "nvim_lsp" },
-				symbols = { error = "E", warn = "W", info = "I", hint = "H" },
-			},
-		},
-		lualine_x = { "filetype" },
-		lualine_y = { "progress" },
-		lualine_z = { { "location", icon = "" } },
-	},
-	extensions = { "fugitive" },
-})
-
+-- This has to go before require("lualine").setup()
 require("github-theme").setup({
 	transparent = true,
 	theme_style = "dimmed",
@@ -45,6 +25,30 @@ require("github-theme").setup({
 	-- function_style = "NONE",
 	-- variable_style = "NONE"
 })
+
+require("lualine").setup({
+	options = {
+		icons_enabled = true,
+		theme = "horizon",
+	},
+	sections = {
+		lualine_a = { "mode", "paste" },
+		lualine_b = { "branch", "diff" },
+		lualine_c = {
+			{ "filename", file_status = true, full_path = true },
+			{
+				"diagnostics",
+				sources = { "nvim_diagnostic" },
+				symbols = { error = "E", warn = "W", info = "I", hint = "H" },
+			},
+		},
+		lualine_x = { "filetype" },
+		lualine_y = { "progress" },
+		lualine_z = { { "location", icon = "" } },
+	},
+	extensions = { "fugitive" },
+})
+
 -- override theme colours
 vim.cmd([[
 function! MyHighlights() abort
@@ -57,7 +61,6 @@ augroup MyColors
 augroup END
 ]])
 
-require("git-worktree").setup()
 require("refactoring").setup()
 
 require("harpoon").setup({
@@ -80,7 +83,7 @@ require("nvim-treesitter.configs").setup({
 	ensure_installed = "maintained", -- one of 'all', 'maintained' (parsers with maintainers), or a list of languages
 	ignore_install = { "javascript" }, -- List of parsers to ignore installing
 	highlight = {
-		enable = true, -- false will disable the whole extension
+		enable = false, -- false will disable the whole extension
 		disable = { "rust", "latex", "tex", "vim" }, -- list of language that will be disabled
 		-- Setting this to true will run `:h syntax` and tree-sitter at the same time.
 		-- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
@@ -133,8 +136,9 @@ require("gitsigns").setup({
 	update_debounce = 100,
 	status_formatter = nil, -- Use default
 	max_file_length = 40000,
-	use_decoration_api = true,
-	use_internal_diff = true, -- If luajit is present
+	diff_opts = {
+		internal = true
+	},
 	watch_gitdir = {
 		interval = 1000,
 		follow_files = true,

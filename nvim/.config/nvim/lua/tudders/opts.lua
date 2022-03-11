@@ -129,6 +129,11 @@ vim.g.vimtex_syntax_conceal = {
 -- vim.g.tex_superscripts= "[0-9a-zA-W.,:;+-<>/()=]"
 -- vim.g.tex_subscripts= "[0-9aehijkmnoprstuvx,+-/().]"
 
+vim.g.venom_root_markers = {'.venv', '.venv/', 'venv', 'venv/'}
+vim.g.venom_auto_activate = 0
+-- vim.g.venom_echo = 0
+-- vim.g.venom_quite = 1
+
 vim.cmd([[
 	au TextYankPost * silent! lua vim.highlight.on_yank()
 ]])

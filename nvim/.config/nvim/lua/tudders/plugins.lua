@@ -1,4 +1,5 @@
 vim.cmd([[packadd packer.nvim]])
+
 vim.cmd([[packadd vimball]])
 
 local has = function(x)
@@ -44,6 +45,10 @@ return require("packer").startup({
 		end
 
 		use("wbthomason/packer.nvim")
+
+
+		-- use("/home/mark/dev/languagetool.nvim.git/master/")
+    -- use("vigoux/LanguageTool.nvim")
 
 		use("nvim-lua/popup.nvim")
 		use("nvim-lua/plenary.nvim")
@@ -94,6 +99,7 @@ return require("packer").startup({
 				"kyazdani42/nvim-web-devicons",
 				opt = true,
 			},
+			opt= false,
 		})
 
 		-- DAP
@@ -122,7 +128,7 @@ return require("packer").startup({
 			end,
 		})
 
-		use("rhysd/vim-grammarous")
+		-- use("rhysd/vim-grammarous")
 		-- latex
 		use("lervag/vimtex")
 		-- use 'KeitaNakamura/tex-conceal.vim'
@@ -225,11 +231,11 @@ return require("packer").startup({
 		--	 end,
 		-- }
 
-		-- Better profiling output for startup.
-		use({
-			"dstein64/vim-startuptime",
-			cmd = "StartupTime",
-		})
+		-- -- Better profiling output for startup.
+		-- use({
+		-- 	"dstein64/vim-startuptime",
+		-- 	cmd = "StartupTime",
+		-- })
 
 		-- -- Pretty colors
 		-- use 'norcalli/nvim-colorizer.lua'
@@ -312,6 +318,8 @@ return require("packer").startup({
 		-- Cool tags based viewer
 		--	 :Vista  <-- Opens up a really cool sidebar with info about file.
 		use({ "liuchengxu/vista.vim", cmd = "Vista" })
+
+		use('rafi/vim-venom')
 
 		-- Debug adapter protocol
 		--	 Have not yet checked this out, but looks awesome.

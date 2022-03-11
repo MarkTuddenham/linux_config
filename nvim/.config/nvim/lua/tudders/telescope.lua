@@ -1,3 +1,5 @@
+local opts = { noremap = true, silent = true }
+
 require("telescope").setup({
 	defaults = {
 		color_devicons = true,
@@ -15,7 +17,8 @@ require("telescope").setup({
 		},
 		sorting_strategy = "ascending",
 		file_ignore_patterns = {
-			"%.git/*", -- we have set hidden files to shown, but we don't want git dotfiles
+			".git/.*", -- we have set hidden files to shown, but we don't want git dotfiles
+			".*venv/.*",
 		},
 	},
 	extensions = {
@@ -31,7 +34,11 @@ require("telescope").setup({
 -- load_extension, somewhere after setup function:
 require("telescope").load_extension("fzf")
 
-local opts = { noremap = true, silent = true }
+require('telescope').load_extension('gh')
+vim.api.nvim_set_keymap("n", "<leader>gi", "<cmd>Telescope gh issues<cr>", opts)
+vim.api.nvim_set_keymap("n", "<leader>gp", "<cmd>Telescope gh pull_request<cr>", opts)
+vim.api.nvim_set_keymap("n", "<leader>gr", "<cmd>Telescope gh run<cr>", opts)
+
 vim.api.nvim_set_keymap("n", "<leader>ff", '<cmd>lua require("telescope.builtin").find_files({hidden=true})<cr>', opts)
 vim.api.nvim_set_keymap(
 	"n",

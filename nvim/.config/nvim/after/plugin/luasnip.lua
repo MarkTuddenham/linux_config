@@ -63,6 +63,27 @@ autosnippets.tex = require("tudders.snippets.tex").autosnippets
 snippets.python = require("tudders.snippets.python").snippets
 autosnippets.python = require("tudders.snippets.python").autosnippets
 
+snippets.sh = make({
+	script_dir = "SCRIPT_DIR=$( cd -- \"$( dirname -- \"${BASH_SOURCE[0]}\" )\" &> /dev/null && pwd )",
+	trap = "trap \"trap - SIGINT SIGTERM ERR; pkill -P $$\" SIGINT SIGTERM ERR EXIT;",
+	shebang = "#!/usr/bin/env bash",
+	requires_root = {
+		desc = "Check if user is root, exits with message if not.",
+		t({"if [[ $(id -u) -ne 0 ]]; then",
+		"\techo \"This script must be run as root\"",
+		"\texit 1",
+		"fi"})
+	},
+	respawn = {
+		desc = "Respawn this script as a background process.",
+		t({"# Re-spawn as a background process, if we haven't already.",
+		"if [[ \"$1\" != \"-n\" ]]; then",
+		"\t$0 -n &>/dev/null & disown",
+		"\texit $?",
+		"fi"})
+	},
+})
+
 snippets.lua = make({
 	ignore = "--stylua: ignore",
 
@@ -75,48 +96,6 @@ snippets.lua = make({
 		t({ ")", "	" }),
 		i(0),
 		t({ "", "end" }),
-	},
-})
-snippets.rust = make({
-	modtest = {
-		t({
-			"#[cfg(test)]",
-			"mod test {",
-			"		 use super::*;",
-			"		 ",
-		}),
-		i(0),
-		t({
-			"",
-			"}",
-		}),
-	},
-
-	test = {
-		t({
-			"#[test]",
-			"fn ",
-		}),
-		i(1, "testname"),
-		t({ "() {", "		 " }),
-		i(0),
-		t({ "", "}" }),
-	},
-
-	enum = {
-		t({ "#[derive(Debug, PartialEq)]", "enum " }),
-		i(1, "Name"),
-		t({ " {", "  " }),
-		i(0),
-		t({ "", "}" }),
-	},
-
-	struct = {
-		t({ "#[derive(Debug, PartialEq)]", "struct " }),
-		i(1, "Name"),
-		t({ " {", "		 " }),
-		i(0),
-		t({ "", "}" }),
 	},
 })
 
