@@ -1,2 +1,5 @@
 nvim/.config/nvim/plugin/packer_compiled.lua
 i3/.config/i3/backgrounds/*
+i3/.config/i3/**/*.png
+i3/.config/i3/**/*.jpg
+!i3/.config/i3/background.png
