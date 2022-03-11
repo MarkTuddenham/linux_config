@@ -4,35 +4,36 @@ export ZSH_ENV_HOME=$HOME/
 export ZSH_CUSTOM=$CONFIG_HOME/zsh/custom/
 export NVIM_HOME=$CONFIG_HOME/nvim
 
-export PATH=$HOME/.node_modules/bin:$PATH
-export PATH=`cat $HOME/.Garmin/ConnectIQ/current-sdk.cfg`/bin:$PATH
-export PATH=$HOME/dev/tikzit:$PATH
-
 export CC=clang
 export CXX=clang++
 
+add_path(){
+	if [[ -d $1 ]]; then
+		export PATH=$1:$PATH
+	fi
+}
+
+add_path $HOME/.node_modules/bin
+add_path `cat $HOME/.Garmin/ConnectIQ/current-sdk.cfg`/bin
+add_path $HOME/dev/tikzit
+
 # Cuda
-export PATH=/usr/local/cuda/bin:$PATH
+add_path /usr/local/cuda/bin
 export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
 
-if [[ -d "$XDG_CONFIG_HOME/bin" ]]; then
-  export PATH="$XDG_CONFIG_HOME/bin:$PATH"
-fi
-
-if [[ -d "$HOME/bin" ]]; then
-  export PATH="$HOME/bin:$PATH"
-fi
-
-if [[ -d "$HOME/.local/bin" ]]; then
-  export PATH="$HOME/.local/bin:$PATH"
-fi
+# Bin dirs
+add_path $XDG_CONFIG_HOME/bin
+add_path $HOME/bin
+add_path $HOME/.local/bin
+add_path /usr/local/go/bin
+add_path $HOME/go/bin
 
 # Don't want to load nvm on every shell since it's slow to load
 # Provide a load func for when I do need to load it
 nvm_load(){
 	export NVM_DIR="$HOME/.nvm"
-	[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-	[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+	[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"	# This loads nvm
+	[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"	# This loads nvm bash_completion
 }
 
 

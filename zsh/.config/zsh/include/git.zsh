@@ -6,6 +6,9 @@ alias gd='git diff'
 alias gpr='git pull --rebase'
 alias gcm='git commit'
 
+alias gcl='git clone'
+alias gclb='git clone --bare'
+
 # Adding helpers
 alias gadd='git add'
 alias gca='git add . && git commit -v'
