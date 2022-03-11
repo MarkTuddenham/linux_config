@@ -1,6 +1,6 @@
 ---
-Language:        Cpp
-BasedOnStyle:  LLVM
+Language: Cpp
+BasedOnStyle: LLVM
 AccessModifierOffset: -2
 AlignAfterOpenBracket: AlwaysBreak
 AlignEscapedNewlines: Left
@@ -30,7 +30,7 @@ BraceWrapping:
 BreakBeforeBraces: Custom
 BreakBeforeBinaryOperators: NonAssignment
 BreakBeforeTernaryOperators: true
-ColumnLimit:     100
+ColumnLimit: 100
 ConstructorInitializerAllOnOneLineOrOnePerLine: true
 IncludeBlocks:  Regroup
 IncludeIsMainRegex: '(_test)?$'
@@ -43,7 +43,7 @@ SpaceBeforeRangeBasedForLoopColon: false
 SpaceAroundPointerQualifiers: Both
 SpaceBeforeAssignmentOperators: true
 ReflowComments: false
-SortIncludes: true
+SortIncludes: CaseInsensitive
 SortUsingDeclarations: true
 TabWidth: 2
 UseTab: AlignWithSpaces
