@@ -1,6 +1,10 @@
 **/.DS_store
 **/.directory
 .directory
+todo.md
 
+venv/
+*.bk
+backup/
 **/__pycache__/
 **/.mypy_cache/
