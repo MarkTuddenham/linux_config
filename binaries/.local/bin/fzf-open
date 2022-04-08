@@ -1,19 +1,9 @@
 #!/bin/bash
+search_paths=( ~/Documents ~/backup ~/Dropbox ~/phd ~/phd_standalone ~/phone ~/Pictures ~/SynologyShare ~/Videos )
+ignore_paths=( backup/socrates venv )
 
-search_dirs=( ~/Documents ~/backup ~/Downloads ~/Dropbox ~/Music ~/phd ~/phd_standalone ~/phone ~/Pictures ~/SynologyShare ~/Videos )
- 
-items=''
-for dir in ${search_dirs[@]}; do
-	# items+=`find -L "$dir" -type f,l `
-	items+=`fd . -L "$dir" -t f -t l -E ".git" -E "backup/socrates" -E "venv"`
-	items+='\n'
-done
-
-# echo -e $items
-# sleep 10
-
-FILE=$(echo -e "$items" | fzf --algo v1)
+FILE=$(fd . ${search_paths[@]} -L -t f -t l ${ignore_paths[@]/#/-E }  | fzf --algo v1 )
 
 if [ ! -z "$FILE" ]; then
-    gio open "$FILE" &>/dev/null & disown
+    handlr open "$FILE" &>/dev/null & disown
 fi
