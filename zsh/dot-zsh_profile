@@ -27,6 +27,7 @@ add_path $HOME/bin
 add_path $HOME/.local/bin
 add_path /usr/local/go/bin
 add_path $HOME/go/bin
+add_path $HOME/build/luarocks-3.7.0/lua_modules/bin
 
 # Don't want to load nvm on every shell since it's slow to load
 # Provide a load func for when I do need to load it

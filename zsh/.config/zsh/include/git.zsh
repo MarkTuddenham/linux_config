@@ -9,6 +9,8 @@ alias gcm='git commit'
 alias gcl='git clone'
 alias gclb='git clone --bare'
 
+alias gwt='git worktree'
+
 # Adding helpers
 alias gadd='git add'
 alias gca='git add . && git commit -v'
