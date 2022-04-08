@@ -81,28 +81,28 @@ dap.listeners.after["event_terminated"]["me"] = function()
 end
 
 function M.reload_continue()
-	package.loaded["dap_config"] = nil
-	require("dap_config")
+	package.loaded["tudders.dap"] = nil
+	require("tudders.dap")
 	dap.continue()
 end
 
 local opts = { noremap = false, silent = true }
 
-vim.api.nvim_buf_set_keymap(0, "n", "<leader>db", '<cmd>lua require("dap").toggle_breakpoint()<cr>', opts)
-vim.api.nvim_buf_set_keymap(0, "n", "<leader>ds", '<cmd>lua require("dap").step_over()<cr>', opts)
-vim.api.nvim_buf_set_keymap(0, "n", "<leader>di", '<cmd>lua require("dap").step_into()<cr>', opts)
-vim.api.nvim_buf_set_keymap(0, "n", "<leader>dr", '<cmd>lua require("dap").repl.open()<cr>', opts)
-vim.api.nvim_buf_set_keymap(0, "n", "<leader>dc", '<cmd>lua require("dap").continue()<cr>', opts)
-vim.api.nvim_buf_set_keymap(0, "n", "<leader>dC", '<cmd>lua require("tudders.dap").reload_continue()<cr>', opts)
+vim.api.nvim_set_keymap("n", "<leader>db", '<cmd>lua require("dap").toggle_breakpoint()<cr>', opts)
+vim.api.nvim_set_keymap("n", "<leader>ds", '<cmd>lua require("dap").step_over()<cr>', opts)
+vim.api.nvim_set_keymap("n", "<leader>di", '<cmd>lua require("dap").step_into()<cr>', opts)
+vim.api.nvim_set_keymap("n", "<leader>dr", '<cmd>lua require("dap").repl.open()<cr>', opts)
+vim.api.nvim_set_keymap("n", "<leader>dc", '<cmd>lua require("dap").continue()<cr>', opts)
+vim.api.nvim_set_keymap("n", "<leader>dC", '<cmd>lua require("tudders.dap").reload_continue()<cr>', opts)
 
 -- DAP UI
-vim.api.nvim_buf_set_keymap(0, "n", "<leader>du", '<cmd>lua require("dapui").toggle()<cr>', opts)
-vim.api.nvim_buf_set_keymap(0, "n", "<leader>de", '<cmd>lua require("dapui").eval()<cr>', opts)
+vim.api.nvim_set_keymap("n", "<leader>du", '<cmd>lua require("dapui").toggle()<cr>', opts)
+vim.api.nvim_set_keymap("n", "<leader>de", '<cmd>lua require("dapui").eval()<cr>', opts)
 
 -- Python
 dap.adapters.python = {
 	type = "executable",
-	command = "~/build/debugpy-venv/bin/python",
+	command = "/home/mark/build/debugpy-venv/bin/python",
 	args = { "-m", "debugpy.adapter" },
 }
 
@@ -115,8 +115,10 @@ dap.configurations.python = {
 
 		-- Options below are for debugpy, see https://github.com/microsoft/debugpy/wiki/Debug-configuration-settings for supported options
 
-		program = "${workspaceFolder}/${file}", -- This configuration will launch the current file if used.
-		pythonPath = function()
+		program = "${file}", -- This configuration will launch the current file if used.
+		cwd = vim.fn.getcwd(),
+		env = {PYTHONPATH = vim.fn.getcwd()},
+		python = function()
 			-- debugpy supports launching an application with a different interpreter then the one used to launch debugpy itself.
 			-- The code below looks for a `venv` or `.venv` folder in the current directly and uses the python within.
 			-- You could adapt this - to for example use the `VIRTUAL_ENV` environment variable.

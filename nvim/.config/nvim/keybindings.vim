@@ -39,10 +39,10 @@ nnoremap <expr> j (v:count > 5 ? "m'" . v:count : "") . 'j'
 " Better text moving
 vnoremap J :m '>+1<cr>gv=gv
 vnoremap K :m '<-2<cr>gv=gv
-inoremap <c-j> <esc>:m .+1<cr>==
-inoremap <c-k> <esc>:m .-2<cr>==
-nnoremap <leader>j :m .+1<cr>==
-nnoremap <leader>k :m .-2<cr>==
+" inoremap <c-j> <esc>:m .+1<cr>==
+" inoremap <c-k> <esc>:m .-2<cr>==
+" nnoremap <leader>j :m .+1<cr>==
+" nnoremap <leader>k :m .-2<cr>==
 
 " delete
 nnoremap dl d0D

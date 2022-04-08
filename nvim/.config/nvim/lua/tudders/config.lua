@@ -1,18 +1,43 @@
 require("tudders.opts")
 require("tudders.telescope")
-require("tudders.lsp")
 require("tudders.git-worktree")
 require("tudders.dap")
+local lsp = require("tudders.lsp")
+
 
 -- require('which-key').setup()
 
-require('Comment').setup()
+require("Comment").setup()
+
+-- require('rust-tools').setup({
+-- 	tools = {
+-- 		-- how to execute terminal commands
+-- 		-- options right now: termopen / quickfix
+-- 		executor = require("rust-tools/executors").termopen,
+--
+-- 		-- These apply to the default RustSetInlayHints command
+-- 		inlay_hints = {
+--
+-- 			-- whether to show variable name before type hints with the inlay hints or not
+-- 			-- default: false
+-- 			show_variable_name = true,
+--
+-- 			-- The color of the hints
+-- 			highlight = "Comment",
+-- 		},
+-- 	},
+-- 	server = {
+-- 		on_attach = lsp.on_attach,
+-- 	}
+-- })
 
 -- This has to go before require("lualine").setup()
 require("github-theme").setup({
 	transparent = true,
-	theme_style = "dimmed",
+	theme_style = "dark",
 	sidebars = { "qf", "vista_kind", "terminal", "packer" },
+	dark_float = true,
+	hide_inactive_statusline = false,
 	colors = {
 		border_highlight = "bg",
 		-- fg = 'white',
@@ -29,7 +54,7 @@ require("github-theme").setup({
 require("lualine").setup({
 	options = {
 		icons_enabled = true,
-		theme = "horizon",
+		theme = "auto",
 	},
 	sections = {
 		lualine_a = { "mode", "paste" },
@@ -46,6 +71,21 @@ require("lualine").setup({
 		lualine_y = { "progress" },
 		lualine_z = { { "location", icon = "" } },
 	},
+	-- inactive_sections = {
+	-- 	lualine_a = { "mode", "paste" },
+	-- 	lualine_b = { "branch", "diff" },
+	-- 	lualine_c = {
+	-- 		{ "filename", file_status = true, full_path = true },
+	-- 		{
+	-- 			"diagnostics",
+	-- 			sources = { "nvim_diagnostic" },
+	-- 			symbols = { error = "E", warn = "W", info = "I", hint = "H" },
+	-- 		},
+	-- 	},
+	-- 	lualine_x = { "filetype" },
+	-- 	lualine_y = { "progress" },
+	-- 	lualine_z = { { "location", icon = "" } },
+	-- },
 	extensions = { "fugitive" },
 })
 
@@ -60,6 +100,10 @@ augroup MyColors
 		autocmd ColorScheme * call MyHighlights()
 augroup END
 ]])
+
+require("notify").setup({
+	background_colour = "#000000",
+})
 
 require("refactoring").setup()
 
@@ -137,7 +181,7 @@ require("gitsigns").setup({
 	status_formatter = nil, -- Use default
 	max_file_length = 40000,
 	diff_opts = {
-		internal = true
+		internal = true,
 	},
 	watch_gitdir = {
 		interval = 1000,

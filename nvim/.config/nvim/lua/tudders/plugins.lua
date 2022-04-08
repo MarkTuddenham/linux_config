@@ -1,6 +1,6 @@
 vim.cmd([[packadd packer.nvim]])
-
 vim.cmd([[packadd vimball]])
+
 
 local has = function(x)
 	return vim.fn.has(x) == 1
@@ -46,9 +46,8 @@ return require("packer").startup({
 
 		use("wbthomason/packer.nvim")
 
-
 		-- use("/home/mark/dev/languagetool.nvim.git/master/")
-    -- use("vigoux/LanguageTool.nvim")
+		-- use("vigoux/LanguageTool.nvim")
 
 		use("nvim-lua/popup.nvim")
 		use("nvim-lua/plenary.nvim")
@@ -82,7 +81,7 @@ return require("packer").startup({
 		use("ap/vim-css-color")
 		use("wikitopian/hardmode")
 		use("mbbill/undotree")
-		-- use 'folke/which-key.nvim'
+		use 'folke/which-key.nvim'
 
 		-- Completion
 		use("hrsh7th/nvim-cmp")
@@ -92,6 +91,8 @@ return require("packer").startup({
 		use("hrsh7th/cmp-nvim-lsp")
 		use("saadparwaiz1/cmp_luasnip")
 
+		use("rcarriga/nvim-notify")
+
 		-- status line
 		use({
 			"hoob3rt/lualine.nvim",
@@ -99,25 +100,30 @@ return require("packer").startup({
 				"kyazdani42/nvim-web-devicons",
 				opt = true,
 			},
-			opt= false,
+			opt = false,
 		})
 
 		-- DAP
 		use("mfussenegger/nvim-dap")
 		use("theHamsta/nvim-dap-virtual-text")
-		use("rcarriga/nvim-dap-ui")
+		use({
+			"rcarriga/nvim-dap-ui",
+			requires = { "mfussenegger/nvim-dap" }
+		})
 
 		-- use 'ThePrimeagen/vim-apm'
 		use("ThePrimeagen/git-worktree.nvim")
 		use("ThePrimeagen/harpoon")
-		-- local_use 'refactoring.nvim.git'
-		use({
-			"ThePrimeagen/refactoring.nvim",
-			requires = {
-				{ "nvim-lua/plenary.nvim" },
-				{ "nvim-treesitter/nvim-treesitter" },
-			},
-		})
+
+		local_use 'refactoring.nvim.git/python'
+
+		-- use({
+		-- 	"ThePrimeagen/refactoring.nvim",
+		-- 	requires = {
+		-- 		{ "nvim-lua/plenary.nvim" },
+		-- 		{ "nvim-treesitter/nvim-treesitter" },
+		-- 	},
+		-- })
 
 		use("bkad/CamelCaseMotion")
 
@@ -151,6 +157,8 @@ return require("packer").startup({
 				})
 			end,
 		})
+
+		use("simrat39/rust-tools.nvim")
 
 		-- local_use 'lsp_extensions.nvim'
 		-- use 'glepnir/lspsaga.nvim'
@@ -319,7 +327,7 @@ return require("packer").startup({
 		--	 :Vista  <-- Opens up a really cool sidebar with info about file.
 		use({ "liuchengxu/vista.vim", cmd = "Vista" })
 
-		use('rafi/vim-venom')
+		use("rafi/vim-venom")
 
 		-- Debug adapter protocol
 		--	 Have not yet checked this out, but looks awesome.
