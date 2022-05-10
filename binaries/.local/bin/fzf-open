@@ -1,8 +1,8 @@
 #!/bin/bash
-search_paths=( ~/Documents ~/backup ~/Dropbox ~/phd ~/phd_standalone ~/phone ~/Pictures ~/SynologyShare ~/Videos )
+search_paths=( ~/Documents ~/Downloads ~/backup ~/Dropbox ~/phd ~/phd_standalone ~/phone ~/Pictures ~/SynologyShare ~/Videos )
 ignore_paths=( backup/socrates venv )
 
-FILE=$(fd . ${search_paths[@]} -L -t f -t l ${ignore_paths[@]/#/-E }  | fzf --algo v1 )
+FILE=$(fd . ${search_paths[@]} -L -t f -t l ${ignore_paths[@]/#/-E } --no-ignore-vcs | fzf --algo v1 )
 
 if [ ! -z "$FILE" ]; then
     handlr open "$FILE" &>/dev/null & disown
