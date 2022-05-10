@@ -1,14 +1,17 @@
 [user]
 	name = Mark Tuddenham
 	email = mark@tudders.com
+	signingkey = FA899ECF2EF84B74
 [core]
 	editor = nvim
 	excludesFile = ~/.gitignore
 	autocrlf = input
 [diff]
-    tool = default-difftool
-[difftool "default-difftool"]
+    tool = nvim-diff
+[difftool "code-diff"]
     cmd = code --wait --diff $LOCAL $REMOTE
+[difftool "nvim-diff"]
+    cmd = nvim -d \"$LOCAL\" \"$REMOTE\"
 [push]
 	default = simple
 [pull]
@@ -25,3 +28,5 @@
 	smudge = git-lfs smudge --skip -- %f
 	process = git-lfs filter-process --skip
 	required = true
+[commit]
+	gpgsign = true
