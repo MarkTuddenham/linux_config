@@ -3,6 +3,7 @@ local opt = vim.opt
 opt.wildmenu = true
 opt.wildmode = { "longest", "full" }
 opt.wildignore = { "*.o", "*~", "*.pyc", "*pycache*" }
+opt.wildoptions = "pum"
 opt.autoread = true
 
 opt.spelllang = "en_gb"
@@ -102,16 +103,10 @@ vim.cmd("au VimEnter,BufNewFile,BufReadPost * silent! call HardMode()")
 
 vim.g.camelcasemotion_key = "," -- '<leader>'
 
-vim.g.vim_markdown_math = 1
+-- vim.g.vim_markdown_math = 1
 
 -- autocmd BufWritePre *.c lua vim.lsp.buf.formatting_sync(nil, 1000)
 -- autocmd BufWritePre *.cpp lua vim.lsp.buf.formatting_sync(nil, 1000)
-
-vim.g.cpp_class_scope_highlight = 1
-vim.g.cpp_class_scope_highlight = 1
-vim.g.cpp_class_decl_highlight = 1
-vim.g.cpp_member_variable_highlight = 1
-vim.g.cpp_experimental_simple_template_highlight = 1
 
 vim.cmd("source $HOME/.config/nvim/keybindings.vim")
 

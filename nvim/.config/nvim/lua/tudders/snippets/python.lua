@@ -14,13 +14,30 @@ local snippets = u.make({
 
 	ranged_for = {
 		trig = "for",
-		desc = "Ranget for loop",
+		desc = "Range for loop",
 		t({ "for " }),
 		i(1, "i"),
 		t({ " in range(" }),
 		i(0, "n"),
 		t({ "):" }),
 		t({ "", "\tpass" }),
+	},
+
+	docstring = {
+		trig = "docstr",
+		desc = "Template google style docstring",
+		t({
+			"\"\"\"Description.",
+			"",
+			"Args",
+			"\targ: arg",
+			"",
+			"Returns:",
+			"\tRet",
+			"Raises:",
+			"\tValueError: err",
+			"\"\"\"",
+		}),
 	},
 
 	mpl_setup = {

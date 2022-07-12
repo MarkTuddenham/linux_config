@@ -4,32 +4,35 @@ require("tudders.git-worktree")
 require("tudders.dap")
 local lsp = require("tudders.lsp")
 
-
 -- require('which-key').setup()
 
 require("Comment").setup()
 
--- require('rust-tools').setup({
--- 	tools = {
--- 		-- how to execute terminal commands
--- 		-- options right now: termopen / quickfix
--- 		executor = require("rust-tools/executors").termopen,
---
--- 		-- These apply to the default RustSetInlayHints command
--- 		inlay_hints = {
---
--- 			-- whether to show variable name before type hints with the inlay hints or not
--- 			-- default: false
--- 			show_variable_name = true,
---
--- 			-- The color of the hints
--- 			highlight = "Comment",
--- 		},
--- 	},
--- 	server = {
--- 		on_attach = lsp.on_attach,
--- 	}
--- })
+require('crates').setup()
+
+require('rust-tools').setup({
+	tools = {
+		-- These apply to the default RustSetInlayHints command
+		inlay_hints = {
+
+			-- default: false
+			show_variable_name = true,
+
+			-- The color of the hints
+			highlight = "Comment",
+
+			only_current_line = false,
+		},
+	},
+	server = {
+		on_attach = lsp.on_attach,
+		["rust-analyzer"] = {
+				checkOnSave = {
+						command = "clippy"
+				}
+		}
+	}
+})
 
 -- This has to go before require("lualine").setup()
 require("github-theme").setup({
@@ -39,7 +42,7 @@ require("github-theme").setup({
 	dark_float = true,
 	hide_inactive_statusline = false,
 	colors = {
-		border_highlight = "bg",
+		-- border_highlight = "bg",
 		-- fg = 'white',
 		syntax = {
 			comment = "#BB00BB",
@@ -90,20 +93,20 @@ require("lualine").setup({
 })
 
 -- override theme colours
-vim.cmd([[
-function! MyHighlights() abort
-	highlight! link Conceal Comment
-endfunction
+-- vim.cmd([[
+-- function! MyHighlights() abort
+-- 	highlight! link Conceal Comment
+-- endfunction
+--
+-- augroup MyColors
+-- 		autocmd!
+-- 		autocmd ColorScheme * call MyHighlights()
+-- augroup END
+-- ]])
 
-augroup MyColors
-		autocmd!
-		autocmd ColorScheme * call MyHighlights()
-augroup END
-]])
-
-require("notify").setup({
-	background_colour = "#000000",
-})
+-- require("notify").setup({
+-- 	background_colour = "#000000",
+-- })
 
 require("refactoring").setup()
 
@@ -124,11 +127,11 @@ vim.api.nvim_set_keymap("n", "<leader>4", '<cmd>lua require("harpoon.ui").nav_fi
 vim.api.nvim_set_keymap("n", "<leader>5", '<cmd>lua require("harpoon.ui").nav_file(5)<cr>', harpoon_opts)
 
 require("nvim-treesitter.configs").setup({
-	ensure_installed = "maintained", -- one of 'all', 'maintained' (parsers with maintainers), or a list of languages
+	ensure_installed = "all", -- one of 'all', 'maintained' (parsers with maintainers), or a list of languages
 	ignore_install = { "javascript" }, -- List of parsers to ignore installing
 	highlight = {
 		enable = false, -- false will disable the whole extension
-		disable = { "rust", "latex", "tex", "vim" }, -- list of language that will be disabled
+		disable = {"latex", "tex", "vim" }, -- list of language that will be disabled
 		-- Setting this to true will run `:h syntax` and tree-sitter at the same time.
 		-- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
 		-- Using this option may slow down your editor, and you may see some duplicate highlights.
