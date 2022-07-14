@@ -17,7 +17,6 @@ exec --no-startup-id synology-drive
 exec_always --no-startup-id gnome-power-manager
 exec --no-startup-id gnome-flashback
 
-# exec --no-startup-id picom -CGb --experimental-backends
 exec --no-startup-id picom -b
 
 # Enable Zoom support -> all windows will be floating
@@ -177,17 +176,17 @@ bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
-# Default screen alloc
-workspace $ws1 output DP-2
-workspace $ws2 output DP-2
-workspace $ws3 output DP-2
-workspace $ws4 output DP-4
-workspace $ws5 output DP-4
-workspace $ws6 output DP-4
-workspace $ws7 output DP-4
-workspace $ws8 output DP-4
-workspace $ws9 output DP-2
-workspace $ws10 output DP-2
+# # Default screen alloc
+# workspace $ws1 output DP-2
+# workspace $ws2 output DP-2
+# workspace $ws3 output DP-2
+# workspace $ws4 output DP-4
+# workspace $ws5 output DP-4
+# workspace $ws6 output DP-4
+# workspace $ws7 output DP-4
+# workspace $ws8 output DP-4
+# workspace $ws9 output DP-2
+# workspace $ws10 output DP-2
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -204,16 +203,16 @@ mode "resize" {
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
-        bindsym j resize shrink width 10 px or 10 ppt
-        bindsym k resize grow height 10 px or 10 ppt
-        bindsym l resize shrink height 10 px or 10 ppt
-        bindsym semicolon resize grow width 10 px or 10 ppt
+        bindsym h resize shrink width 10 px or 10 ppt
+        bindsym j resize grow height 10 px or 10 ppt
+        bindsym k resize shrink height 10 px or 10 ppt
+        bindsym l resize grow width 10 px or 10 ppt
 
-        # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
+        # # same bindings, but for the arrow keys
+        # bindsym Left resize shrink width 10 px or 10 ppt
+        # bindsym Down resize grow height 10 px or 10 ppt
+        # bindsym Up resize shrink height 10 px or 10 ppt
+        # bindsym Right resize grow width 10 px or 10 ppt
 
         # back to normal: Enter or Escape or $mod+r
         bindsym Return mode "default"
