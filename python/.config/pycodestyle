@@ -13,7 +13,8 @@ count = False
 # W191: indentation contains tabs
 # W391: Blank line at the end of file
 # W503: line break before binary operator
-ignore = F812,H202,H233,H306,H401,H403,H404,H405,H501,W191,W391,W503 
+# C0103: Name doesn't conform to snake_case naming style (invalid-name)
+ignore = F812,H202,H233,H306,H401,H403,H404,H405,H501,W191,W391,W503,C0103 
 
 max-line-length = 100
 max-complexity = 10
