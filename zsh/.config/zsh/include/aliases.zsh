@@ -13,7 +13,7 @@ alias py_pdb='python -m pdb -c continue'
 alias pip='pip3'
 
 alias sshx='ssh -X'
-alias op='gio open'
+alias op='handlr open'
 alias bat='batcat'
 alias f='find . -name '
 

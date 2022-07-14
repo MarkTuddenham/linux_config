@@ -3,6 +3,7 @@ alias gs='git status'
 alias gpull='git pull'
 alias gpush='git push'
 alias gd='git diff'
+alias gds='git diff --staged'
 alias gpr='git pull --rebase'
 alias gcm='git commit'
 

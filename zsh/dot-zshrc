@@ -8,6 +8,7 @@ export SHELL=/bin/zsh
 export LANG=en_GB.UTF8
 export EDITOR=nvim
 # export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+export GPG_TTY=$(tty)
 
 source $HOME/.zsh_profile
 
@@ -46,7 +47,8 @@ bindkey -s ^f "tmux-sessioniser\n"
 # autoload -Uz promptinit; promptinit
 # prompt spaceship
 
-setopt histignorealldups sharehistory hist_ignore_space extendedhistory
+# setopt histignorealldups sharehistory hist_ignore_space extendedhistory
+setopt histignorealldups hist_ignore_space extendedhistory
 
 # Use emacs keybindings even if our EDITOR is set to vi
 # bindkey -e

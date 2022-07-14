@@ -7,6 +7,9 @@ export NVIM_HOME=$CONFIG_HOME/nvim
 export CC=clang
 export CXX=clang++
 
+# Huggingface home 
+export HF_HOME=/home/mark/backup/data/huggingface_cache
+
 add_path(){
 	if [[ -d $1 ]]; then
 		export PATH=$1:$PATH
@@ -27,6 +30,7 @@ add_path $HOME/bin
 add_path $HOME/.local/bin
 add_path /usr/local/go/bin
 add_path $HOME/go/bin
+add_path $HOME/miniconda3/bin
 add_path $HOME/build/luarocks-3.7.0/lua_modules/bin
 
 # Don't want to load nvm on every shell since it's slow to load
