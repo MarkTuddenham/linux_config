@@ -1,6 +1,6 @@
 #!/bin/bash
-search_paths=( ~/Documents ~/Downloads ~/backup ~/Dropbox ~/phd ~/phd_standalone ~/phone ~/Pictures ~/SynologyShare ~/Videos )
-ignore_paths=( backup/socrates venv )
+search_paths=( ~/Documents ~/Downloads ~/backup ~/Dropbox ~/phd ~/phd_standalone ~/phone ~/Pictures ~/SynologyShare ~/Videos ~/lt)
+ignore_paths=( backup/socrates venv hooks refs)
 
 FILE=$(fd . ${search_paths[@]} -L -t f -t l ${ignore_paths[@]/#/-E } --no-ignore-vcs | fzf --algo v1 )
 
