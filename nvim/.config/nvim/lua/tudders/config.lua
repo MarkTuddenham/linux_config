@@ -11,25 +11,29 @@ require("Comment").setup()
 require('crates').setup()
 
 require('rust-tools').setup({
+	autoSetHints = true,
 	tools = {
 		-- These apply to the default RustSetInlayHints command
 		inlay_hints = {
 
-			-- default: false
-			show_variable_name = true,
+		-- default: false
+		show_variable_name = true,
 
-			-- The color of the hints
-			highlight = "Comment",
+		-- The color of the hints
+		highlight = "NormalFloat",
 
-			only_current_line = false,
+		only_current_line = false,
 		},
 	},
 	server = {
 		on_attach = lsp.on_attach,
-		["rust-analyzer"] = {
+		settings = {
+			["rust-analyzer"] = {
 				checkOnSave = {
-						command = "clippy"
+						command = "clippy",
+						allFeatures = true,
 				}
+			}
 		}
 	}
 })

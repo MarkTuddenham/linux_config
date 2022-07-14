@@ -1,4 +1,4 @@
-vim.opt.completeopt = { "menu", "menuone", "noselect" }
+vim.opt.completeopt = { "menu", "menuone", "noselect" , "noinsert"}
 
 -- Don't show the dumb matching stuff.
 vim.opt.shortmess:append("c")
@@ -13,10 +13,10 @@ cmp.setup({
 	},
 
 	mapping = {
-		["<C-n>"] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Insert },
-		["<C-p>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Insert },
-		["<C-d>"] = cmp.mapping.scroll_docs(-4),
-		["<C-f>"] = cmp.mapping.scroll_docs(4),
+		['<C-n>'] = cmp.mapping(cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }), { 'i', 'c'}),
+		['<C-p>'] = cmp.mapping(cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }), { 'i', 'c' }),
+		['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
+		['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
 		["<C-e>"] = cmp.mapping.abort(),
 		["<c-y>"] = cmp.mapping(
       cmp.mapping.confirm {
@@ -44,24 +44,18 @@ cmp.setup({
     -- ["<tab>"] = false,
     ["<tab>"] = cmp.config.disable,
 
-
-		-- These mappings are useless. I already use C-n and C-p correctly.
-		-- This simply overrides them and makes them do bad things in other buffers.
-		-- ["<C-p>"] = cmp.mapping.select_prev_item(),
-		-- ["<C-n>"] = cmp.mapping.select_next_item(),
 	},
 
 	sources = cmp.config.sources({
 		{ name = "luasnip" },
 		{ name = "nvim_lsp" },
-		{ name = "path" },
 		{ name = "gh_issues" },
 		{ name = "nvim_lua" },
 		{ name = "crates" },
 		{ name = "omni" },
 		{ name = "latex_symbols" },
-		{ name = "spell" },
-		{ name = 'buffer' , keyword_length = 5 },
+		-- { name = "spell" },
+		-- { name = 'buffer' , keyword_length = 5 },
 	}),
 	 sorting = {
     -- TODO: Would be cool to add stuff like "See variable names before method names" in rust, or something like that.
@@ -71,7 +65,6 @@ cmp.setup({
       cmp.config.compare.score,
 
       -- copied from cmp-under, but I don't think I need the plugin for this.
-      -- I might add some more of my own.
       function(entry1, entry2)
         local _, entry1_under = entry1.completion_item.label:find "^_+"
         local _, entry2_under = entry2.completion_item.label:find "^_+"
@@ -106,10 +99,8 @@ cmp.setup({
   --   },
   -- },
 	  experimental = {
-    -- I like the new menu better! Nice work hrsh7th
-    native_menu = false,
 
     -- Let's play with this for a day or two
-    ghost_text = false,
+    ghost_text = true,
   },
 })

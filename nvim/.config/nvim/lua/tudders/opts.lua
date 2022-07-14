@@ -12,6 +12,7 @@ opt.spell = false
 
 -- Cool floating window popup menu for completion on command line
 opt.pumblend = 17
+-- opt.complete = ""
 
 opt.showmode = false
 opt.showcmd = true
