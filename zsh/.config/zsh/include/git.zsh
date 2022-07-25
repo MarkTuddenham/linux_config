@@ -8,7 +8,6 @@ alias gpr='git pull --rebase'
 alias gcm='git commit'
 
 alias gcl='git clone'
-alias gclb='git clone --bare'
 
 alias gwt='git worktree'
 
@@ -23,6 +22,19 @@ alias glg='git log --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset 
 
 alias gdate='git log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=relative'
 alias gdatelong='git log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short'
+
+
+# Better bare git clone for using git worktrees
+__git_worktree_clone() {
+	bn=$(basename "$1")
+	if test $? -eq 0; then
+		mkdir -p $bn && pushd $bn > /dev/null
+		git clone --bare "$1" .bare 2>&1 | sed "s|\.bare|${bn}|g"
+		echo "gitdir: ./.bare" > .git
+		popd > /dev/null
+	fi
+}
+alias gclb=__git_worktree_clone
 
 # Branch helpers
 __new_branch() { git checkout -b $1 }
