@@ -11,7 +11,4 @@ vim.api.nvim_set_keymap("n", "<space>", "<nop>", {}) -- do we have to unmap spac
 vim.g.mapleader = " "
 
 require("tudders.plugins")
-
-vim.g.snippets = "luasnip"
-
 require("tudders.config")

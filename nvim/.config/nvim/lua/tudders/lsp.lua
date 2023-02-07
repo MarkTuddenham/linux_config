@@ -34,25 +34,24 @@ M.on_attach = function(client, bufnr)
 	buf_set_keymap("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<cr>", lsp_opts)
 	buf_set_keymap("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<cr>", lsp_opts)
 	buf_set_keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<cr>", lsp_opts)
-	buf_set_keymap("n", "<leader>f", "<cmd>lua vim.lsp.buf.formatting()<cr>", lsp_opts)
+	-- buf_set_keymap("n", "<leader>f", "<cmd>lua vim.lsp.buf.formatting()<cr>", lsp_opts)
+	buf_set_keymap("n", "<leader>f", "<cmd>lua vim.lsp.buf.format({async=true})<cr>", lsp_opts)
 
 end
 
-local updated_capabilities = vim.lsp.protocol.make_client_capabilities()
--- updated_capabilities = vim.tbl_deep_extend("keep", updated_capabilities, nvim_status.capabilities)
-updated_capabilities.textDocument.codeLens = { dynamicRegistration = false }
-updated_capabilities.textDocument.completion.completionItem.snippetSupport = true
-updated_capabilities = require("cmp_nvim_lsp").update_capabilities(updated_capabilities)
-updated_capabilities.textDocument.completion.completionItem.insertReplaceSupport = false
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
+capabilities.textDocument.codeLens = { dynamicRegistration = false }
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+capabilities.textDocument.completion.completionItem.insertReplaceSupport = false
 
 -- LSP: Others
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { "clangd", "texlab", "bashls", "tailwindcss", "html", "tsserver"} --"rust_analyzer"}
+local servers = { "clangd", "texlab", "bashls", "tailwindcss", "html", "tsserver", "jdtls"} --"rust_analyzer"}
 for _, lsp in ipairs(servers) do
 	nvim_lsp[lsp].setup({
 		on_attach = M.on_attach,
-		capabilities = updated_capabilities,
+		capabilities = capabilities,
 		flags = {
 			debounce_text_changes = 150,
 		},
@@ -72,7 +71,7 @@ end
 -- LSP: Go
 nvim_lsp.gopls.setup({
 	on_attach = M.on_attach,
-	capabilities = updated_capabilities,
+	capabilities = capabilities,
 	cmd = { "gopls", "serve" },
 	settings = {
 		gopls = {
@@ -87,7 +86,7 @@ nvim_lsp.gopls.setup({
 -- LSP: C/C++
 nvim_lsp.clangd.setup({
 	on_attach = M.on_attach,
-	capabilities = updated_capabilities,
+	capabilities = capabilities,
 	cmd = { "clangd", "--clang-tidy" },
 	flags = {
 		debounce_text_changes = 150,
@@ -97,7 +96,7 @@ nvim_lsp.clangd.setup({
 -- LSP: Python
 nvim_lsp.pylsp.setup({
 	on_attach = M.on_attach,
-	capabilities = updated_capabilities,
+	capabilities = capabilities,
 	flags = {
 		debounce_text_changes = 150,
 	},
@@ -108,7 +107,7 @@ nvim_lsp.pylsp.setup({
 				flake8 = { enabled = true },
 				pylint = { enabled = true },
 				pydocstyle = { enabled = true },
-				pycodestyle = { enabled = true },
+				pycodestyle = { enabled = false },
 				mypy = { enabled = true, config_file = "/home/mark/.config/mypy/config" },
 			},
 		}
@@ -123,7 +122,7 @@ local sumneko_root_path = "/home/" .. USER .. "/build/lua-language-server"
 
 require("lspconfig").sumneko_lua.setup({
 	on_attach = M.on_attach,
-	capabilities = updated_capabilities,
+	capabilities = capabilities,
 	flags = {
 		debounce_text_changes = 150,
 	},

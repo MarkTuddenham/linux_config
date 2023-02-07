@@ -55,7 +55,6 @@ return require("packer").startup({
 		-- themes
 		use({
 			"projekt0n/github-nvim-theme",
-			-- commit = "771ac5b",
 		})
 
 		-- use 'gruvbox-community/gruvbox'
@@ -75,7 +74,7 @@ return require("packer").startup({
 		-- use("octol/vim-cpp-enhanced-highlight")
 		-- use 'tpope/vim-markdown' -- TODO use LSP markdown
 		use("tpope/vim-fugitive")
-		-- use("tpope/vim-eunuch")
+		use("tpope/vim-eunuch")
 		use("roxma/vim-paste-easy")
 		-- use("tpope/vim-obsession")
 		-- use("ap/vim-css-color")
@@ -90,6 +89,7 @@ return require("packer").startup({
 		use("hrsh7th/cmp-nvim-lsp")
 		use("hrsh7th/cmp-omni")
 		use("f3fora/cmp-spell")
+		use("petertriho/cmp-git")
 		use("kdheepak/cmp-latex-symbols")
 		use("saadparwaiz1/cmp_luasnip")
 
@@ -103,6 +103,8 @@ return require("packer").startup({
 			},
 			opt = false,
 		})
+
+		-- use("sidebar-nvim/sidebar.nvim")
 
 		-- DAP
 		use("mfussenegger/nvim-dap")
@@ -136,13 +138,13 @@ return require("packer").startup({
 		-- })
 
 		-- use("rhysd/vim-grammarous")
+
 		-- latex
-		-- use("lervag/vimtex")
-		-- use 'KeitaNakamura/tex-conceal.vim'
+		use("lervag/vimtex")
+		use 'KeitaNakamura/tex-conceal.vim'
 
 		-- Snippets
-		use("L3MON4D3/LuaSnip")
-		-- use "rafamadriz/friendly-snippets" -- a little too many & too basic
+		use({"L3MON4D3/LuaSnip", requires = {"lervag/vimtex"}})
 
 		-- LSP Plugins
 		use("neovim/nvim-lspconfig")

@@ -17,7 +17,9 @@ require("telescope").setup({
 		},
 		sorting_strategy = "ascending",
 		file_ignore_patterns = {
-			".git/.*", -- we have set hidden files to shown, but we don't want git dotfiles
+			-- we have set hidden files to shown, but we don't want git dotfiles
+			".git/.*", 
+			".bare/.*", 
 			".*venv/.*",
 			".*target/.*",
 		},

@@ -6,6 +6,16 @@ local lsp = require("tudders.lsp")
 
 -- require('which-key').setup()
 
+-- vim.api.nvim_set_keymap("n", "<leader>ic", "<cmd>lua require('tudders.latex_scape').create_fig()<cr>", {silent=true})
+-- vim.api.nvim_set_keymap("n", "<leader>ie", "<cmd>lua require('tudders.latex_scape').edit_fig()<cr>", {silent=true})
+vim.api.nvim_set_keymap("n", "[c", "<cmd>cprev<cr>", {silent=true})
+vim.api.nvim_set_keymap("n", "]c", "<cmd>cnext<cr>", {silent=true})
+
+-- Vista!! toggles
+vim.api.nvim_set_keymap("n", "<leader>v", "<cmd>Vista!!<cr>", {silent=true})
+vim.g.vista_default_executive = "nvim_lsp"
+
+
 require("Comment").setup()
 
 require('crates').setup()
