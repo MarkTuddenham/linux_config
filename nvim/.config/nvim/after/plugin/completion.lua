@@ -1,4 +1,4 @@
-vim.opt.completeopt = { "menu", "menuone", "noselect" , "noinsert", "preview"}
+vim.opt.completeopt = { "menu", "menuone", "noselect" , "noinsert"}
 
 -- Don't show the dumb matching stuff.
 vim.opt.shortmess:append("c")

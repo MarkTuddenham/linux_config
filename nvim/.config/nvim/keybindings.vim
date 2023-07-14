@@ -1,11 +1,11 @@
 noremap <leader>h <cmd>noh<cr>
 
-" " " Copy to clipboard
+" " Copy to clipboard
 " vnoremap  <leader>y  "+y<cr>
 " nnoremap  <leader>Y  "+yg_<cr>
 " nnoremap  <leader>y  "+y<cr>
 
-" " Paste from clipboard
+" Paste from clipboard
 nnoremap <leader>p "+p<cr>
 nnoremap <leader>P "+P<cr>
 vnoremap <leader>p "+p<cr>
@@ -14,10 +14,6 @@ vnoremap <leader>P "+P<cr>
 " Keep flags when reusing substitution
 nnoremap & :&&<cr>
 xnoremap & :&&<cr>
-
-"Y to be more like other vim capitals
-"TODO: remove: This has been included by default in a new version of nvim
-" nnoremap Y y$
 
 " Better navigation with next (keeps cursor on one line)
 nnoremap n nzzzv
@@ -48,3 +44,9 @@ vnoremap K :m '<-2<cr>gv=gv
 nnoremap dl d0D
 
 nnoremap <silent> <C-f> :silent !tmux neww tmux-sessioniser<cr>
+
+" " CoPilot
+" imap <silent><script><expr> <C-y> copilot#Accept("\<CR>")
+" let g:copilot_no_tab_map = v:true
+
+

@@ -8,8 +8,8 @@ local lsp = require("tudders.lsp")
 
 -- vim.api.nvim_set_keymap("n", "<leader>ic", "<cmd>lua require('tudders.latex_scape').create_fig()<cr>", {silent=true})
 -- vim.api.nvim_set_keymap("n", "<leader>ie", "<cmd>lua require('tudders.latex_scape').edit_fig()<cr>", {silent=true})
-vim.api.nvim_set_keymap("n", "[c", "<cmd>cprev<cr>", {silent=true})
-vim.api.nvim_set_keymap("n", "]c", "<cmd>cnext<cr>", {silent=true})
+vim.api.nvim_set_keymap("n", "<leader>cn", "<cmd>cnext<cr>", {silent=true})
+vim.api.nvim_set_keymap("n", "<leader>cp", "<cmd>cprev<cr>", {silent=true})
 
 -- Vista!! toggles
 vim.api.nvim_set_keymap("n", "<leader>v", "<cmd>Vista!!<cr>", {silent=true})
@@ -23,50 +23,40 @@ require('crates').setup()
 require('rust-tools').setup({
 	autoSetHints = true,
 	tools = {
-		-- These apply to the default RustSetInlayHints command
 		inlay_hints = {
-
-		-- default: false
-		show_variable_name = true,
-
-		-- The color of the hints
-		highlight = "NormalFloat",
-
-		only_current_line = false,
+			highlight = "Normal",
 		},
 	},
+	
 	server = {
 		on_attach = lsp.on_attach,
 		settings = {
 			["rust-analyzer"] = {
-				checkOnSave = {
-						command = "clippy",
-						allFeatures = true,
-				}
+				cargo = {features = "all"},
 			}
 		}
 	}
 })
 
--- This has to go before require("lualine").setup()
-require("github-theme").setup({
-	transparent = true,
-	theme_style = "dark",
-	sidebars = { "qf", "vista_kind", "terminal", "packer" },
-	dark_float = true,
-	hide_inactive_statusline = false,
-	colors = {
-		-- border_highlight = "bg",
-		-- fg = 'white',
-		syntax = {
-			comment = "#BB00BB",
-		},
-	},
-	-- comment_style = "italic",
-	-- keyword_style = "NONE",
-	-- function_style = "NONE",
-	-- variable_style = "NONE"
-})
+-- -- This has to go before require("lualine").setup()
+-- require("github-theme").setup({
+-- 	transparent = true,
+-- 	theme_style = "dark",
+-- 	sidebars = { "qf", "vista_kind", "terminal", "packer" },
+-- 	dark_float = true,
+-- 	hide_inactive_statusline = false,
+-- 	colors = {
+-- 		-- border_highlight = "bg",
+-- 		-- fg = 'white',
+-- 		syntax = {
+-- 			comment = "#BB00BB",
+-- 		},
+-- 	},
+-- 	-- comment_style = "italic",
+-- 	-- keyword_style = "NONE",
+-- 	-- function_style = "NONE",
+-- 	-- variable_style = "NONE"
+-- })
 
 require("lualine").setup({
 	options = {

@@ -57,17 +57,14 @@ return require("packer").startup({
 			"projekt0n/github-nvim-theme",
 		})
 
-		-- use 'gruvbox-community/gruvbox'
-		-- use 'dracula/vim'
-
-		-- use jiangmiao/auto-pairs'
-
 		use({
 			"lewis6991/gitsigns.nvim",
 			requires = {
 				"nvim-lua/plenary.nvim",
 			},
 		})
+
+		use("github/copilot.vim")
 
 		use("numToStr/Comment.nvim")
 
@@ -93,6 +90,8 @@ return require("packer").startup({
 		use("kdheepak/cmp-latex-symbols")
 		use("saadparwaiz1/cmp_luasnip")
 
+		use("vim-scripts/dbext.vim")
+
 
 		-- status line
 		use({
@@ -103,8 +102,6 @@ return require("packer").startup({
 			},
 			opt = false,
 		})
-
-		-- use("sidebar-nvim/sidebar.nvim")
 
 		-- DAP
 		use("mfussenegger/nvim-dap")
@@ -120,14 +117,6 @@ return require("packer").startup({
 
 		local_use 'refactoring.nvim.git/python'
 
-		-- use({
-		-- 	"ThePrimeagen/refactoring.nvim",
-		-- 	requires = {
-		-- 		{ "nvim-lua/plenary.nvim" },
-		-- 		{ "nvim-treesitter/nvim-treesitter" },
-		-- 	},
-		-- })
-
 		use("bkad/CamelCaseMotion")
 
 		-- use({
@@ -141,7 +130,7 @@ return require("packer").startup({
 
 		-- latex
 		use("lervag/vimtex")
-		use 'KeitaNakamura/tex-conceal.vim'
+		use("KeitaNakamura/tex-conceal.vim")
 
 		-- Snippets
 		use({"L3MON4D3/LuaSnip", requires = {"lervag/vimtex"}})

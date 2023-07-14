@@ -47,7 +47,7 @@ capabilities.textDocument.completion.completionItem.insertReplaceSupport = false
 -- LSP: Others
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { "clangd", "texlab", "bashls", "tailwindcss", "html", "tsserver", "jdtls"} --"rust_analyzer"}
+local servers = { "clangd", "texlab", "bashls", "html", "tsserver", "jdtls"}--, "lua_ls"} --"rust_analyzer"}
 for _, lsp in ipairs(servers) do
 	nvim_lsp[lsp].setup({
 		on_attach = M.on_attach,
@@ -68,6 +68,29 @@ end
 -- 		 }
 --  }
 
+-- LSP: Tailwind
+nvim_lsp.tailwindcss.setup({
+	on_attach = M.on_attach,
+	capabilities = capabilities,
+	filetypes = {
+		"aspnetcorerazor", "astro", "astro-markdown", "blade", "clojure", "django-html", "htmldjango",
+		"edge", "eelixir", "elixir", "ejs", "erb", "eruby", "gohtml", "haml", "handlebars", "hbs", "html",
+		"html-eex", "heex", "jade", "leaf", "liquid", "markdown", "mdx", "mustache", "njk", "nunjucks",
+		"php", "razor", "slim", "twig", "css", "less", "postcss", "sass", "scss", "stylus", "sugarss",
+		"javascript", "javascriptreact", "reason", "rescript", "typescript", "typescriptreact", "vue",
+		"svelte", "rust",
+	},
+	init_options = {
+		userLanguages = {
+			elixir = "phoenix-heex",
+			eruby = "erb",
+			heex = "phoenix-heex",
+			svelte = "html",
+			rust = "html",
+		},
+	},
+	settings = { },
+})
 -- LSP: Go
 nvim_lsp.gopls.setup({
 	on_attach = M.on_attach,
@@ -102,48 +125,54 @@ nvim_lsp.pylsp.setup({
 	},
 	settings = {
 		pylsp = {
-			configurationSources = {"pylint", "flake8", "pycodestyle", "pydocstyle", "mypy"},
+			-- configurationSources = {"pylint", "flake8", "pycodestyle", "pydocstyle", "mypy"},
+			configurationSources = {"ruff" , "mypy", "black"},
 			plugins = {
-				flake8 = { enabled = true },
-				pylint = { enabled = true },
-				pydocstyle = { enabled = true },
-				pycodestyle = { enabled = false },
-				mypy = { enabled = true, config_file = "/home/mark/.config/mypy/config" },
+				-- flake8 = { enabled = true },
+				-- set pyltint executable so that it will use the one in a virtual env if it exists
+				-- pylint = { enabled = true, executable="pylint"},
+				-- pydocstyle = { enabled = true },
+				-- pycodestyle = { enabled = false },
+				black = { enabled = true },
+				mypy = { enabled = true },
+				ruff = { enabled = true },
+				-- rope_autoimport = { enabled = true },
 			},
 		}
 	}
 })
 
+-- might be outdated
 -- LSP: Lua
-USER = vim.fn.expand("$USER")
-
-local sumneko_binary = "/home/" .. USER .. "/build/lua-language-server/bin/Linux/lua-language-server"
-local sumneko_root_path = "/home/" .. USER .. "/build/lua-language-server"
-
-require("lspconfig").sumneko_lua.setup({
-	on_attach = M.on_attach,
-	capabilities = capabilities,
-	flags = {
-		debounce_text_changes = 150,
-	},
-	cmd = { sumneko_binary, "-E", sumneko_root_path .. "/main.lua" },
-	settings = {
-		Lua = {
-			runtime = {
-				version = "LuaJIT",
-				path = vim.split(package.path, ";"),
-			},
-			diagnostics = {
-				globals = { "vim" },
-			},
-			workspace = {
-				library = {
-					[vim.fn.expand("$VIMRUNTIME/lua")] = true,
-					[vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
-				},
-			},
-		},
-	},
-})
+-- USER = vim.fn.expand("$USER")
+--
+-- local sumneko_binary = "/home/" .. USER .. "/build/lua-language-server/bin/Linux/lua-language-server"
+-- local sumneko_root_path = "/home/" .. USER .. "/build/lua-language-server"
+--
+-- require("lspconfig").sumneko_lua.setup({
+-- 	on_attach = M.on_attach,
+-- 	capabilities = capabilities,
+-- 	flags = {
+-- 		debounce_text_changes = 150,
+-- 	},
+-- 	cmd = { sumneko_binary, "-E", sumneko_root_path .. "/main.lua" },
+-- 	settings = {
+-- 		Lua = {
+-- 			runtime = {
+-- 				version = "LuaJIT",
+-- 				path = vim.split(package.path, ";"),
+-- 			},
+-- 			diagnostics = {
+-- 				globals = { "vim" },
+-- 			},
+-- 			workspace = {
+-- 				library = {
+-- 					[vim.fn.expand("$VIMRUNTIME/lua")] = true,
+-- 					[vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
+-- 				},
+-- 			},
+-- 		},
+-- 	},
+-- })
 
 return M

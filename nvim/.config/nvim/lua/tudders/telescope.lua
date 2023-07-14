@@ -18,8 +18,8 @@ require("telescope").setup({
 		sorting_strategy = "ascending",
 		file_ignore_patterns = {
 			-- we have set hidden files to shown, but we don't want git dotfiles
-			".git/.*", 
-			".bare/.*", 
+			".git/.*",
+			".bare/.*",
 			".*venv/.*",
 			".*target/.*",
 		},
@@ -33,25 +33,24 @@ require("telescope").setup({
 		},
 	},
 })
+
 -- To get fzf loaded and working with telescope, you need to call
 -- load_extension, somewhere after setup function:
 require("telescope").load_extension("fzf")
+
+vim.api.nvim_set_keymap("n", "<leader>ff", '<cmd>lua require("telescope.builtin").find_files({hidden=true})<cr>', opts)
+vim.api.nvim_set_keymap("n", "<leader>fo", '<cmd>lua require("telescope.builtin").file_browser({hidden=true})<cr>', opts)
+
+vim.api.nvim_set_keymap("n", "<leader>fg", "<cmd>Telescope live_grep<cr>", opts)
+vim.api.nvim_set_keymap("n", "<leader>fb", "<cmd>Telescope buffers<cr>", opts)
+vim.api.nvim_set_keymap("n", "<leader>fh", "<cmd>Telescope help_tags<cr>", opts)
+vim.api.nvim_set_keymap("n", "<leader>f[", "<cmd>Telescope diagnostics<cr>", opts)
+
 
 require('telescope').load_extension('gh')
 vim.api.nvim_set_keymap("n", "<leader>gi", "<cmd>Telescope gh issues<cr>", opts)
 vim.api.nvim_set_keymap("n", "<leader>gp", "<cmd>Telescope gh pull_request<cr>", opts)
 vim.api.nvim_set_keymap("n", "<leader>gr", "<cmd>Telescope gh run<cr>", opts)
-
-vim.api.nvim_set_keymap("n", "<leader>ff", '<cmd>lua require("telescope.builtin").find_files({hidden=true})<cr>', opts)
-vim.api.nvim_set_keymap(
-	"n",
-	"<leader>fo",
-	'<cmd>lua require("telescope.builtin").file_browser({hidden=true})<cr>',
-	opts
-)
-vim.api.nvim_set_keymap("n", "<leader>fg", "<cmd>Telescope live_grep<cr>", opts)
-vim.api.nvim_set_keymap("n", "<leader>fb", "<cmd>Telescope buffers<cr>", opts)
-vim.api.nvim_set_keymap("n", "<leader>fh", "<cmd>Telescope help_tags<cr>", opts)
 
 require("telescope").load_extension("dap")
 vim.api.nvim_set_keymap("n", "<leader>fdc", "<cmd>Telescope commands<cr>", opts)
@@ -60,21 +59,10 @@ vim.api.nvim_set_keymap("n", "<leader>fdf", "<cmd>Telescope frames<cr>", opts)
 vim.api.nvim_set_keymap("n", "<leader>fdb", "<cmd>Telescope list_breakpoints<cr>", opts)
 
 require("telescope").load_extension("git_worktree")
-vim.api.nvim_set_keymap(
-	"n",
-	"<leader>gw",
-	'<cmd>lua require("telescope").extensions.git_worktree.git_worktrees()<cr>',
-	opts
-)
-vim.api.nvim_set_keymap(
-	"n",
-	"<leader>gc",
-	'<cmd>lua require("telescope").extensions.git_worktree.create_git_worktree()<cr>',
-	opts
-)
+vim.api.nvim_set_keymap("n", "<leader>gw", '<cmd>lua require("telescope").extensions.git_worktree.git_worktrees()<cr>', opts)
+vim.api.nvim_set_keymap("n", "<leader>gc", '<cmd>lua require("telescope").extensions.git_worktree.create_git_worktree()<cr>', opts)
 
 require('telescope').load_extension("refactoring")
-
 vim.api.nvim_set_keymap("v", "<leader>rr", "<Esc><cmd>lua require('telescope').extensions.refactoring.refactors()<CR>", opts)
 vim.api.nvim_set_keymap("n", "<leader>rr", "<Esc><cmd>lua require('telescope').extensions.refactoring.refactors()<CR>", opts)
 
