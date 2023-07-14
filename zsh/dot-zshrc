@@ -10,6 +10,8 @@ export EDITOR=nvim
 # export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 export GPG_TTY=$(tty)
 
+export BROWSER=librewolf
+
 source $HOME/.zsh_profile
 
 # Vi mode
@@ -25,7 +27,6 @@ source $CONFIG_HOME/antigen/antigen.zsh
 antigen bundle 'zsh-users/zsh-syntax-highlighting'
 antigen bundle 'zsh-users/zsh-autosuggestions'
 antigen bundle 'zsh-users/zsh-completions'
-antigen bundle 'agkozak/zsh-z'
 antigen theme spaceship-prompt/spaceship-prompt
 antigen apply
 
@@ -66,7 +67,6 @@ for dump in ~/.zcompdump(N.mh+24); do
 done
 compinit -C
 
-# kitty + complete setup zsh | source /dev/stdin
 
 # if type "spt" > /dev/null; then
 # 	spt --completions zsh | source /dev/stdin

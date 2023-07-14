@@ -8,7 +8,7 @@ export CC=clang
 export CXX=clang++
 
 # Huggingface home 
-export HF_HOME=/home/mark/backup/data/huggingface_cache
+# export HF_HOME=/data/mark/data/huggingface_cache
 
 add_path(){
 	if [[ -d $1 ]]; then
@@ -23,6 +23,10 @@ add_path $HOME/dev/tikzit
 # Cuda
 add_path /usr/local/cuda/bin
 export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
+
+# Rust
+# export CARGO_TARGET_DIR=$HOME/.cargo/build
+# add_path $HOME/.cargo/build
 
 # Bin dirs
 add_path $XDG_CONFIG_HOME/bin
@@ -41,4 +45,13 @@ nvm_load(){
 	[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"	# This loads nvm bash_completion
 }
 
-
+# tree but respect gitignore files
+function gtree {
+    git_ignore_files=("$(git config --get core.excludesfile)" .gitignore ~/.gitignore)
+    ignore_pattern="$(grep -hvE '^$|^#' "${git_ignore_files[@]}" 2>/dev/null|sed 's:/$::'|tr '\n' '\|')"
+    if git status &> /dev/null && [[ -n "${ignore_pattern}" ]]; then
+      tree -I "${ignore_pattern}" "${@}"
+    else 
+      tree "${@}"
+    fi
+}
