@@ -36,17 +36,12 @@ default_floating_border pixel 1
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 #font pango:DejaVu Sans Mono 8
 
-# The combination of xss-lock, nm-applet and pactl is a popular choice, so
-# they are included here as an example. Modify as you see fit.
-
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
-# bindsym $mod+l exec loginctl lock-session
-bindsym $mod+Escape exec i3lock -e -t -i ~/.config/i3/background.png && sleep 1 && xset dpms force off #systemctl suspend
-
-# exec --no-startup-id caffeine-indicator
-# exec --no-startup-id xautolock -time 30 -locker "i3lock -e -t -i ~/.config/i3/background.png" -detectsleep -notify 10 -notifier 'xset dpms force off' -killtime 60 -killer "systemctl suspend" -corners 00+-
+# bindsym $mod+Escape exec i3lock -e -t -i ~/.config/i3/background.png && sleep 1 && xset dpms force off #systemctl suspend
+bindsym $mod+Escape exec ~/.local/bin/lock
+exec --no-startup-id xautolock -time 15 -locker ~/.local/bin/lock
 
 hide_edge_borders smart
 focus_follows_mouse no
