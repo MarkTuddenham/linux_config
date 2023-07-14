@@ -1,0 +1,5 @@
+#!/bin/sh
+filename=$(basename -- "$1")
+if [ "${filename##*.}" = "pdf" ]; then
+	exec pdftotext - -
+fi

@@ -1,0 +1,5 @@
+if [ $(pgrep i3lock | wc -l ) -ne 0 ]; then
+	xset dpms force off
+else
+	i3lock -e -t -i ~/.config/i3/background.png && sleep 1 && xset dpms force off
+fi

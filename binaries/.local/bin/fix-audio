@@ -2,17 +2,17 @@
 
 sudo -v
 
-# Re-spawn as a background process, if we haven't already.
-if [[ "$1" != "-n" ]]; then
-    $0 -n &>/dev/null & disown
-    exit $?
-fi
+# # Re-spawn as a background process, if we haven't already.
+# if [[ "$1" != "-n" ]]; then
+#     $0 -n &>/dev/null & disown
+#     exit $?
+# fi
 
 sudo alsa force-reload
 pulseaudio -k
 pulseaudio -k
 
-sleep 10s
+sleep 3s
 
 sudo alsa force-reload
 pulseaudio -k

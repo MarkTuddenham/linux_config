@@ -1,9 +1,21 @@
 #!/bin/bash
-search_paths=( ~/Documents ~/Downloads ~/backup ~/Dropbox ~/phd ~/phd_standalone ~/phone ~/Pictures ~/SynologyShare ~/Videos ~/lt)
-ignore_paths=( backup/socrates venv hooks refs)
+search_paths=( ~/Documents ~/Downloads ~/Dropbox ~/phd ~/phd_git ~/SynologyShare ~/lt /media ~/dev )
+ignore_paths=( CC948CED948CDAFA venv .git hooks refs "*cache*"  node_modules datasets .bk )
 
-FILE=$(fd . ${search_paths[@]} -L -t f -t l ${ignore_paths[@]/#/-E } --no-ignore-vcs | fzf --algo v1 )
+FILE=$(fd . ${search_paths[@]} -HpaL -t f -t l ${ignore_paths[@]/#/-E } --no-ignore-vcs | fzf --algo v1 )
+
+cd /
+clear
 
 if [ ! -z "$FILE" ]; then
-    handlr open "$FILE" &>/dev/null & disown
+
+	if [[ $FILE == *.sh ]]; then
+		read -n 1 -p "Run $FILE? [y/N]" choice
+		if [[ $choice =~ ^[Yy]$ ]]; then
+			nohup /usr/bin/env bash "$FILE" &> /dev/null &
+			exit
+		fi
+	fi
+	
+	nohup handlr open "$FILE" &> /dev/null &
 fi

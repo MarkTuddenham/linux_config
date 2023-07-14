@@ -3,8 +3,8 @@
 TMUX_HISTORY_LENGTH=10
 TMUX_HISTORY_FILE=$HOME/.tmux-sessionizer
 
-TOP_LEVEL_DIRS=( ~/phd ~/phd_standalone ~/dev ~/build ~/Documents ~/lt )
-STAND_ALONE_DIRS=( ~/linux_config ~/lt ~/dev )
+TOP_LEVEL_DIRS=( ~/phd ~/phd_git ~/dev ~/build ~/Documents ~/lt )
+STAND_ALONE_DIRS=( ~/linux_config ~/lt ~/dev ~/phd ~/build )
 
 
 add_new_line() {
@@ -48,7 +48,8 @@ elif [[ $# -eq 2 && "$1" = "restore" ]]; then
 else
 		items=''
 		for dir in ${TOP_LEVEL_DIRS[@]}; do
-			items+=`find $dir -maxdepth 1 -mindepth 1 -type d,l`
+			items+=`fd .  -d 1 --type d --type l $dir`
+			# items+=`find $dir -maxdepth 1 -mindepth 1 -type d,l`
 			items+='\n'
 		done
 
