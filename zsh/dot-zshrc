@@ -7,12 +7,18 @@ export SHELL=/bin/zsh
 # export TERM=xterm-256color
 export LANG=en_GB.UTF8
 export EDITOR=nvim
+export VISUAL=nvim
+export PAGER=less
 # export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 export GPG_TTY=$(tty)
 
 export BROWSER=librewolf
 
+# see man par(1)
+export PARINIT=rTbgqR\ B=.,\?_A_a Q=_s\>|
+
 source $HOME/.zsh_profile
+
 
 # Vi mode
 bindkey -v
