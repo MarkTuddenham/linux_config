@@ -1,1 +1,74 @@
+# Query feeds
+"query:Unread Articles (favourite):unread = \"yes\" and tags # \"favourite\""
+"query:Unread Articles (1 week old):unread = \"yes\" and tags !# \"pouet\" and tags !# \"page2rss\" and tags !# \"xiv\" and age between 0:7"
+"query:Unread Articles (1 month old):unread = \"yes\" and tags !# \"pouet\" and tags !# \"page2rss\" and tags !# \"xiv\" and age between 0:31"
+"query:Unread Articles (1 year old):unread = \"yes\" and tags !# \"pouet\" and tags !# \"page2rss\" and tags !# \"xiv\" and age between 0:365"
+"query:Unread Articles:unread = \"yes\" and tags !# \"pouet\" and tags !# \"page2rss\" and tags !# \"xiv\""
+"query:Fun:unread = \"yes\" and tags # \"fun\""
+
+
 https://newsboat.org/news.atom
+
+# Programming
+http://byfat.xxx/feed
+https://feeds.allenpike.com/feed/
+http://economist.com/bagehots-notebook/rss.xml
+
+
+http://lucumr.pocoo.org/feed.atom programming
+https://bytecodealliance.org/feed.xml programming
+http://domainnamewire.com/feed programming
+http://domenicoluciani.com/feed.xml programming
+http://faultlore.com/blah/rss.xml programming
+https://hoverbear.org/rss.xml programming
+https://manishearth.github.io/atom.xml programming
+http://lord.io/feed.xml programming
+https://matklad.github.io/feed.xml programming
+http://limpet.net/mbrubeck/atom.xml programming
+http://netflixtechblog.com/feed programming
+https://raphlinus.github.io/feed.xml programming
+http://steveklabnik.com/feed.xml programming
+http://tedinski.com/feed.xml programming
+http://torrentfreak.com/feed programming
+
+# Rust
+https://blog.burntsushi.net/index.xml programming rust
+http://apollolabsblog.hashnode.dev/rss.xml programming rust
+https://fasterthanli.me/index.xml programming rust
+http://blog.rust-lang.org/inside-rust/feed.xml programming rust
+https://model-checking.github.io//kani-verifier-blog/feed.xml programming rust
+http://lpalmieri.com/rss.xml programming rust
+https://blog.m-ou.se/index.xml programming rust
+https://nnethercote.github.io/feed.xml programming rust
+http://poignardazur.github.io/atom.xml programming rust
+https://polymonster.github.io/feed programming rust
+http://quickwit.io/blog/rss.xml programming rust
+http://blog.rust-lang.org/feed.xml programming rust
+https://rust-osdev.com/rss.xml programming rust
+https://samsartor.dev/atom.xml programming rust
+http://without.boats/index.xml programming rust
+https://os.phil-opp.com/rss.xml programming rust
+
+# Maths
+http://and-what-happened.blogspot.com/feeds/posts/default maths
+http://algorithmist.wordpress.com/feed/ maths
+http://www.johndcook.com/blog/feed/ maths
+http://blog.wolfram.com/feed/ maths
+http://blog.kenperlin.com/?feed=rss2 maths
+http://boredzo.org/blog/feed/atom maths
+http://www.elegantcoding.com/feeds/posts/default maths
+http://jeremykun.com/feed/ maths
+http://unapologetic.wordpress.com/feed/ maths
+http://www.essentialmath.com/blog/?feed=rss2 maths
+http://feeds.feedburner.com/matthen maths
+
+# Typography
+http://feeds.feedburner.com/webtype typography
+http://feeds.feedburner.com/ILoveTypography typography
+
+# Misc
+http://xkcd.com/atom.xml fun
+
+# Dead
+#http://www.algorithmist.net/?feed=rss2 maths
+#http://vihart.com/blog/rss.xml maths
