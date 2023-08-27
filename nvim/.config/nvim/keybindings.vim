@@ -49,4 +49,9 @@ nnoremap <silent> <C-f> :silent !tmux neww tmux-sessioniser<cr>
 " imap <silent><script><expr> <C-y> copilot#Accept("\<CR>")
 " let g:copilot_no_tab_map = v:true
 
+" Highlighting for over length lines
+hi ColorColumn ctermbg=lightgrey guibg=#592929
+set cc=80,120
+highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+match OverLength /\%101v.\+/
 
