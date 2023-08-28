@@ -1,5 +1,5 @@
 # Query feeds
-"query:Unread Articles (favourite):unread = \"yes\" and tags # \"favourite\""
+"query:Favourite Articles:flags # \"s\""
 "query:Unread Articles (1 week old):unread = \"yes\" and tags !# \"pouet\" and tags !# \"page2rss\" and tags !# \"xiv\" and age between 0:7"
 "query:Unread Articles (1 month old):unread = \"yes\" and tags !# \"pouet\" and tags !# \"page2rss\" and tags !# \"xiv\" and age between 0:31"
 "query:Unread Articles (1 year old):unread = \"yes\" and tags !# \"pouet\" and tags !# \"page2rss\" and tags !# \"xiv\" and age between 0:365"
@@ -7,14 +7,10 @@
 "query:Fun:unread = \"yes\" and tags # \"fun\""
 
 
+# Product updates
 https://newsboat.org/news.atom
 
 # Programming
-http://byfat.xxx/feed
-https://feeds.allenpike.com/feed/
-http://economist.com/bagehots-notebook/rss.xml
-
-
 http://lucumr.pocoo.org/feed.atom programming
 https://bytecodealliance.org/feed.xml programming
 http://domainnamewire.com/feed programming
@@ -30,6 +26,7 @@ https://raphlinus.github.io/feed.xml programming
 http://steveklabnik.com/feed.xml programming
 http://tedinski.com/feed.xml programming
 http://torrentfreak.com/feed programming
+https://registerspill.thorstenball.com/feed programming
 
 # Rust
 https://blog.burntsushi.net/index.xml programming rust
@@ -66,8 +63,18 @@ http://feeds.feedburner.com/matthen maths
 http://feeds.feedburner.com/webtype typography
 http://feeds.feedburner.com/ILoveTypography typography
 
+# Classics
+https://antigonejournal.com/feed/
+
+# News
+# https://brunomacaes-newsletter.beehiiv.com/ news
+
 # Misc
 http://xkcd.com/atom.xml fun
+
+http://byfat.xxx/feed
+https://feeds.allenpike.com/feed/
+http://economist.com/bagehots-notebook/rss.xml
 
 # Dead
 #http://www.algorithmist.net/?feed=rss2 maths
