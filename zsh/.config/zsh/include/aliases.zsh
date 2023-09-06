@@ -30,3 +30,7 @@ alias luamake=/home/mark/build/lua-language-server/3rd/luamake/luamake
 
 alias stow='stow --dotfiles'
 alias unstow='stow -D --dotfiles'
+
+alias nb='newsboat -q'
+
+alias pycli='PYTHONSTARTUP="/home/mark/.config/py_cli_init.py" python -B'
