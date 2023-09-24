@@ -58,15 +58,15 @@ for _, lsp in ipairs(servers) do
 	})
 end
 
--- -- -- LSP: Language Tool latex
---  nvim_lsp.ltex.setup{
--- 	on_attach = M.on_attach,
--- 	capabilities = updated_capabilities,
--- 	cmd = {'ltex_ls'},
--- 		 flags = {
--- 			 debounce_text_changes = 150,
--- 		 }
---  }
+-- LSP: Language Tool latex
+nvim_lsp.ltex.setup{
+on_attach = M.on_attach,
+capabilities = updated_capabilities,
+cmd = {'ltex_ls'},
+	 flags = {
+		 debounce_text_changes = 150,
+	 }
+}
 
 -- LSP: Tailwind
 nvim_lsp.tailwindcss.setup({
@@ -91,6 +91,7 @@ nvim_lsp.tailwindcss.setup({
 	},
 	settings = { },
 })
+
 -- LSP: Go
 nvim_lsp.gopls.setup({
 	on_attach = M.on_attach,

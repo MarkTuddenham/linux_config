@@ -19,6 +19,7 @@ require("telescope").setup({
 		file_ignore_patterns = {
 			-- we have set hidden files to shown, but we don't want git dotfiles
 			".git/.*",
+			".sqlx/.*",
 			".bare/.*",
 			".*venv/.*",
 			".*target/.*",
