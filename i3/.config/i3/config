@@ -65,7 +65,7 @@ floating_modifier $mod
 
 # start a terminal
 # bindsym $mod+Return exec i3-sensible-terminal
-bindsym $mod+Return exec alacritty --hold -e zsh -c "source ~/.zshrc && tmux-sessioniser"
+bindsym $mod+Return exec alacritty -e zsh -c "source ~/.zshrc && tmux-sessioniser"
 bindsym $mod+Delete exec librewolf
 
 # kill focused window
