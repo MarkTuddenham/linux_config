@@ -10,6 +10,7 @@ prepopulate-query-feeds yes
 unbind-key C feedlist
 unbind-key ^D all
 unbind-key D all
+unbind-key A all
 unbind-key $ all
 
 confirm-exit no

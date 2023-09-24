@@ -2,10 +2,10 @@
 "query:Favourite Articles:flags # \"s\""
 "query:Today's Articles: age <= 0"
 "query:Unread Articles (1 week old):unread = \"yes\"  and age between 0:7"
-"query:Unread Articles (1 month old):unread = \"yes\" and age between 0:31"
-"query:Unread Articles (1 year old):unread = \"yes\"  and age between 0:365"
+# "query:Unread Articles (1 month old):unread = \"yes\" and age between 0:31"
+# "query:Unread Articles (1 year old):unread = \"yes\"  and age between 0:365"
 "query:Unread Articles:unread = \"yes\""
-"query:Fun:unread = \"yes\" and tags # \"fun\""
+"query:Typography:unread = \"yes\" and tags # \"typography\""
 
 
 # Product updates
@@ -30,6 +30,7 @@ http://torrentfreak.com/feed programming
 https://registerspill.thorstenball.com/feed programming
 https://ghuntley.com/rss tech programming life
 https://leancrew.com/all-this/feed/ programming
+https://www.redpill-linpro.com/techblog/feed.xml programming
 
 # Rust
 https://blog.burntsushi.net/index.xml programming rust
@@ -48,6 +49,10 @@ https://rust-osdev.com/rss.xml programming rust
 https://samsartor.dev/atom.xml programming rust
 http://without.boats/index.xml programming rust
 https://os.phil-opp.com/rss.xml programming rust
+https://thesquareplanet.com/feed.xml programming rust
+
+# ML
+https://fast.ai/index.xml ml
 
 # Maths
 http://and-what-happened.blogspot.com/feeds/posts/default maths
@@ -65,9 +70,10 @@ http://feeds.feedburner.com/matthen maths
 # Typography
 http://feeds.feedburner.com/webtype typography
 http://feeds.feedburner.com/ILoveTypography typography
+https://oldprintgallery.wordpress.com/feed/ typography
 
 # Classics
-https://antigonejournal.com/feed/
+https://antigonejournal.com/feed/ classics
 
 # Gym & Swimming
 
