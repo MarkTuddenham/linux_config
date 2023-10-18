@@ -22,11 +22,19 @@
 	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
 	s = status
 [credential]
-	helper = "!pass-git-helper $@"
+	helper = cache
+	helper = !type pass-git-helper >/dev/null && pass-git-helper $@
 [filter "lfs"]
 	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge --skip -- %f
-	process = git-lfs filter-process --skip
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
 	required = true
 [commit]
 	gpgsign = true
+[sendemail]
+	smtpserver = mail.tudders.com
+	smtpuser = mark@tudders.com
+	smtpencryption = ssl
+	smtpserverport = 465
+	confirm = auto
+	annotate = yes
