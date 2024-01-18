@@ -26,7 +26,7 @@ for_window [title="Zoom Meeting"] floating enable
 for_window [title="Zoom Meeting"] resize set 1920 1080
 for_window [title="Zoom - Free Account"] floating enable
 
-# Firefox Picture-in-picture videos alwasy stay on current workspace
+# Firefox Picture-in-picture videos always stay on current workspace
 for_window [title="Picture-in-Picture"] sticky enable
 
 default_border pixel 1
