@@ -1,3 +1,62 @@
+@namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"); /* only needed once */
+
+/* /* full screen toolbars */ */
+/* #navigator-toolbox[inFullscreen] toolbar:not([collapsed="true"]) { */
+/*    visibility:visible!important; */
+/* } */
+
+/* bring the browser window to the top */
+#browser {
+	-moz-box-ordinal-group: 0 !important;
+	order: 0 !important;
+}
+
+#navigator-toolbox, /* after version 119 */ 
+#navigator-toolbox-background { /* before version 119 */
+	-moz-box-ordinal-group: 1 !important;
+	order: 1 !important;
+}
+
+/* adjust paddings */
+*|*:root[sizemode="normal"] #browser {
+	padding-top: 0 !important;
+}
+
+/* hide tab toolbar when fullscreen */
+#nav-bar[inFullscreen],
+#TabsToolbar[inFullscreen] {
+	display: none;
+}
+
+/* restore top border */
+*|*:root[sizemode="normal"] #browser {
+	border-top: .5px solid AccentColor !important;
+}
+*|*:root[sizemode="normal"]:-moz-window-inactive #browser {
+	border-top-color: rgb(57,57,57) !important;
+}
+
+/* make toolbar border persist on fullscreen */
+*|*:root[sizemode="maximized"] #navigator-toolbox {
+  border-top: .5px solid AccentColor !important;
+  border-bottom: .5px solid AccentColor !important;
+}
+
+/* hide titlebar buttons */
+#TabsToolbar > .titlebar-buttonbox-container {
+	display: none !important;
+}
+
+/*fix pop-ups opening below window*/
+#urlbar[open]{
+  display: flex !important;
+  flex-direction: column-reverse; /* use 'column' if you want to type the URL in center*/
+  bottom: -2px !important;
+  top: auto !important;
+}
+/*.urlbarView-body-inner { border-top: none !important; }*/
+/*.urlbarView { display: none !important; }*/ /* uncomment this to hidden address bar suggestions */
+
 @-moz-document url(chrome://browser/content/browser.xhtml) {
     #mainPopupSet~box {
         /* -moz-box-ordinal-group: 10; */
