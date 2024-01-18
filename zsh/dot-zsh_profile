@@ -36,6 +36,9 @@ add_path /usr/local/go/bin
 add_path $HOME/go/bin
 add_path $HOME/miniconda3/bin
 add_path $HOME/build/luarocks-3.7.0/lua_modules/bin
+add_path $HOME/build/ltex-ls-16.0.0/bin
+# add_path $HOME/build/cmake-3.28.0-rc5-linux-x86_64/bin
+add_path $HOME/build/zls/zig-out/bin
 
 # Don't want to load nvm on every shell since it's slow to load
 # Provide a load func for when I do need to load it
