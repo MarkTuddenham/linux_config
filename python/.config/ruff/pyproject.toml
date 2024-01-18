@@ -5,7 +5,7 @@ select = ["ALL"]
 # D211: no blank line before class (conflicts with D203 -- one line before class)
 # D212: multi line summary first line (docstring has a newline after inital """,
 #				conflicts with D213 -- multi line summary second line)
-ignore = ["D211", "D212"]
+ignore = ["D", "ANN", "D211", "D212", "ERA001"]
 
 # Allow autofix for all enabled rules (when `--fix`) is provided.
 # fixable = ["A", "B", "C", "D", "E", "F", "..."]
@@ -58,9 +58,33 @@ force-single-line = true
 force-sort-within-sections = true
 force-to-top = ["typing"]
 required-imports = ["from __future__ import annotations"]
+section-order = [
+	"future",
+	"types",
+	"standard-library",
+	"stdlib",
+	"tests",
+	"maths",
+	"matplotlib",
+	"pytorch",
+	"first-party", "local-folder", "third-party"
+]
+
+[tool.ruff.isort.sections]
+"matplotlib" = ["matplotlib"]
+"maths" = ["maths", "numpy", "pandas", "scipy", "sympy", "statistics"]
+"pytorch" = ["torch", "torchvision"]
+"tests" = ["tests", "pytest", "pyfakefs", "hypothesis", "parameterized"]
+"types" = ["typing", "mypy", "types"]
+"stdlib" = [
+	"os", "sys", "logging", "argparse", "deepcopy", "copy", "hashlib", "re",
+	"json", "pathlib", "shutil", "subprocess", "time", "datetime", "random",
+	"collections", "itertools", "functools", "operator", "warnings",
+	"contextlib", "dataclasses"
+]
+
 
 [tool.ruff.pylint]
 max-args = 5
 max-branches = 8
 max-returns = 3
-
