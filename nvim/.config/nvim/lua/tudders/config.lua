@@ -22,10 +22,40 @@ vim.api.nvim_set_keymap("v", "<leader>fjp", ":'<,'> !par -jw79<cr>", {silent=tru
 vim.api.nvim_set_keymap("n", "<leader>v", "<cmd>Vista!!<cr>", {silent=true})
 vim.g.vista_default_executive = "nvim_lsp"
 
-
 require("Comment").setup()
-
 require('crates').setup()
+
+require("gruvbox").setup({
+  terminal_colors = true, -- add neovim terminal colors
+  undercurl = true,
+  underline = true,
+  bold = true,
+  italic = {
+    strings = true,
+    emphasis = true,
+    comments = true,
+    operators = false,
+    folds = true,
+  },
+  strikethrough = true,
+  invert_selection = false,
+  invert_signs = false,
+  invert_tabline = false,
+  invert_intend_guides = false,
+  inverse = true, -- invert background for search, diffs, statuslines and errors
+  contrast = "soft", -- can be "hard", "soft" or empty string
+  palette_overrides = {},
+  overrides = {},
+  dim_inactive = false,
+  transparent_mode = true,
+})
+vim.cmd("colorscheme gruvbox")
+
+require("lsp_lines").setup()
+vim.diagnostic.config({
+  -- virtual_text = false,
+   virtual_lines = { only_current_line = true }
+})
 
 require('rust-tools').setup({
 	autoSetHints = true,
@@ -40,84 +70,54 @@ require('rust-tools').setup({
 		settings = {
 			["rust-analyzer"] = {
 				cargo = {features = "all"},
+				check = {
+            command = "clippy"
+        }
 			}
 		}
 	}
 })
 
--- -- This has to go before require("lualine").setup()
--- require("github-theme").setup({
--- 	transparent = true,
--- 	theme_style = "dark",
--- 	sidebars = { "qf", "vista_kind", "terminal", "packer" },
--- 	dark_float = true,
--- 	hide_inactive_statusline = false,
--- 	colors = {
--- 		-- border_highlight = "bg",
--- 		-- fg = 'white',
--- 		syntax = {
--- 			comment = "#BB00BB",
--- 		},
--- 	},
--- 	-- comment_style = "italic",
--- 	-- keyword_style = "NONE",
--- 	-- function_style = "NONE",
--- 	-- variable_style = "NONE"
--- })
-
 require("lualine").setup({
 	options = {
-		icons_enabled = true,
-		theme = "auto",
-	},
+    theme = 'gruvbox',
+		icons_enabled = false,
+		section_separators = '',
+		component_separators = '',
+    disabled_filetypes = {
+      statusline = {},
+      winbar = {},
+    },
+    ignore_focus = {},
+    always_divide_middle = true,
+    globalstatus = false,
+    refresh = {
+      statusline = 1000,
+      tabline = 1000,
+      winbar = 1000,
+    }
+  },
 	sections = {
-		lualine_a = { "mode", "paste" },
-		lualine_b = { "branch", "diff" },
-		lualine_c = {
-			{ "filename", file_status = true, full_path = true },
+		lualine_a = { "hostname", "mode", "paste" },
+		lualine_b = {
+			{ "filename",
+			file_status = true,
+			new_file_status = true,
+			path = 2,
+		},
 			{
 				"diagnostics",
-				sources = { "nvim_diagnostic" },
+				sources = { 'nvim_lsp',"nvim_diagnostic", 'nvim_workspace_diagnostic' },
 				symbols = { error = "E", warn = "W", info = "I", hint = "H" },
 			},
 		},
-		lualine_x = { "filetype" },
-		lualine_y = { "progress" },
-		lualine_z = { { "location", icon = "" } },
+		lualine_c = { "branch", "diff" },
+		lualine_x = { "searchcount", "selectioncount",  },
+		lualine_y = { "filetype", 'encoding', 'fileformat' },
+		lualine_z = { "progress", "location" },
 	},
-	-- inactive_sections = {
-	-- 	lualine_a = { "mode", "paste" },
-	-- 	lualine_b = { "branch", "diff" },
-	-- 	lualine_c = {
-	-- 		{ "filename", file_status = true, full_path = true },
-	-- 		{
-	-- 			"diagnostics",
-	-- 			sources = { "nvim_diagnostic" },
-	-- 			symbols = { error = "E", warn = "W", info = "I", hint = "H" },
-	-- 		},
-	-- 	},
-	-- 	lualine_x = { "filetype" },
-	-- 	lualine_y = { "progress" },
-	-- 	lualine_z = { { "location", icon = "" } },
-	-- },
-	extensions = { "fugitive" },
+	extensions = { "fugitive", "fzf", "nvim-dap-ui" },
 })
-
--- override theme colours
--- vim.cmd([[
--- function! MyHighlights() abort
--- 	highlight! link Conceal Comment
--- endfunction
---
--- augroup MyColors
--- 		autocmd!
--- 		autocmd ColorScheme * call MyHighlights()
--- augroup END
--- ]])
-
--- require("notify").setup({
--- 	background_colour = "#000000",
--- })
 
 require("refactoring").setup()
 
@@ -141,8 +141,8 @@ require("nvim-treesitter.configs").setup({
 	ensure_installed = "all", -- one of 'all', 'maintained' (parsers with maintainers), or a list of languages
 	ignore_install = { "javascript" }, -- List of parsers to ignore installing
 	highlight = {
-		enable = false, -- false will disable the whole extension
-		disable = {"latex", "tex", "vim" }, -- list of language that will be disabled
+		enable = true, -- false will disable the whole extension
+		-- disable = {"latex", "tex", "vim" }, -- list of language that will be disabled
 		-- Setting this to true will run `:h syntax` and tree-sitter at the same time.
 		-- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
 		-- Using this option may slow down your editor, and you may see some duplicate highlights.

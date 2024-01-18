@@ -47,7 +47,7 @@ capabilities.textDocument.completion.completionItem.insertReplaceSupport = false
 -- LSP: Others
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { "clangd", "texlab", "bashls", "html", "tsserver", "jdtls"}--, "lua_ls"} --"rust_analyzer"}
+local servers = { "clangd", "texlab", "bashls", "html", "tsserver", "jdtls", "zls"}
 for _, lsp in ipairs(servers) do
 	nvim_lsp[lsp].setup({
 		on_attach = M.on_attach,
@@ -58,27 +58,58 @@ for _, lsp in ipairs(servers) do
 	})
 end
 
+-- add vim user dictionary for ltex-ls
+local path = vim.fn.stdpath 'config' .. '/spell/en.utf-8.add'
+local words = {}
+
+for word in io.open(path, 'r'):lines() do
+  table.insert(words, word)
+end
+
 -- LSP: Language Tool latex
-nvim_lsp.ltex.setup{
-on_attach = M.on_attach,
+nvim_lsp.ltex.setup {
+	on_attach = function(client, bufnr)
+			M.on_attach(client, bufnr)
+			require("ltex_extra").setup{
+				load_langs = { "en-GB" },
+				init_check = true,
+				path = vim.fn.expand("~") .. "/.cache/ltex-ls"
+			}
+		end,
 capabilities = updated_capabilities,
-cmd = {'ltex_ls'},
-	 flags = {
-		 debounce_text_changes = 150,
-	 }
+cmd = {'ltex-ls'},
+flags = { debounce_text_changes = 150 },
+settings = {
+	ltex = {
+		language = "en-GB",
+		-- uses ltex_exta @ ~/.cache/ltex-ls/ltex.disabledRules.en-GB.txt
+		-- disabledRules = {
+		-- 	["en-GB"] = { "~/.cache/ltex-ls/disabledRules" }
+		-- },
+		dictionary = {
+			['en-GB'] = words,
+		},
+	}
+}
 }
 
 -- LSP: Tailwind
 nvim_lsp.tailwindcss.setup({
 	on_attach = M.on_attach,
 	capabilities = capabilities,
+	-- filetypes = {
+	-- 	"aspnetcorerazor", "astro", "astro-markdown", "blade", "clojure", "django-html", "htmldjango",
+	-- 	"edge", "eelixir", "elixir", "ejs", "erb", "eruby", "gohtml", "haml", "handlebars", "hbs", "html",
+	-- 	"html-eex", "heex", "jade", "leaf", "liquid", "markdown", "mdx", "mustache", "njk", "nunjucks",
+	-- 	"php", "razor", "slim", "twig", "css", "less", "postcss", "sass", "scss", "stylus", "sugarss",
+	-- 	"javascript", "javascriptreact", "reason", "rescript", "typescript", "typescriptreact", "vue",
+	-- 	"svelte", "rust",
+	-- },
 	filetypes = {
-		"aspnetcorerazor", "astro", "astro-markdown", "blade", "clojure", "django-html", "htmldjango",
-		"edge", "eelixir", "elixir", "ejs", "erb", "eruby", "gohtml", "haml", "handlebars", "hbs", "html",
-		"html-eex", "heex", "jade", "leaf", "liquid", "markdown", "mdx", "mustache", "njk", "nunjucks",
-		"php", "razor", "slim", "twig", "css", "less", "postcss", "sass", "scss", "stylus", "sugarss",
-		"javascript", "javascriptreact", "reason", "rescript", "typescript", "typescriptreact", "vue",
-		"svelte", "rust",
+		 "django-html", "htmldjango", "ejs", "gohtml", "html",
+		"html-eex",  "leaf", "liquid",  "mdx", "php",
+		"css", "postcss", "sass", "scss", "sugarss", "svelte",
+		"javascript", "javascriptreact", "typescript", "typescriptreact",
 	},
 	init_options = {
 		userLanguages = {
@@ -124,18 +155,30 @@ nvim_lsp.pylsp.setup({
 	flags = {
 		debounce_text_changes = 150,
 	},
+	pylsp = {
+    cmd = {"pylsp"},
+    root_dir = function(fname)
+      local root_files = {
+        'pyproject.toml',
+        'setup.py',
+        'setup.cfg',
+        'requirements.txt',
+        'Pipfile',
+      }
+      return util.root_pattern(unpack(root_files))(fname) or util.find_git_ancestor(fname)
+    end,
+	},
 	settings = {
 		pylsp = {
-			-- configurationSources = {"pylint", "flake8", "pycodestyle", "pydocstyle", "mypy"},
-			configurationSources = {"ruff" , "mypy", "black"},
+			configurationSources = {"ruff"},
 			plugins = {
-				-- flake8 = { enabled = true },
+				flake8 = { enabled = false },
 				-- set pyltint executable so that it will use the one in a virtual env if it exists
-				-- pylint = { enabled = true, executable="pylint"},
-				-- pydocstyle = { enabled = true },
-				-- pycodestyle = { enabled = false },
-				black = { enabled = true },
-				mypy = { enabled = true },
+				pylint = { enabled = false, executable="pylint"},
+				pydocstyle = { enabled = false },
+				pycodestyle = { enabled = false },
+				black = { enabled = false },
+				mypy = { enabled = false },
 				ruff = { enabled = true },
 				-- rope_autoimport = { enabled = true },
 			},
