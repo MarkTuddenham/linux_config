@@ -1,8 +1,30 @@
 #!/bin/bash
-search_paths=( ~/Documents ~/Downloads ~/Dropbox ~/phd ~/phd_git ~/SynologyShare ~/lt /media ~/dev )
-ignore_paths=( CC948CED948CDAFA venv .git hooks refs "*cache*"  node_modules datasets .bk )
+search_paths=(~/Documents ~/Downloads ~/phd ~/phd_git ~/SynologyShare /media ~/dev ~/writing )
+ignore_paths=(
+# Data disk
+	CC948CED948CDAFA
+	datasets
+	.bk
+# Python
+	venv
+# Git
+	.git
+	hooks
+	refs
+# Rust
+	semver-checks
+	"*deps"
+	.fingerprint
+# Other
+	"*cache*"
+	node_modules
+	build
+	_build
+	".DS_Store"
+	"._.DS_Store"
+)
 
-FILE=$(fd . ${search_paths[@]} -HpaL -t f -t l ${ignore_paths[@]/#/-E } --no-ignore-vcs | fzf --algo v1 )
+FILE=$(fd . ${search_paths[@]} -HpaL -t f -t l ${ignore_paths[@]/#/-E } --no-ignore-vcs | fzf --algo v1)
 
 cd /
 clear
@@ -12,10 +34,10 @@ if [ ! -z "$FILE" ]; then
 	if [[ $FILE == *.sh ]]; then
 		read -n 1 -p "Run $FILE? [y/N]" choice
 		if [[ $choice =~ ^[Yy]$ ]]; then
-			nohup /usr/bin/env bash "$FILE" &> /dev/null &
+			nohup /usr/bin/env bash "$FILE" &>/dev/null &
 			exit
 		fi
 	fi
-	
-	nohup handlr open "$FILE" &> /dev/null &
+
+	nohup handlr open "$FILE" &>/dev/null &
 fi
