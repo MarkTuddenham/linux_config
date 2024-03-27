@@ -123,6 +123,24 @@ nvim_lsp.tailwindcss.setup({
 	settings = { },
 })
 
+-- nvim_lsp.sqls.setup({
+--   on_attach = function(client, bufnr)
+--     require('sqls').on_attach(client, bufnr) -- require sqls.nvim
+-- 		M.on_attach(client, bufnr)
+--   end,
+--   settings = {
+--     sqls = {
+-- 			lowercaseKeywords= false,
+--       connections = {
+--         -- {
+--         --   driver = 'postgresql',
+--         --   dataSourceName = 'host=127.0.0.1 port=5432 user=postgres password=mysecretpassword1234 dbname=dvdrental sslmode=disable',
+--         -- },
+--       },
+--     },
+--   },
+-- })
+
 -- LSP: Go
 nvim_lsp.gopls.setup({
 	on_attach = M.on_attach,

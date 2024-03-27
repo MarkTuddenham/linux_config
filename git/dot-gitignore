@@ -2,6 +2,7 @@
 **/.directory
 .directory
 todo.md
+.env
 
 venv/
 *.bk

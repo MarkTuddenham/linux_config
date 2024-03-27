@@ -1,3 +1,4 @@
+
 require("tudders.opts")
 require("tudders.telescope")
 require("tudders.git-worktree")
@@ -55,6 +56,12 @@ require("lsp_lines").setup()
 vim.diagnostic.config({
   -- virtual_text = false,
    virtual_lines = { only_current_line = true }
+})
+
+require('licenses').setup({
+    copyright_holder = 'Mark Tuddenham',
+    email = 'mark@tudders.com',
+    license = 'MIT',
 })
 
 require('rust-tools').setup({

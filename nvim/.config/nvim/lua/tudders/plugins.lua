@@ -69,6 +69,7 @@ return require("packer").startup({
 		})
 
 		use("https://git.sr.ht/~whynothugo/lsp_lines.nvim")
+		use("https://git.sr.ht/~reggie/licenses.nvim")
 
 		use("github/copilot.vim")
 
@@ -99,6 +100,7 @@ return require("packer").startup({
 		use("vim-scripts/dbext.vim")
 
 		use("barreiroleo/ltex-extra.nvim")
+		-- use("nanotee/sqls.nvim")
 
 
 		-- status line

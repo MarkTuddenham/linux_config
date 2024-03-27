@@ -1,0 +1,11 @@
+server {
+	listen 80;
+	listen [::]:80;
+	server_name hellebore.tudders.net;
+	server_name helleboreweightlifting.com;
+	server_name helleborewl.com;
+
+	location / {
+		proxy_pass http://localhost:3000;
+	}
+}
