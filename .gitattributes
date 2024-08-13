@@ -3,5 +3,7 @@ qutebrowser/.config/qutebrowser/bookmarks/* filter=git-crypt diff=git-crypt
 ssh/.ssh/* filter=git-crypt diff=git-crypt
 hosts filter=git-crypt diff=git-crypt
 email/.config/aerc/accounts.conf filter=git-crypt diff=git-crypt
+email/.config/aerc/address_book filter=git-crypt diff=git-crypt
+email/dot-mbsyncrc filter=git-crypt diff=git-crypt
 newsboat/.newsboat/config filter=git-crypt diff=git-crypt
 
